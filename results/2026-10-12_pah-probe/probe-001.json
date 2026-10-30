@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "probe": "synthetic-tool-roundtrip",
+  "protocol_pass": true,
+  "production_readiness": "not_assessed",
+  "model": "qwen38-flash-next-freetoken",
+  "base_url": "http://127.0.0.1:1919/v1",
+  "requests_sent": 2,
+  "elapsed_seconds": 8.534,
+  "failed_stage": null,
+  "failure_reason": null,
+  "usage": [
+    {
+      "stage": "tool_call",
+      "prompt_tokens": 383,
+      "completion_tokens": 71,
+      "total_tokens": 454
+    },
+    {
+      "stage": "final_answer",
+      "prompt_tokens": 176,
+      "completion_tokens": 103,
+      "total_tokens": 279
+    }
+  ],
+  "limits": {
+    "max_requests": 2,
+    "max_response_bytes_per_request": 1048576,
+    "socket_timeout_seconds": 60,
+    "hard_total_deadline_enforced": false,
+    "requested_max_tokens": 2048,
+    "server_token_limit_enforced_by_client": false
+  }
+}
