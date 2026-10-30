@@ -10,6 +10,8 @@ llm_engine_bench.py — OpenAI互換サーバ（FreeToken / Strata など）の�
   gap_p50/p95/p99_ms, stall_rate (チャンク到着間隔 > --stall-ms の割合)
   mem_available_min_gib, swap_in_mib, swap_out_mib,
   vram_used_max_gib, gpu_power_avg_w, pcie_rx_avg_gbps (pynvmlがあれば)
+  engine_prefill_tps, engine_decode_tps, draft_n, draft_accepted, draft_accept_rate
+    (サーバが "timings" を返す場合。Strata は返す)
 
 使い方の例:
   # トラックA（同一GGUF・MTPなし）FreeToken
@@ -176,7 +178,7 @@ def stream_request(opts, base_url, model, messages, max_tokens, thinking, extra,
     sampler = Sampler()
     sampler.start()
     t0 = time.perf_counter()
-    arrivals, text, usage = [], [], None
+    arrivals, text, usage, timings = [], [], None, None
     req = urllib.request.Request(
         f"{base_url}/chat/completions", data=json.dumps(body).encode("utf-8"), method="POST",
         headers={"Content-Type": "application/json", "Accept": "text/event-stream",
@@ -192,6 +194,8 @@ def stream_request(opts, base_url, model, messages, max_tokens, thinking, extra,
             obj = json.loads(data)
             if obj.get("usage"):
                 usage = obj["usage"]
+            if obj.get("timings"):  # Strata / llama.cpp 系がエンジン側の計測値を返す
+                timings = obj["timings"]
             for ch in obj.get("choices", []):
                 d = ch.get("delta", {}) or {}
                 piece = (d.get("content") or "") + (d.get("reasoning_content") or d.get("reasoning") or "")
@@ -226,6 +230,16 @@ def stream_request(opts, base_url, model, messages, max_tokens, thinking, extra,
         "gap_p99_ms": round(pct(gaps, 99), 1) if gaps else None,
         "stall_rate": round(sum(g > stall_ms for g in gaps) / len(gaps), 4) if gaps else None,
     }
+    if timings:
+        dn, da = timings.get("draft_n"), timings.get("draft_n_accepted")
+        out.update({
+            "engine_prefill_tps": timings.get("prompt_per_second"),
+            "engine_decode_tps": timings.get("predicted_per_second"),
+            "engine_cache_n": timings.get("cache_n"),
+            "draft_n": dn,
+            "draft_accepted": da,
+            "draft_accept_rate": round(da / dn, 4) if dn else None,
+        })
     out.update(res)
     return out, "".join(text)
 
@@ -278,7 +292,8 @@ def summarize(path):
     groups = {}
     for r in rows:
         groups.setdefault(tuple(r.get(k) for k in keys), []).append(r)
-    cols = ("ttft_s", "decode_tps", "prefill_tps", "gap_p99_ms", "mem_available_min_gib", "pcie_rx_avg_gbps")
+    cols = ("ttft_s", "decode_tps", "prefill_tps", "gap_p99_ms", "draft_accept_rate",
+            "mem_available_min_gib", "pcie_rx_avg_gbps")
     print("\t".join(keys + tuple(f"{c}(median[min-max])" for c in cols) + ("n",)))
     for g, rs in sorted(groups.items(), key=lambda kv: tuple(str(x) for x in kv[0])):
         cells = []
