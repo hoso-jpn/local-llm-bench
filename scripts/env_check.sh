@@ -2,6 +2,7 @@
 # 計測環境を記録する。使い方: bash scripts/env_check.sh results/<run>/env_check.txt
 # RAM速度の取得に sudo を使う（パスワードを一度求められる）。
 set -u
+export LANG=C LC_ALL=C   # lscpu などの項目名を英語に固定する
 OUT="${1:-env_check.txt}"
 mkdir -p "$(dirname "$OUT")"
 {
