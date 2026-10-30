@@ -1,0 +1,26 @@
+== ドライバの整合（2つの版が一致していればOK） ==
+NVRM version: NVIDIA UNIX Open Kernel Module for x86_64  595.99.02  Release Build  (dvs-builder@U22-I3-AF05-06-2)  Wed Aug 26 05:20:50 UTC 2026
+595.99.02
+== 起動時刻 ==
+2026-10-31 06:25:34
+== persistenced ==
+active
+== GPUコンテナの起動テスト（既存イメージを使うので新しいダウンロードはなし） ==
+GPU 0: NVIDIA GeForce RTX 5090 (UUID: GPU-15248469-c7a9-4de1-9546-150abf035df0)
+== 現在 hold 中のパッケージ ==
+linux-headers-generic
+linux-image-generic
+linux-tools-generic
+== FreeToken イメージの作り方を探す ==
+/home/yusuke-hosokawa/seedcore-ops/state/maint/20261016-150213-kboot/containers.tsv
+/home/yusuke-hosokawa/seedcore-ops/state/selftest/20261009-132517-6.8.0-142-generic/manifest.env
+/home/yusuke-hosokawa/seedcore-ops/state/selftest/20261016-150238-6.8.0-142-generic/manifest.env
+/home/yusuke-hosokawa/seedcore-ops/state/selftest/20261016-155402-6.8.0-147-generic/manifest.env
+/home/yusuke-hosokawa/seedcore-ops/state/selftest/20261016-160401-6.8.0-147-generic/manifest.env
+/home/yusuke-hosokawa/seedcore-ops/state/snapshots/20261009-133000/docker-images.txt
+/home/yusuke-hosokawa/seedcore-ops/state/snapshots/20261009-133000/docker-ps.txt
+/home/yusuke-hosokawa/seedcore-ops/state/snapshots/20261009-133000/manifest.env
+/home/yusuke-hosokawa/seedcore-ops/scripts/maint-dkms-check.sh
+/home/yusuke-hosokawa/seedcore-ops/scripts/freetoken-guard.sh
+/home/yusuke-hosokawa/apps/strata-comparison-source/Dockerfile
+/home/yusuke-hosokawa/apps/open-webui-context-guard/Dockerfile
