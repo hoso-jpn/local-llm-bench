@@ -18,6 +18,20 @@
 
 前回の `ft bench bw` の結果：CPU STREAM read 50.1 GB/s、PCIe H2D 28.9 GB/s、D2H 28.7 GB/s、NVFP4 CPU-MoE 45.5 GB/s、NVFP4 PCIe gather 26.7 GB/s、CPU/PCIe比 1.70x（推奨：offload）。
 
+## ストレージと既存の資産（2026-10-31 確認）
+
+| 場所 | 中身 |
+| --- | --- |
+| `/home`（SN8100、nvme0n1p3） | 空き 3.1TB。`~/apps/nvfp4-strata-comparison/`（2026-10-11 の比較実験）、`~/apps/strata-comparison-source/`（Strata のソース）、`~/apps/freetoken-context-fix/`、`~/seedcore-ops/`（FreeToken のメモリ運用メモとガード） |
+| `/data`（SN7100、nvme1n1p1、ext4） | `freetoken-flash-next/models/Qwen3.8-Flash-Next-NVFP4`（NVFP4 の重み）、`freetoken-flash-next/cache/`、`llama-flash-next/`（llama.cpp、2026-08） |
+| Docker | FreeToken はコンテナ `freetoken-qwen38-flash-next-trial`（127.0.0.1:1919）で動かしている |
+
+注意：`strata-comparison-source/data/experimental-speed-projection/` は速度向上の機能ではなく、拒否方向を取り除く制御ベクトル。比較では常に OFF にし、OFF であることを記録する。
+
+## リポジトリへの push
+
+Seedcore-01 からは、このリポジトリ専用の書き込み可デプロイキー（`~/.ssh/local_llm_bench_deploy`、ホスト別名 `github-llmbench`）で push する。GitHub CLI は使わない。
+
 ## 変更履歴
 
 | 日付 | 変更 | 影響 |
