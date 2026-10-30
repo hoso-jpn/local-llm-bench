@@ -1,0 +1,319 @@
+=== BLOCKER ===
+# 測定阻害要因（2026-10-11 21:58 JST 記録）
+
+- 2026-10-11 06:17-06:18 JST に unattended-upgrades が NVIDIA ユーザー空間を 595.91.07 → 595.99.02 に更新。
+- ロード中のカーネルモジュールは 595.91.07 のまま（/proc/driver/nvidia/version）。ホストは 2026-10-05 08:27 から稼働。
+- nvidia-smi / nvidia-container-cli info: "Driver/library version mismatch"。
+- nvidia-persistenced は 06:17:58 に停止し、/run/nvidia-persistenced/socket がない。
+- 新規 GPU コンテナの起動テスト（python:3.12、--network none、true）: "failed to fulfil mount request: open /run/nvidia-persistenced/socket" で失敗（exit 127）。
+  注: このテストで python:3.12 イメージ（63828510c8b5, 1.62GB）が pull された。
+- 稼働中の freetoken-qwen38-flash-next-trial（起動 2026-10-04T23:27:44Z）は /health が ok。
+
+影響:
+- FreeToken を停止すると、ホスト再起動またはドライバーモジュールの再読み込みまで再開できない可能性が高い。
+- Strata コンテナ（GPU 必須。setup.py も nvidia-smi を要求）を起動できない。
+- nvidia-smi による VRAM 測定ができない。
+- 指示（ホスト再起動禁止・GPU ドライバー変更禁止）の範囲では解消できないため、FreeToken は停止せず、B 構成の測定は未実施。
+
+実施済み: キット転送（SHA256一致）、付属テスト11件合格、ホスト情報、FreeToken の設定記録（秘密情報を除く）、FreeToken 事前確認の生成2件、Strata clone（v0.1.42 / 61b3fb5dd3f1e8ec09cf7e4e05208bc6d3c46406）。
+未実施: Strata のビルド、モデルの取得、本測定（0/132）。
+=== driver mismatch ===
+== kernel module
+NVRM version: NVIDIA UNIX Open Kernel Module for x86_64  595.91.07  Release Build  (dvs-builder@U22-I3-B08-02-2)  Wed Jul 29 03:01:16 UTC 2026
+GCC version:  gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
+595.99.02
+== uptime
+2026-10-05 08:27:29
+ 21:55:36 up 6 days, 13:28,  4 users,  load average: 0.22, 0.24, 0.24
+== nvidia pkgs
+ii libnvidia-cfg1-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-common-595 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-compute-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-container-tools 1.20.1-1
+ii libnvidia-container1:amd64 1.20.1-1
+ii libnvidia-decode-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-egl-wayland1:amd64 1:1.1.13-1ubuntu0.1
+ii libnvidia-encode-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-extra-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-fbc1-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii libnvidia-gl-595:amd64 595.99.02-0ubuntu0.24.04.1
+ii linux-firmware-nvidia-graphics 20240318.git3b128b60-0ubuntu3.1
+ii nvidia-compute-utils-595 595.99.02-0ubuntu0.24.04.1
+ii nvidia-container-toolkit 1.20.1-1
+ii nvidia-container-toolkit-base 1.20.1-1
+ii nvidia-dkms-595-open 595.99.02-0ubuntu0.24.04.1
+ii nvidia-driver-595-open 595.99.02-0ubuntu0.24.04.1
+ii nvidia-firmware-595-595.84 595.84-0ubuntu0.24.04.1
+ii nvidia-firmware-595-595.99.02 595.99.02-0ubuntu0.24.04.1
+ii nvidia-kernel-common-595 595.99.02-0ubuntu0.24.04.1
+ii nvidia-kernel-source-595-open 595.99.02-0ubuntu0.24.04.1
+ii nvidia-prime 0.8.17.2
+ii nvidia-settings 510.47.03-0ubuntu4.24.04.1
+ii nvidia-utils-595 595.99.02-0ubuntu0.24.04.1
+ii screen-resolution-extra 0.18.3ubuntu0.24.04.1
+ii xserver-xorg-video-nvidia-595 595.99.02-0ubuntu0.24.04.1
+== dpkg/apt history (nvidia)
+2026-08-21 23:13:39 install libnvidia-encode-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:39 install libnvidia-extra-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:39 install libnvidia-fbc1-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:39 install libnvidia-gl-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:40 install nvidia-compute-utils-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:40 install nvidia-kernel-source-595-open:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:40 install nvidia-dkms-595-open:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:43 install nvidia-utils-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:43 install xserver-xorg-video-nvidia-595:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:43 install nvidia-driver-595-open:amd64 <none> 595.84-0ubuntu0.24.04.1
+2026-08-21 23:13:43 install nvidia-prime:all <none> 0.8.17.2
+2026-08-21 23:13:43 install nvidia-settings:amd64 <none> 510.47.03-0ubuntu4.24.04.1
+2026-08-22 03:06:58 upgrade nvidia-container-toolkit:amd64 1.19.1-1 1.20.0-1
+2026-08-22 03:06:58 upgrade nvidia-container-toolkit-base:amd64 1.19.1-1 1.20.0-1
+2026-08-22 03:06:59 upgrade libnvidia-container-tools:amd64 1.19.1-1 1.20.0-1
+2026-08-22 03:06:59 upgrade libnvidia-container1:amd64 1.19.1-1 1.20.0-1
+2026-07-07 14:14:57 install libnvidia-container1:amd64 <none> 1.19.1-1
+2026-07-07 14:14:57 install libnvidia-container-tools:amd64 <none> 1.19.1-1
+2026-07-07 14:14:57 install nvidia-container-toolkit-base:amd64 <none> 1.19.1-1
+2026-07-07 14:14:57 install nvidia-container-toolkit:amd64 <none> 1.19.1-1
+Install: nvidia-firmware-595-595.99.02:amd64 (595.99.02-0ubuntu0.24.04.1, automatic)
+Upgrade: libnvidia-common-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-fbc1-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-gl-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-extra-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), nvidia-compute-utils-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-encode-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), nvidia-utils-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), xserver-xorg-video-nvidia-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), nvidia-kernel-source-595-open:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-decode-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), nvidia-kernel-common-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), nvidia-driver-595-open:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-cfg1-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), libnvidia-compute-595:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1), nvidia-dkms-595-open:amd64 (595.91.07-0ubuntu0.24.04.1, 595.99.02-0ubuntu0.24.04.1)
+End-Date: 2026-10-11  06:18:35
+
+Start-Date: 2026-10-11  06:18:36
+--
+Remove: nvidia-firmware-595-595.91.07:amd64 (595.91.07-0ubuntu0.24.04.1)
+End-Date: 2026-10-11  06:18:39
+== unattended
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+== reboot-required
+== container toolkit
+cli-version: 1.20.1
+lib-version: 1.20.1
+build date: 2026-09-16T21:12+00:00
+nvidia-container-cli: initialization error: nvml error: driver/library version mismatch
+2026-10-11T21:57:51+09:00
+$ docker run --rm --network none --gpus device=0 python:3.12 true
+Unable to find image 'python:3.12' locally
+3.12: Pulling from library/python
+1d5ee7e42ed8: Pulling fs layer
+62fe2e747f69: Pulling fs layer
+4846f2900730: Pulling fs layer
+ee0642b8714b: Pulling fs layer
+b2eb680928d4: Pulling fs layer
+99ceb936471f: Pulling fs layer
+4dc3950125eb: Pulling fs layer
+1d5ee7e42ed8: Download complete
+62fe2e747f69: Download complete
+ee0642b8714b: Download complete
+4846f2900730: Download complete
+99ceb936471f: Download complete
+4dc3950125eb: Download complete
+00e03f064950: Download complete
+4846f2900730: Pull complete
+62fe2e747f69: Pull complete
+fa0769adc84a: Download complete
+4dc3950125eb: Pull complete
+b2eb680928d4: Download complete
+b2eb680928d4: Pull complete
+ee0642b8714b: Pull complete
+1d5ee7e42ed8: Pull complete
+99ceb936471f: Pull complete
+Digest: sha256:63828510c8b5ccce3bf0d6fabd6f3d17d4effa1ffe690f80a67c8e2d394e03ee
+Status: Downloaded newer image for python:3.12
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: failed to fulfil mount request: open /run/nvidia-persistenced/socket: no such file or directory
+
+Run 'docker run --help' for more information
+exit=127
+== persistenced
+○ nvidia-persistenced.service - NVIDIA Persistence Daemon
+     Loaded: loaded (/usr/lib/systemd/system/nvidia-persistenced.service; static)
+     Active: inactive (dead) since Sun 2026-10-11 06:17:58 JST; 15h ago
+   Duration: 5d 21h 50min 19.634s
+   Main PID: 1602 (code=exited, status=0/SUCCESS)
+        CPU: 4ms
+
+10月 05 08:27:38 seedcore-01 systemd[1]: Started nvidia-persistenced.service - NVIDIA Persistence Daemon.
+10月 11 06:17:58 seedcore-01 systemd[1]: Stopping nvidia-persistenced.service - NVIDIA Persistence Daemon...
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: Received signal 15
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: Socket closed.
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: PID file unlocked.
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: PID file closed.
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: The daemon no longer has permission to remove its runtime data directory /var/run/nvidia-persistenced
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: Shutdown (1602)
+ls: '/run/nvidia-persistenced' にアクセスできません: そのようなファイルやディレクトリはありません
+10月 11 06:17:58 seedcore-01 systemd[1]: Stopping nvidia-persistenced.service - NVIDIA Persistence Daemon...
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: Received signal 15
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: Socket closed.
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: PID file unlocked.
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: PID file closed.
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: The daemon no longer has permission to remove its runtime data directory /var/run/nvidia-persistenced
+10月 11 06:17:58 seedcore-01 nvidia-persistenced[1602]: Shutdown (1602)
+10月 11 06:17:58 seedcore-01 systemd[1]: nvidia-persistenced.service: Deactivated successfully.
+10月 11 06:17:58 seedcore-01 systemd[1]: Stopped nvidia-persistenced.service - NVIDIA Persistence Daemon.
+== python:3.12 image pulled by the GPU start test
+63828510c8b5 5 days ago 1.62GB
+=== kit README ===
+# FreeToken NVFP4とStrata IQ3_Sの比較キット
+
+2026-10-03作成。seedcore-01上の実測は未実施です。これは測定器、合成の固定課題、手動評価基準、測定前の記事原稿です。付属のテストは測定器の確認で、GPU性能試験ではありません。
+
+## 比較の問い
+
+同じRTX 5090 32GBとRAM 128GBで、現行FreeToken＋Qwen3.8-Flash-Next NVFP4を基準とし、Strata＋同じベースモデルのIQ3_Sについて、回答品質を保ちながらRAM圧力・待ち時間・生成速度が変わるか確認します。改善を前提にしません。
+
+これは**エンジンと量子化を一緒に変えた構成比較**です。量子化だけの因果効果は分離できません。NVFP4の回答そのものを正解にはせず、資料、期待値、手動評価基準を正解の根拠にします。
+
+## ファイル
+
+- `src/benchmark.py`: Python標準ライブラリだけの逐次測定器。生成、SSE時刻、usage、RAM/GPUサンプル、原文、エラー、リクエストのハッシュをJSONLへ保存。
+- `data/cases.json`: 性能3課題、品質10課題。資料はすべて合成です。長文は1536行で固定し、実際のprompt_tokensを確認します。
+- `configs/*.example.json`: 実機で確認して埋める条件。`UNVERIFIED`を消すだけでなく、実際の値を記録します。
+- `docs/protocol.md`: 条件、比較順、指標の解釈、品質判定。
+- `docs/article_draft.md`: 実測値を差し込む記事原稿。公開できる結果記事にはまだなっていません。
+- `tests/test_benchmark.py`: 模擬HTTPサーバーなどを使った測定器の検証。
+
+測定器はインストール、サービス停止、設定変更、実MCP呼び出しをしません。モデルが生成したコードも実行しません。`run`だけが指定した推論APIへ生成リクエストを送ります。APIキーは`BENCH_API_KEY`環境変数から読み、ログへ保存しません。
+
+## a5-proから転送する
+
+a5-proへダウンロードしたZIPの場所に合わせて実行します。
+
+```bash
+scp ~/Downloads/nvfp4-strata-comparison.zip yusuke-hosokawa@seedcore-01:~/
+ssh yusuke-hosokawa@seedcore-01
+mkdir -p ~/apps
+unzip ~/nvfp4-strata-comparison.zip -d ~/apps
+cd ~/apps/nvfp4-strata-comparison
+python3 -m unittest discover -s tests -v
+```
+
+既存のSSH設定を使います。このキットはホスト鍵や認証方法を変更しません。
+
+## まずFreeToken側を記録する
+
+現在のコンテナ名、実際のモデル名、API、モデル配置を確認します。過去の会話ではAPIのホストポートは1919でしたが、これは現時点の実機確認値ではありません。
+
+```bash
+docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}'
+python3 src/benchmark.py probe --base-url http://127.0.0.1:1919/v1
+```
+
+`probe`はモデル一覧の取得だけで、推論をしません。APIキーが必要な環境では、シェルの既存の秘密情報管理方法で`BENCH_API_KEY`を設定します。
+
+```bash
+mkdir -p results
+cp configs/freetoken.example.json configs/freetoken.json
+python3 src/benchmark.py inventory --container 確認済みのFreeTokenコンテナ名 --output results/freetoken-loaded.json
+```
+
+`--model-dir`を付ける場合は、その構成のモデル専用ディレクトリを指定します。`/data`全体を指定しないでください。モデルファイルの内容は読まず、名前、論理サイズ、割当サイズを記録します。キャッシュ全体、他モデル、パックの複製を混ぜないよう、集計対象を記事にも明記します。
+
+エンジンのSHAまたはパッケージバージョン、モデルのリポジトリとrevision、KV精度、MTPの有無、コンテキスト上限、実行設定を`configs/freetoken.json`へ記録します。Docker環境変数や完全な起動コマンドは資格情報を含み得るため、自動では保存しません。
+
+## 共通条件でAを測る
+
+両構成のコンテキストはまず32768に合わせます。生成リクエストはtemperature=0、top_p=1、reasoning_effort=low、最大512tokenです。現在のOpen WebUIプリセットやContext Guardは変更せず、エンジンAPIへ直接送ります。
+
+`FT_MODEL`には`probe`で返った実際のIDを設定します。次の仮値をそのまま使わないでください。
+
+```bash
+FT_MODEL='モデル一覧で確認したID'
+python3 src/benchmark.py run --base-url http://127.0.0.1:1919/v1 --model "$FT_MODEL" --label FT-NVFP4-A1 --suite performance --conditions configs/freetoken.json --output results/ft-performance-a1.jsonl --repeats 5 --warmups 1 --dry-run
+python3 src/benchmark.py run --base-url http://127.0.0.1:1919/v1 --model "$FT_MODEL" --label FT-NVFP4-A1 --suite performance --conditions configs/freetoken.json --output results/ft-performance-a1.jsonl --repeats 5 --warmups 1
+python3 src/benchmark.py run --base-url http://127.0.0.1:1919/v1 --model "$FT_MODEL" --label FT-NVFP4-Q --suite quality --conditions configs/freetoken.json --output results/ft-quality.jsonl --repeats 3 --warmups 0
+```
+
+基本セットはAだけで性能18リクエスト、品質30リクエストです。`--dry-run`で実際の件数を確認できます。HTTP/SSEエラー時は止まり、取得済み証拠を残します。自動再送はしません。`stream_options`が未対応で400になる場合は、両構成とも`--omit-stream-options`に揃えて別ファイルへ測り直します。usageがなくなった場合、token/sは未取得とします。
+
+## Strataを別構成で用意する
+
+下記は実機で実行するための公式Docker手順に沿った例です。この会話の環境では未実行です。新しいソース・イメージ・データ領域を使い、Open WebUI接続先を切り替えません。
+
+```bash
+cd ~/apps
+git clone https://github.com/Niko1221/Strata.git strata-comparison-source
+cd strata-comparison-source
+git rev-parse HEAD
+docker build -t strata-comparison:local --build-arg CUDA_ARCHITECTURES=120 .
+```
+
+SHAを記録し、比較中にpull/updateしません。Strataの版によって実装が変わるため、実際にビルドした版のドキュメントも確認します。モデルとMTP層の取得・パック作成にSSD領域が必要です。
+
+比較する推論エンジンは一方ずつ起動します。稼働中のゲノム解析、他人の処理、用途不明のコンテナを停止しないでください。FreeTokenの再開方法を確保し、確認済みの対象だけを一時停止します。両エンジンが止まった状態の`inventory`も取得すると、RAM圧力の差を解釈しやすくなります。
+
+```bash
+cd ~/apps/nvfp4-strata-comparison
+python3 src/benchmark.py inventory --output results/no-comparison-engine-loaded.json
+```
+
+FreeTokenが停止したことを確認してから、別ターミナルでStrataをフォアグラウンド起動します。
+
+```bash
+docker run --rm --name strata-qwen38-iq3s-comparison --gpus device=0 -p 127.0.0.1:8082:8080 --ulimit memlock=-1 -v strata-comparison-data:/data -e MODEL=IQ3_S -e FAMILY=qwen -e CONTEXT=32768 -e VISION=no -e KV=int8 strata-comparison:local
+```
+
+ホスト側はループバック8082だけに公開します。初回はダウンロードとモデル起動を待ち、起動・取得時間を通常の回答速度へ混ぜません。既存同名コンテナ・ボリュームがあれば、内容を確認し、別名を使います。専用ボリュームは再測定用に残します。
+
+出典: [Strata INSTALL](https://github.com/Niko1221/Strata/blob/main/docs/INSTALL.md)。Linux、Docker、IQ3_S、KV、コンテキストの指定を確認。実機のビルド・起動成功はまだ確認していません。
+
+## Bを測り、Aへ戻す
+
+```bash
+cd ~/apps/nvfp4-strata-comparison
+cp configs/strata.example.json configs/strata.json
+python3 src/benchmark.py probe --base-url http://127.0.0.1:8082/v1
+python3 src/benchmark.py inventory --container strata-qwen38-iq3s-comparison --source-repo ~/apps/strata-comparison-source --output results/strata-loaded.json
+```
+
+実際の設定を`configs/strata.json`へ記録します。MTP、draft語彙のCJK対応、画像encoderの有無、KV精度、通常の完全版モデルかを確認します。Coder/Swift、実験的なspeed projectionを混ぜません。FreeToken側の画像encoderやKV精度が異なる場合、その差も構成差として記事に明記します。
+
+```bash
+STRATA_MODEL='モデル一覧で確認したID'
+python3 src/benchmark.py run --base-url http://127.0.0.1:8082/v1 --model "$STRATA_MODEL" --label Strata-IQ3S-B1 --suite performance --conditions configs/strata.json --output results/strata-performance-b1.jsonl --repeats 5 --warmups 1
+python3 src/benchmark.py run --base-url http://127.0.0.1:8082/v1 --model "$STRATA_MODEL" --label Strata-IQ3S-Q --suite quality --conditions configs/strata.json --output results/strata-quality.jsonl --repeats 3 --warmups 0
+```
+
+Bをもう1ブロック測る場合はlabelとoutputをB2に変え、他条件を維持します。その後Strataを終了し、確認済みFreeTokenを再開してA2を測ります。A1→B1→B2→A2の順が推奨です。サービス起動確認、GPU状態確認、温度の落ち着き確認を挟みます。Bの実験が失敗した場合もFreeTokenを再開し、実際のモデル一覧が取得できることを確認します。
+
+```bash
+python3 src/benchmark.py report results/ft-performance-a1.jsonl results/strata-performance-b1.jsonl --output results/performance-summary.md
+python3 src/benchmark.py report results/ft-quality.jsonl results/strata-quality.jsonl --output results/quality-summary.md
+```
+
+A2/B2も測った場合はperformanceの入力へ追加します。性能と品質、fresh-prefixとcache-reuseは別々に集計します。出力ファイルは上書きせず、別名で測定単位を残します。
+
+## 記事を完成させるために戻すもの
+
+`results/`、記入済みの`configs/`、手動評価表をまとめます。原文ログと画像から、秘密情報や実資料を含まないことを確認したうえで公開用の付録を作ります。付属課題は合成資料ですが、実Notion試験のログは別扱いです。
+
+```bash
+zip -r ~/nvfp4-strata-results.zip results configs
+```
+
+結果ZIPがあれば、中央値、ばらつき、失敗率、品質の具体例を根拠に原稿の未測定欄を置き換えられます。
+=== VALIDATION ===
+# 測定器の検証状況
+
+2026-10-03の作成時に、Python標準ライブラリで11件のテストが合格しました。模擬HTTPサーバーを使用し、実モデルやGPUへ推論は送っていません。
+
+確認した範囲はSSEのUnicode・推論文・usage・timings、usage欠落時の非推定、途中終了、HTTPエラー、ツール引数の分割、JSON評価、入力の一致、warmup除外と失敗保持です。Pythonの構文検査と固定課題の構造確認も実施しました。
+
+seedcore-01へのSSH接続、Strataのビルド・起動、FreeToken/StrataのAPI互換性、モデル品質、性能、実Open WebUI/Notion連携は未検証です。
+=== kit tree ===
+nvfp4-strata-comparison/VALIDATION.md
+nvfp4-strata-comparison/src/__pycache__/benchmark.cpython-312.pyc
+nvfp4-strata-comparison/src/benchmark.py
+nvfp4-strata-comparison/configs/strata.example.json
+nvfp4-strata-comparison/configs/freetoken.example.json
+nvfp4-strata-comparison/data/cases.json
+nvfp4-strata-comparison/docs/manual_evaluation.md
+nvfp4-strata-comparison/docs/article_draft.md
+nvfp4-strata-comparison/docs/protocol.md
+nvfp4-strata-comparison/README.md
+nvfp4-strata-comparison/tests/test_benchmark.py
+nvfp4-strata-comparison/tests/__pycache__/test_benchmark.cpython-312.pyc
+nvfp4-strata-comparison/FILES.json
+=== Strata のビルド状態 ===
+=== FreeToken イメージ内の版 ===
+Name: freetoken
+Version: 0.1.2
+Summary: Local MoE-offload LLM inference runtime with OpenAI- and Anthropic-compatible APIs
