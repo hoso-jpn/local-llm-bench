@@ -1,0 +1,63 @@
+== health / models ==
+{"status": "ok", "max_context": 32768, "model": "qwen3.8-flash-next-iq3_xxs", "images": false, "api_key": false, "loaded": true, "service": "strata"}
+{"object": "list", "data": [{"id": "qwen3.8-flash-next-iq3_xxs", "object": "model", "status": {"value": "loaded"}, "meta": {"n_ctx": 32768}, "architecture": {"input_modalities": ["text"], "output_modalities": ["text"]}}]}
+== 短い生成 ==
+{"id": "chatcmpl-b7488d2e69dd4c32adaf75a3", "object": "chat.completion", "created": 1793403568, "model": "qwen3.8-flash-next-iq3_xxs", "choices": [{"index": 0, "message": {"role": "assistant", "content": "4"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 23, "completion_tokens": 2, "total_tokens": 25, "prompt_tokens_details": {"cached_tokens": 0}}, "timings": {"cache_n": 0, "prompt_n": 23, "prompt_ms": 172.0, "prompt_per_token_ms": 7.478, "prompt_per_second": 133.7, "predicted_n": 2, "predicted_ms": 48.7, "predicted_per_token_ms": 24.35, "predicted_per_second": 41.1, "draft_n": 3, "draft_n_accepted": 3}}
+== 設定ファイル ==
+{
+ "exe": "/opt/strata/engine/strata",
+ "args": [
+  "--pack",
+  "/data/packs/iq3_xxs",
+  "--native",
+  "/data/models/IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf",
+  "--ple-gguf",
+  "/data/models/IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf",
+  "--expert-profile",
+  "/opt/strata/data/expert-profile.bin",
+  "--expert-cache",
+  "auto",
+  "--prefill",
+  "auto",
+  "--spec",
+  "4",
+  "--spec-min-p",
+  "0.5",
+  "--mtp",
+  "/data/mtp/rt",
+  "--max-context",
+  "32768",
+  "--kv",
+  "int8"
+ ],
+ "cwd": "/opt/strata",
+ "tokenizer": "/data/packs/iq3_xxs/tokenizer",
+ "model_name": "qwen3.8-flash-next-iq3_xxs",
+ "log": "/opt/strata/strata-iq3_xxs.log",
+ "lib_dirs": [
+  "/usr/local/cuda/bin",
+  "/usr/local/cuda/lib64"
+ ],
+ "port": 8080,
+ "gpu": 0,
+ "gpus_asked": true,
+ "host": "0.0.0.0"
+}== GGUF と sha256（FreeToken に同じファイルを渡すため） ==
+合計 74062532
+drwxr-xr-x 2 root root        4096 10月 31 08:22 .
+drwxr-xr-x 3 root root        4096 10月 31 07:31 ..
+-rw-r--r-- 1 root root 47039860096 10月 31 08:03 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf
+-rw-r--r-- 1 root root          16 10月 31 08:03 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf.done
+-rw-r--r-- 1 root root 28800138432 10月 31 08:22 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf
+-rw-r--r-- 1 root root          16 10月 31 08:22 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf.done
+219ea929900dfa9ef091f3aa473fdba6874b65fcb36526d7d851ac9e95856d15  /data/strata/models/IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf
+316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113  /data/strata/models/IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf
+== メモリ ==
+               total        used        free      shared  buff/cache   available
+Mem:             123          49           0           0          74          73
+Swap:             15           0          15
+memory.used [MiB], memory.total [MiB]
+31721 MiB, 32607 MiB
+== tail skip の環境変数がコンテナに渡っているか ==
+STRATA_ROUTE_TAIL_SKIP=0
+STRATA_EXECV=1
