@@ -28,6 +28,19 @@
 
 注意：`strata-comparison-source/data/experimental-speed-projection/` は速度向上の機能ではなく、拒否方向を取り除く制御ベクトル。比較では常に OFF にし、OFF であることを記録する。
 
+## 計測期間中のドライバ固定
+
+2026-10-11 に unattended-upgrades が NVIDIA のユーザー空間だけを更新し、カーネルモジュールとの版の不一致で GPU コンテナが起動できなくなった（`results/2026-10-31_env/prior_experiment.txt`）。計測期間中は NVIDIA のパッケージを固定する。カーネル本体（linux-*-generic）は以前から固定済み。
+
+```bash
+# 固定
+sudo apt-mark hold $(dpkg -l | awk '/^ii/ && $2 ~ /nvidia/ {print $2}')
+# 計測後に解除
+sudo apt-mark unhold $(apt-mark showhold | grep nvidia)
+```
+
+計測を始める前に、`/proc/driver/nvidia/version` と `nvidia-smi` の版が一致していることを確認する（`results/2026-10-31_env/driver_check.txt`）。
+
 ## リポジトリへの push
 
 Seedcore-01 からは、このリポジトリ専用の書き込み可デプロイキー（`~/.ssh/local_llm_bench_deploy`、ホスト別名 `github-llmbench`）で push する。GitHub CLI は使わない。
@@ -37,6 +50,7 @@ Seedcore-01 からは、このリポジトリ専用の書き込み可デプロ�
 | 日付 | 変更 | 影響 |
 | --- | --- | --- |
 | 2026-09 | 初期構成（上表） | — |
+| 2026-10-31 | 06:25 に再起動。ドライバ 595.99.02 でカーネルモジュールとライブラリが一致。計測期間中は NVIDIA パッケージを hold |
 | 2026-10-31 | 変更なしを確認（PCIe Gen5 x8、32GB × 4 @ 3600 MT/s）。ドライバ 595.99.02、CUDA Toolkit 12.8、カーネル 6.8.0-142、Ubuntu 24.04.5、Python 3.12.3 | 前回記事の値と直接比べられる。Strata のビルドには CUDA 13 を別途入れる |
 
 ## 予定している変更（前回記事より）
