@@ -4,7 +4,7 @@
 
 現在のテーマは、**FreeToken と Strata で Qwen3.8-Flash-Next を動かし、推論速度と品質を比較すること**。
 
-- 前回記事：[AIと実装01；RTX 5090一枚で125B級MoEはどこまで動く？](https://blog.florigen.ai/posts/rtx-5090-qwen38-flash-next-freetoken)
+- 前回記事：[AIと実装01；RTX 5090一枚で125B級MoEを約65 tok/sで動かしてみた](https://blog.florigen.ai/posts/rtx-5090-qwen38-flash-next-freetoken)
 - 評価計画：[docs/plan.md](docs/plan.md)
 - 検証環境と変更履歴：[docs/env/seedcore-01.md](docs/env/seedcore-01.md)
 
