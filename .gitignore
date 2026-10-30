@@ -1,0 +1,12 @@
+# モデルと大きなファイル
+*.gguf
+*.safetensors
+*.bin
+models/
+*.log
+# Python
+__pycache__/
+*.pyc
+.venv/
+# その他
+.DS_Store

@@ -1,0 +1,13 @@
+{
+  "_comment": "トラックB：出荷状態（MTP あり、tail skip は既定のまま）。strata launch の既定値をそのまま記録する。--mtp のパスは環境に合わせる。",
+  "args": [
+    "--expert-cache", "auto",
+    "--prefill", "auto",
+    "--spec", "4",
+    "--spec-min-p", "0.5",
+    "--mtp", "/path/to/strata-models/mtp/rt",
+    "--max-context", "131072",
+    "--kv", "int8",
+    "--kv-resident", "32768"
+  ]
+}
