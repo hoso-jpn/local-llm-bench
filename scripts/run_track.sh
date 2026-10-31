@@ -13,7 +13,11 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 ENGINE="$1"; TRACK="$2"; OUT="$3"; shift 3
 mkdir -p "$OUT"
-sudo -v   # 設定のコピーや RAM 速度の記録で sudo を使うので、最初に一度だけパスワードを聞く
+# 計測の途中では sudo を使わない（バックグラウンド実行中にパスワードを求めて止まるため）。
+# 書き込み先は事前に scripts/prepare_dirs.sh で自分の持ち物にしておく
+for d in /data/strata/config /data/freetoken-bench/cache; do
+  if [ ! -w "$d" ]; then echo "$d に書き込めません。先に: sudo bash scripts/prepare_dirs.sh" >&2; exit 1; fi
+done
 TOKENIZER="${TOKENIZER:-/data/tokenizers/Qwen3.8-Flash-Next}"
 READY_TIMEOUT="${READY_TIMEOUT:-1200}"
 

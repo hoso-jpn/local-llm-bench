@@ -11,7 +11,7 @@ BASE="$(basename "$CFG")"
 if docker ps --format '{{.Names}}' | grep -qi freetoken; then
   echo "FreeToken が動いています。先に止めてください（RAM が足りなくなります）" >&2; exit 1
 fi
-sudo cp "$CFG" "/data/strata/config/$BASE"
+cp "$CFG" "/data/strata/config/$BASE"   # 書き込めない場合: sudo bash scripts/prepare_dirs.sh
 ENVS=(-e MODEL="$MODEL" -e FAMILY=qwen -e CONTEXT=32768 -e VISION=no -e KV=int8 -e CONFIG="/data/config/$BASE")
 if [ -n "${TAIL_SKIP+x}" ]; then ENVS+=(-e STRATA_ROUTE_TAIL_SKIP="$TAIL_SKIP"); fi
 # 追加の環境変数（空白区切りの KEY=VALUE）。トラックAでは STRATA_PREFILL_CPU_SHARE=0
