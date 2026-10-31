@@ -16,6 +16,7 @@ IMG="${FT_IMAGE:-seedcore-freetoken:127aa0a920ce-cu130-v1}"
 if docker ps --format '{{.Names}}' | grep -Eq 'strata|freetoken'; then
   echo "別のエンジンが動いています。先に止めてください:" >&2; docker ps --format '  {{.Names}}' | grep -E 'strata|freetoken' >&2; exit 1
 fi
+EXTRA_MODE=()
 case "$MODE" in
   gguf-iq3_xxs)
     MOUNT=(-v /data/strata/models/IQ3_XXS:/models:ro)
@@ -23,9 +24,12 @@ case "$MODE" in
     SERVED=qwen3.8-flash-next-iq3_xxs
     CACHE="${FT_CACHE:-naive}" ;;
   nvfp4)
+    # RadixArk/Qwen3.8-Flash-Next-NVFP4（Hugging Face 形式、ModelOpt の W4A4）。前回記事と同じファイル。
+    # v0.2.0 の checkpoint_diagnose で PASS（results/2026-11-01_env/nvfp4_diagnose.txt）。画像エンコーダーを含むので text-only で起動する
     MOUNT=(-v /data/freetoken-flash-next/models/Qwen3.8-Flash-Next-NVFP4:/models:ro)
     MODEL=/models
     SERVED=qwen3.8-flash-next-nvfp4
+    EXTRA_MODE=(--text-model-only)
     CACHE="${FT_CACHE:-radix}" ;;
   *) echo "未知のモード: $MODE" >&2; exit 1 ;;
 esac
@@ -36,6 +40,7 @@ ARGS=(--model-path "$MODEL" --served-model-name "$SERVED" --host 0.0.0.0 --port 
       --max-running-requests 1 --max-seq-len-override 32768
       --max-prefill-length "${FT_PREFILL:-8192}" --kv-reserve-tokens 32768 --moe-cpu-threads 16
       --cache-type "$CACHE" --enable-cache-report)
+ARGS+=("${EXTRA_MODE[@]}")
 [ "${FT_STATS:-0}" = 1 ] && ARGS+=(--moe-collect-stats)
 # shellcheck disable=SC2206
 [ -n "${FT_EXTRA:-}" ] && ARGS+=($FT_EXTRA)
