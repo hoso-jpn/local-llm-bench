@@ -7,6 +7,7 @@
 #   FT_IMAGE   イメージ（既定 v0.2.0）。前回記事の 0.1.2 なら seedcore-freetoken:4b94bdc38a46-cu130-v1
 #   FT_STATS=1 expert キャッシュの hit 率をログに出す（--moe-collect-stats。decode が少し遅くなる）
 #   FT_CACHE   prefix cache（naive | radix）。トラックCでは radix
+#   FT_PREFILL prefill のチャンク（既定 8192。前回記事とトラックA本計測は 2048。results/2026-11-01_trackA_ft_prefill8192/）
 #   FT_EXTRA   追加の ft serve 引数
 # 前提: Strata など他のエンジンが止まっていること。
 set -eu
@@ -28,11 +29,12 @@ case "$MODE" in
     CACHE="${FT_CACHE:-radix}" ;;
   *) echo "未知のモード: $MODE" >&2; exit 1 ;;
 esac
-# 前回記事（0.1.2）の起動オプションを v0.2.0 の名前で引き継ぐ（seedcore-ops/docs/FREETOKEN-MEMORY.md）
+# 前回記事（0.1.2）の起動オプションを v0.2.0 の名前で引き継ぐ（seedcore-ops/docs/FREETOKEN-MEMORY.md）。
+# ただし prefill のチャンクは、2026-11-01 の感度確認を受けて 2048 から 8192 に変えた
 ARGS=(--model-path "$MODEL" --served-model-name "$SERVED" --host 0.0.0.0 --port 8080
       --moe-strategy offload --moe-cache-auto --memory-ratio 0.88
       --max-running-requests 1 --max-seq-len-override 32768
-      --max-prefill-length 2048 --kv-reserve-tokens 32768 --moe-cpu-threads 16
+      --max-prefill-length "${FT_PREFILL:-8192}" --kv-reserve-tokens 32768 --moe-cpu-threads 16
       --cache-type "$CACHE" --enable-cache-report)
 [ "${FT_STATS:-0}" = 1 ] && ARGS+=(--moe-collect-stats)
 # shellcheck disable=SC2206

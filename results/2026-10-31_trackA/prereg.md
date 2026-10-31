@@ -101,6 +101,6 @@ ABBA：FreeToken s1 → Strata s1 → Strata s2 → FreeToken s2。各セッシ�
 
 ## 次に確かめること
 
-1. FreeToken の `--max-prefill-length 8192`（Strata と同じチャンク）で TTFT がどれだけ縮むか。PCIe x8 に張り付いているなら、チャンクを大きくしても縮まない可能性がある
+1. ~~FreeToken の `--max-prefill-length 8192` で TTFT がどれだけ縮むか~~ → 2026-11-01 に確認（`results/2026-11-01_trackA_ft_prefill8192/prereg.md`）。TTFT は 2.6〜3.7 倍縮み、Strata との差は 1.4〜2.1 倍になった。**上の「prefill は約5倍」の大部分は FreeToken のチャンク設定によるもの**
 2. 64K 以上の入力で decode が落ちるか（コンテキストを広げて起動）
 3. トラック B（出荷状態：FreeToken NVFP4、Strata IQ3_S＋MTP）
