@@ -1,0 +1,55 @@
+== NVFP4 のディレクトリ ==
+合計 132084784
+drwxr-xr-x 3 root root       36864  9月  1 09:14 .
+drwxr-xr-x 3 root root        4096  9月  1 08:49 ..
+drwxr-xr-x 3 root root        4096  9月  1 08:49 .cache
+-rw-r--r-- 1 root root        1635  9月  1 08:52 .gitattributes
+-rw-r--r-- 1 root root        5927  9月  1 08:52 README.md
+-rw-r--r-- 1 root root        1062  9月  1 08:52 aime26_metrics.json
+-rw-r--r-- 1 root root         110  9月  1 08:52 audit_unchanged_report.json
+-rw-r--r-- 1 root root        8952  9月  1 08:52 chat_template.jinja
+-rw-r--r-- 1 root root        4983  9月  1 08:52 config.json
+-rw-r--r-- 1 root root         344  9月  1 08:52 conversion_environment.json
+-rw-r--r-- 1 root root         202  9月  1 08:52 generation_config.json
+-rw-r--r-- 1 root root         869  9月  1 08:52 gsm8k_metrics.json
+-rw-r--r-- 1 root root         504  9月  1 08:52 hf_quant_config.json
+-rw-r--r-- 1 root root        5870  9月  1 08:52 layer-00000-experts-0000-0127.complete.json
+-rw-r--r-- 1 root root   354098208  9月  1 08:52 layer-00000-experts-0000-0127.safetensors
+-rw-r--r-- 1 root root        5872  9月  1 08:52 layer-00000-experts-0128-0255.complete.json
+-rw-r--r-- 1 root root   354099528  9月  1 08:52 layer-00000-experts-0128-0255.safetensors
+-rw-r--r-- 1 root root        5872  9月  1 08:52 layer-00000-experts-0256-0383.complete.json
+-rw-r--r-- 1 root root   354099528  9月  1 08:53 layer-00000-experts-0256-0383.safetensors
+-rw-r--r-- 1 root root        5872  9月  1 08:52 layer-00000-experts-0384-0511.complete.json
+-rw-r--r-- 1 root root   354099528  9月  1 08:52 layer-00000-experts-0384-0511.safetensors
+-rw-r--r-- 1 root root        5870  9月  1 08:52 layer-00001-experts-0000-0127.complete.json
+-rw-r--r-- 1 root root   354098208  9月  1 08:52 layer-00001-experts-0000-0127.safetensors
+-rw-r--r-- 1 root root        5872  9月  1 08:52 layer-00001-experts-0128-0255.complete.json
+-rw-r--r-- 1 root root   354099528  9月  1 08:52 layer-00001-experts-0128-0255.safetensors
+-rw-r--r-- 1 root root        5872  9月  1 08:52 layer-00001-experts-0256-0383.complete.json
+-rw-r--r-- 1 root root   354099528  9月  1 08:52 layer-00001-experts-0256-0383.safetensors
+-rw-r--r-- 1 root root        5872  9月  1 08:52 layer-00001-experts-0384-0511.complete.json
+-rw-r--r-- 1 root root   354099528  9月  1 08:53 layer-00001-experts-0384-0511.safetensors
+126G	/data/freetoken-flash-next/models/Qwen3.8-Flash-Next-NVFP4
+      1 README.md
+      1 aime26_metrics.json
+      1 audit_unchanged_report.json
+      1 chat_template.jinja
+      1 config.json
+      1 conversion_environment.json
+      1 generation_config.json
+      1 gsm8k_metrics.json
+      1 hf_quant_config.json
+      1 layer-00000-experts-0000-0127.complete.json
+      1 layer-00000-experts-0000-0127.safetensors
+      1 layer-00000-experts-0128-0255.complete.json
+      1 layer-00000-experts-0128-0255.safetensors
+      1 layer-00000-experts-0256-0383.complete.json
+      1 layer-00000-experts-0256-0383.safetensors
+      1 layer-00000-experts-0384-0511.complete.json
+      1 layer-00000-experts-0384-0511.safetensors
+      1 layer-00001-experts-0000-0127.complete.json
+      1 layer-00001-experts-0000-0127.safetensors
+      1 layer-00001-experts-0128-0255.complete.json
+== 前回（0.1.2）の起動時のモデル指定 ==
+None
+['/data/freetoken-flash-next/models/Qwen3.8-Flash-Next-NVFP4 -> /model', '/data/freetoken-flash-next/cache -> /root/.cache', '/data/freetoken-flash-next/triton -> /root/.triton']
