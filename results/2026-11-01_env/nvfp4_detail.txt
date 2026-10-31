@@ -1,0 +1,190 @@
+== 専門家以外のファイル ==
+README.md
+aime26_metrics.json
+audit_unchanged_report.json
+chat_template.jinja
+config.json
+conversion_environment.json
+generation_config.json
+gsm8k_metrics.json
+hf_quant_config.json
+merges.txt
+model-bf16-00001.safetensors
+model-bf16-00010.safetensors
+model-bf16-00011.safetensors
+model-bf16-00012.safetensors
+model-plefp8-00000.safetensors
+model-plefp8-00001.safetensors
+model-plefp8-00002.safetensors
+model-plefp8-00003.safetensors
+model-plefp8-00004.safetensors
+model-plefp8-00005.safetensors
+model-plefp8-00006.safetensors
+model-plefp8-00007.safetensors
+model-plefp8-00008.safetensors
+model-plefp8-00009.safetensors
+model.safetensors.index.json
+preprocessor_config.json
+qualification-notes.md
+smoke_report.json
+tokenizer.json
+tokenizer_config.json
+validate_checkpoint_report.json
+validate_scales_report.json
+video_preprocessor_config.json
+vocab.json
+192
+== conversion_environment.json ==
+{
+  "accelerate": "1.14.0",
+  "cuda": "13.0",
+  "datasets": "5.0.1",
+  "modelopt_clean": true,
+  "modelopt_commit": "87c9f8cf83021957d1a1a575c90c9a4eaaf7ef0c",
+  "modelopt_distribution": "nvidia-modelopt",
+  "modelopt_version": "0.46.0",
+  "python": "3.12.3",
+  "pytorch": "2.13.0+cu130",
+  "safetensors": "0.8.0",
+  "transformers": "5.12.1"
+}
+
+== hf_quant_config.json ==
+{
+  "producer": {
+    "name": "modelopt",
+    "version": "0.46.0"
+  },
+  "quantization": {
+    "exclude_modules": [
+      "model.embed_tokens",
+      "mtp.*",
+      "model.mtp.*",
+      "*.self_attn.*",
+      "*.linear_attn.*",
+      "*.mlp.gate*",
+      "*.mlp.shared_expert.*",
+      "*.mlp.shared_expert_gate*",
+      "*hyper_connection*",
+      "*.ple.*",
+      "model.visual.*",
+      "model.language_model.embed_tokens",
+      "lm_head"
+    ],
+    "group_size": 16,
+    "quant_algo": "NVFP4"
+  }
+}
+
+== config.json の量子化と構造 ==
+['Qwen4ExpForConditionalGeneration']
+{"config_groups": {"group_0": {"input_activations": {"dynamic": false, "group_size": 16, "num_bits": 4, "type": "float"}, "targets": ["Linear"], "weights": {"dynamic": false, "group_size": 16, "num_bits": 4, "type": "float"}}}, "ignore": ["model.embed_tokens", "mtp.*", "model.mtp.*", "*.self_attn.*", "*.linear_attn.*", "*.mlp.gate*", "*.mlp.shared_expert.*", "*.mlp.shared_expert_gate*", "*hyper_connection*", "*.ple.*", "model.visual.*", "model.language_model.embed_tokens", "lm_head"], "producer": {"name": "modelopt", "version": "0.46.0"}, "quant_algo": "NVFP4", "quant_method": "modelopt"}
+True ['architectures', 'image_token_id', 'language_model_only', 'model_type', 'quantization_config', 'text_config', 'tie_word_embeddings', 'transformers_version', 'video_token_id', 'vision_config', 'vision_end_token_id', 'vision_start_token_id']
+== README の冒頭 ==
+---
+pipeline_tag: image-text-to-text
+base_model:
+- Qwen/Qwen3.8-Flash-Next
+license: other
+library_name: Model Optimizer
+tags:
+- ModelOpt
+- Qwen3.8
+- quantized
+- FP4
+- fp4
+- sglang
+---
+
+# Model Overview
+
+## Description:
+RadixArk Qwen3.8-Flash-Next-NVFP4 is the quantized version of
+[Qwen/Qwen3.8-Flash-Next](https://huggingface.co/Qwen/Qwen3.8-Flash-Next),
+a hybrid-architecture multimodal Mixture-of-Experts model. Quantization was
+performed with [NVIDIA Model Optimizer](https://github.com/NVIDIA/TensorRT-Model-Optimizer)
+(snapshot `87c9f8cf`) using the NVFP4 W4A4 recipe, scoped to the routed
+experts only.
+
+This checkpoint is a private candidate release.
+
+## References
+NVIDIA Model Optimizer: https://github.com/NVIDIA/TensorRT-Model-Optimizer
+
+### License/Terms of Use:
+See the [source model](https://huggingface.co/Qwen/Qwen3.8-Flash-Next) for
+license terms.
+
+### Use Case:
+Developers evaluating NVFP4-quantized serving of Qwen3.8-Flash-Next for
+agentic systems, chat, coding, and multimodal reasoning workloads.
+
+### Release Date:
+Hugging Face on 08/25/2026 via https://huggingface.co/RadixArk/Qwen3.8-Flash-Next-NVFP4
+== checkpoint_diagnose の使い方 ==
+README.md
+ckpt_edit.py
+diagnose.py
+fetch_headers.py
+fix_config.py
+rename_tensors.py
+# checkpoint_diagnose
+
+Find out why FreeToken does not load a checkpoint, sort the failure into one kind, and repair the checkpoints whose own files are non-standard.
+Run everything from the repo root with `PYTHONPATH=python`. Nothing here needs a GPU or the checkpoint's weights.
+
+> [!WARNING]
+> The diagnosis is heuristic and can be wrong: the failure kind, the findings and the suggested fixes are a best guess from the headers and configs, not a proof. Check them against the problems it prints before acting on them.
+
+> [!IMPORTANT]
+> For agents: explain the diagnosis to the user in plain terms first: what fails, which kind it is, and what the fix would change. Ask the user before you run a fix script or open an issue. Do not change the user's checkpoint on your own.
+
+| Script | Does |
+|---|---|
+| `diagnose.py` | checks a checkpoint dir or HF repo id, prints the failure kind and the next step |
+| `fix_config.py` | level 1 fix: edits only `config.json` / `hf_quant_config.json` |
+| `rename_tensors.py` | level 2 fix: renames tensors (shard headers, index, quant skip lists); tensor data is kept byte for byte |
+| `fetch_headers.py` | header-only stub of an HF repo; `diagnose.py` calls it for a repo id |
+| `ckpt_edit.py` | the edit primitives both fix scripts use, for a case they do not cover |
+
+## Step 1: which format
+
+`diagnose.py` routes by itself, but know where each format goes:
+
+| The checkpoint has | Go to |
+|---|---|
+| `*.gguf` files | `scripts/gguf_check/` (its README), then the GGUF section below |
+| `freetoken_weight.json` (FTW, made by `ft checkpoint`) | diagnose the HF checkpoint it was converted from; FTW repairs are in `docs/ftw-hotfix.md` |
+| root `*.safetensors` shards | this directory, from step 2 |
+| only `*.bin` / `*.pt`, or MLX weights | not served: FreeToken reads safetensors and GGUF |
+
+### GGUF: three kinds of failure
+
+`scripts/gguf_check/check.py` prints the problems of each file; the first one tells the kind.
+
+| Kind | check.py says | Do |
+|---|---|---|
+| a ggml type has no kernel | `<layer kind> <type>: no <ops> kernel` (needs `--kernels` from `probe_kernels.py`) | the build or GPU lacks kernels for that quant type: pick a file with another type, or report it with the `probe_kernels.py` table |
+| the model's loader does not read the file | `unexpected tensor ...`, `N tensors never loaded`, `tensor ... yielded twice`, `<tensor>: got ..., model has ...`, `MoE layer N ... bank is ..., the model needs ...`, or a `NotImplementedError` from the family's config parse | a FreeToken gap for that layout: report it with the check.py record |
+| the GGUF file itself | `is not a GGUF file`, `duplicate GGUF key / tensor`, `runs past the end of the file`, `bad general.alignment`, `tokenizer: no EOS token`, `tokenizer: no chat template`, `chat template: <error>` | the file is broken or incomplete: download it again, or use another file of the repo |
+
+A file whose architecture FreeToken does not serve shows as `skip`, not as a failure.
+
+## Step 2: diagnose a safetensors checkpoint
+
+```bash
+python scripts/checkpoint_diagnose/diagnose.py <ckpt dir | HF repo id[@revision]> --out report.jsonl
+```
+
+- A local dir is read as is: the headers and JSON files, so a 400 GB checkpoint takes seconds. A weight reader that needs tensor values gets the real bytes it asks for.
+- A repo id is fetched as a header-only stub into `~/.cache/freetoken/checkpoint-stubs/` (a few MB). Nothing is downloaded beyond that, and no `.py` file: a repo whose config is its own code (`auto_map`) is skipped, diagnose a local download of it instead.
+- A remote repo is only diagnosed: its record has no fixes, and the fix scripts refuse a stub. When it says `fixable`, download the checkpoint and diagnose the local directory to get the fix commands.
+- Add `--text-model-only` when the checkpoint will be served with `--text-model-only`.
+- `--out` appends one JSON record per checkpoint. The fix scripts read their fixes from it with `--from-report`.
+
+It first checks the files themselves (data offsets cover each shard exactly, the index agrees with the shard headers), then runs the server's own load path on the CPU with meta tensors: config parse, model build, dense weight load through the model's `load_state_dict`, and expert-bank fill for MoE models with the reader the engine picks.
+When that fails, it also checks the tensor names against transformers' own model class and its checkpoint conversion rules, and lints the files for the known non-standard forms.
+
+Output, per checkpoint: `PASS`, or `FAIL at <stage>: [<kind>] ...` with the problems, what transformers makes of the names, the findings, and the next step.
+
+## Step 3: the kind of failure
