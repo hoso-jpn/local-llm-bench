@@ -1,0 +1,26 @@
+== health / models ==
+{"status":"ok","model":"qwen3.8-flash-next-iq3_xxs","instance_id":"4e705236-7558-421a-987c-ea46361b43a0","uptime_s":1304,"maintenance":"serving","version":"0.2.0"}
+{"object":"list","data":[{"id":"qwen3.8-flash-next-iq3_xxs","object":"model","created":1793444000,"owned_by":"FreeToken","root":"/models/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf","max_model_len":32768,"context_length":32768,"supported_reasoning_efforts":["xhigh","high","medium","low"],"default_reasoning_effort":"xhigh"}]}
+== 短い生成 ==
+{"id":"chatcmpl-0","object":"chat.completion","created":1793444009,"model":"qwen3.8-flash-next-iq3_xxs","choices":[{"index":0,"message":{"role":"assistant","content":"4"},"finish_reason":"stop"}],"usage":{"prompt_tokens":23,"completion_tokens":2,"total_tokens":25}}
+== メモリ（PLE がディスクかピン留めかを見る） ==
+               total        used        free      shared  buff/cache   available
+Mem:             123          53           1          40         109          70
+Swap:             15           0          15
+CONTAINER ID   NAME              CPU %     MEM USAGE / LIMIT   MEM %     NET I/O           BLOCK I/O        PIDS
+fe00ecd3a011   freetoken-bench   2.15%     48.61GiB / 118GiB   41.20%    5.87kB / 2.37kB   3.38GB / 525MB   187
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmRSS:	 1895084 kB
+memory.used [MiB], memory.total [MiB]
+28809 MiB, 32607 MiB
+== ログから：キャッシュのスロット数、PLE、hit 率 ==
+ServerArgs(model_path='/models/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf', tp_info=DistributedInfo(rank=0, size=1), dtype=torch.bfloat16, hf_overrides={}, max_running_req=1, attention_backend='auto', moe_strategy='offload', quant_backend=None, ple_backend='disk', swa_decoder_replay='bounded', expert_load='auto', moe_cache_size=0, moe_cache_rate=None, moe_cache_auto=True, moe_cache_mem=None, moe_cache_scope='unified', moe_cache_split='equal', kv_reserve_tokens=32768, moe_cache_policy='lru', moe_prefill_overlap=True, moe_prefill_hit_d2d=False, moe_collect_stats=True, moe_cpu_threads=16, moe_cpu_layers=None, moe_hybrid_max_fetch=-1, moe_locked_fetch=-1.0, moe_locked_max_fetch=8, cuda_graph_bs=None, cuda_graph_max_bs=None, page_size=1, memory_ratio=0.88, linear_state_cache_ratio=2.0, swa_full_tokens_ratio=0.2, swa_num_pages_override=None, distributed_timeout=60.0, use_dummy_weight=False, use_pynccl=True, max_seq_len_override=32768, num_page_override=None, num_token_override=None, mm=MultimodalConfig(disabled_encoders=frozenset(), embed_cache_device='cpu', encoder_weights='host', image_min_tokens=None, image_max_tokens=None, processor_kwargs={}), max_extend_tokens=2048, cache_type='naive', offline_mode=False, decode_log_interval=40, special_token_ckpt=False, _unique_suffix='.pid=1', server_host='0.0.0.0', server_port=8080, num_tokenizer=0, silent_output=False, shell_mode=False, served_model_name='qwen3.8-flash-next-iq3_xxs', tool_call_parser='qwen3_coder', reasoning_parser='qwen3', sampling_defaults='model', max_output_tokens=None, enable_cache_report=True, anthropic_inline_system='auto', allowed_media_domains='', allowed_local_media_path='', cors_origins='tauri://localhost,http://tauri.localhost,http://localhost:1420', gpu=(), gpu_assigned=None)
+INFO:     Application startup complete.
+[1m[2026-10-31|10:28:15|core|rank=0][0m [32mINFO    [0m PLE disk backend: pread-pool x16, O_DIRECT, wait-sync
+[1m[2026-10-31|10:28:15|core|rank=0][0m [32mINFO    [0m MoE experts: gguf via ggml
+[1m[2026-10-31|10:28:15|core|rank=0][0m [32mINFO    [0m expert banks: slow path (serial build)
+[1m[2026-10-31|10:28:22|core|rank=0][0m [32mINFO    [0m GGUF expert banks: 48 layers, 40.0 GiB in host RAM
+[1m[2026-10-31|10:28:22|core|rank=0][0m [32mINFO    [0m --moe-cache-auto resolved moe_cache_size=13235 num_pages=512 (prefill_overlap=True)
+[1m[2026-10-31|10:28:22|core|rank=0][0m [32mINFO    [0m MoE slot pools: unified, 10 pools of 276-2206 slots (equal)
+INFO:     172.17.0.1:50512 - "POST /v1/chat/completions HTTP/1.1" 200 OK
