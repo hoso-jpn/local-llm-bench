@@ -1,0 +1,19 @@
+NAME                     CPU %     MEM USAGE / LIMIT
+strata-bench             100.43%   42.49GiB / 123.5GiB
+km-work-reader           0.04%     109.7MiB / 512MiB
+km-learning-reader       0.05%     134.5MiB / 512MiB
+knowledge-notion-mcpo    0.04%     116.1MiB / 512MiB
+knowledge-memory-mcpo    0.05%     118.1MiB / 512MiB
+open-webui               0.13%     1.188GiB / 1.25GiB
+docker-ssrf_proxy-1      0.01%     53.86MiB / 123.5GiB
+docker-nginx-1           0.00%     24.94MiB / 123.5GiB
+docker-worker-1          0.06%     406MiB / 123.5GiB
+docker-worker_beat-1     0.00%     381.8MiB / 123.5GiB
+docker-api_websocket-1   0.01%     406.4MiB / 123.5GiB
+docker-api-1             0.01%     513.7MiB / 123.5GiB
+docker-plugin_daemon-1   0.06%     270.5MiB / 123.5GiB
+docker-db_postgres-1     1.55%     66.99MiB / 123.5GiB
+docker-redis-1           0.05%     13.2MiB / 123.5GiB
+docker-web-1             0.00%     123.3MiB / 123.5GiB
+docker-sandbox-1         0.00%     147.8MiB / 123.5GiB
+docker-weaviate-1        0.14%     105.3MiB / 123.5GiB
