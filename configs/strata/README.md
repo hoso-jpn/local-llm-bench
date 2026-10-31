@@ -22,7 +22,8 @@
 ## トラックAの確認事項
 
 - [ ] 計測中のレスポンスの `timings.draft_n` が 0 であること（`llm_engine_bench.py` が `draft_n` として記録する）
-- [ ] `results/<run>/strata_env.txt` に `STRATA_ROUTE_TAIL_SKIP=0` があること
+- [ ] `results/<run>/strata_env.txt` に `STRATA_ROUTE_TAIL_SKIP=0` と `STRATA_PREFILL_CPU_SHARE=0` があること
+  - `STRATA_PREFILL_CPU_SHARE`：1,024 トークン未満の prefill チャンクで CPU にも expert を計算させる機能。既定で ON で、出力がわずかに変わる（平均 KL 約 0.004、エンジンのログより）
 - [ ] speed projection が off であること（セットアップのログで確認済み。設定に projection 関連の引数がないこと）
 
 ## 初回起動で分かったこと（2026-10-31、IQ3_XXS、shipped 設定）

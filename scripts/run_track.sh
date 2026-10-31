@@ -20,7 +20,7 @@ case "$ENGINE/$TRACK" in
   freetoken/B) URL=http://127.0.0.1:8081; MODEL=qwen3.8-flash-next-nvfp4; FILE=NVFP4
                START=(env FT_STATS=0 bash configs/freetoken/run.sh nvfp4) ;;
   strata/A)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
-               START=(env TAIL_SKIP=0 bash configs/strata/run.sh configs/strata/strata-iq3_xxs-trackA.json) ;;
+               START=(env TAIL_SKIP=0 STRATA_EXTRA_ENV="STRATA_PREFILL_CPU_SHARE=0" bash configs/strata/run.sh configs/strata/strata-iq3_xxs-trackA.json) ;;
   strata/B)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
                START=(bash configs/strata/run.sh configs/strata/strata-iq3_xxs-shipped.json) ;;
   *) echo "未対応: $ENGINE/$TRACK" >&2; exit 1 ;;
@@ -33,9 +33,15 @@ git rev-parse HEAD > "$OUT/repo_commit.txt"
 echo "== [$(date +%T)] 起動: ${START[*]}"
 T0=$(date +%s)
 "${START[@]}"
-until curl -sf "$URL/health" > /dev/null; do
+# /health は読み込み中でも 200 を返すエンジンがある（FreeToken）。短い生成が成功するまで待つ
+PROBE='{"model":"'"$MODEL"'","messages":[{"role":"user","content":"hi"}],"max_tokens":1,"temperature":0,"reasoning_effort":"none"}'
+until [ "$(curl -s -o /dev/null -w '%{http_code}' -H 'Content-Type: application/json' -d "$PROBE" "$URL/v1/chat/completions")" = 200 ]; do
   sleep 5
-  if (( $(date +%s) - T0 > READY_TIMEOUT )); then echo "準備完了せず（${READY_TIMEOUT}秒）" >&2; break; fi
+  if (( $(date +%s) - T0 > READY_TIMEOUT )); then
+    echo "準備完了せず（${READY_TIMEOUT}秒）。ログを保存して止めます" >&2
+    if [ "$ENGINE" = freetoken ]; then bash configs/freetoken/stop.sh "$OUT"; else bash configs/strata/stop.sh "$OUT"; fi
+    exit 1
+  fi
 done
 echo "ready_after_s=$(( $(date +%s) - T0 ))" | tee "$OUT/startup.txt"
 
