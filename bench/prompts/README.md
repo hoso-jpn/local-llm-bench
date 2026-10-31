@@ -11,5 +11,5 @@
 
 ## 記録
 
-- code.txt：llama.cpp commit `TODO`
-- ja.txt：`TODO`
+- code.txt：llama.cpp b6000（commit `4762ad7316dcdec20016ab5985fb46a27902204d`）の src/*.cpp を名前順に連結
+- ja.txt：青空文庫 夏目漱石『こころ』（773_ruby_5968）＋『吾輩は猫である』（789_ruby_5639）。ルビ・注記・底本情報を除去
