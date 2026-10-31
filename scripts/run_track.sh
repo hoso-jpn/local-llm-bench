@@ -10,6 +10,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 ENGINE="$1"; TRACK="$2"; OUT="$3"; shift 3
 mkdir -p "$OUT"
+sudo -v   # 設定のコピーや RAM 速度の記録で sudo を使うので、最初に一度だけパスワードを聞く
 TOKENIZER="${TOKENIZER:-/data/tokenizers/Qwen3.8-Flash-Next}"
 READY_TIMEOUT="${READY_TIMEOUT:-1200}"
 

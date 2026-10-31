@@ -16,7 +16,7 @@ lscpu | grep -E "Model name|^CPU\(s\)"
 grep -q -m1 avx512f /proc/cpuinfo && echo "AVX-512 あり" || echo "AVX-512 なし"
 echo "== RAM =="
 free -g
-sudo dmidecode -t memory | grep -E "^\s+(Size|Configured Memory Speed):" | grep -v "No Module"
+sudo -n dmidecode -t memory 2>/dev/null | grep -E "^\s+(Size|Configured Memory Speed):" | grep -v "No Module"
 echo "== Disk =="
 df -h ~
 lsblk -d -o NAME,MODEL,SIZE
