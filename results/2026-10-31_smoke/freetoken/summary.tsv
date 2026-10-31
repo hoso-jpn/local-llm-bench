@@ -1,1 +1,2 @@
 engine	track	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	A	GSQ-RCO-IQ3_XXS	code	4096	256	0	4.66[4.65-4.68]	142.45[142.11-142.79]	890.35[887.90-892.80]	9.75[9.70-9.80]	-	69.44[69.34-69.54]	21.61[21.55-21.67]	2

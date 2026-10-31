@@ -1,5 +1,5 @@
 [transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
 [transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
-[freetoken/A] in=4096 out=256 warmup turn=0: TTFT=Nones decode=None tok/s cached=None p99gap=Nonems ERROR HTTP Error 503: Service Unavailable
-[freetoken/A] in=4096 out=256 run 0 turn=0: TTFT=Nones decode=None tok/s cached=None p99gap=Nonems ERROR HTTP Error 503: Service Unavailable
-[freetoken/A] in=4096 out=256 run 1 turn=0: TTFT=Nones decode=None tok/s cached=None p99gap=Nonems ERROR HTTP Error 503: Service Unavailable
+[freetoken/A] in=4096 out=256 warmup turn=0: TTFT=7.979s decode=104.96 tok/s cached=None p99gap=22.3ms 
+[freetoken/A] in=4096 out=256 run 0 turn=0: TTFT=4.676s decode=142.79 tok/s cached=None p99gap=9.8ms 
+[freetoken/A] in=4096 out=256 run 1 turn=0: TTFT=4.653s decode=142.11 tok/s cached=None p99gap=9.7ms 

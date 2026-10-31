@@ -1,4 +1,4 @@
-# recorded: 2026-10-31T20:05:39+09:00
+# recorded: 2026-10-31T20:07:43+09:00
 == GPU / PCIe ==
 name, driver_version, pcie.link.gen.max, pcie.link.width.current, pcie.link.width.max, memory.total [MiB]
 NVIDIA GeForce RTX 5090, 595.99.02, 5, 8, 16, 32607 MiB
@@ -7,11 +7,11 @@ Build cuda_12.8.r12.8/compiler.35583870_0
 == CPU ==
 CPU(s):                                  32
 Model name:                              AMD Ryzen 9 9950X3D2 16-Core Processor
-CPU(s) scaling MHz:                      33%
+CPU(s) scaling MHz:                      35%
 AVX-512 あり
 == RAM ==
                total        used        free      shared  buff/cache   available
-Mem:             123           6          47           0          69         116
+Mem:             123           6          46           0          71         116
 Swap:             15           0          15
 	Size: 32 GB
 	Configured Memory Speed: 3600 MT/s

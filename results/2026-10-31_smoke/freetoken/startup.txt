@@ -1,1 +1,1 @@
-ready_after_s=10
+ready_after_s=223

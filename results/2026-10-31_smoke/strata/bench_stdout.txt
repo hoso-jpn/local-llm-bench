@@ -1,5 +1,5 @@
 [transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
 [transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
-[strata/A] in=4096 out=256 warmup turn=0: TTFT=1.081s decode=114.68 tok/s cached=0 p99gap=17.5ms 
-[strata/A] in=4096 out=256 run 0 turn=0: TTFT=0.926s decode=132.58 tok/s cached=0 p99gap=15.1ms 
-[strata/A] in=4096 out=256 run 1 turn=0: TTFT=0.921s decode=132.03 tok/s cached=0 p99gap=15.1ms 
+[strata/A] in=4096 out=256 warmup turn=0: TTFT=1.07s decode=114.42 tok/s cached=0 p99gap=16.9ms 
+[strata/A] in=4096 out=256 run 0 turn=0: TTFT=0.926s decode=124.08 tok/s cached=0 p99gap=16.0ms 
+[strata/A] in=4096 out=256 run 1 turn=0: TTFT=0.923s decode=124.4 tok/s cached=0 p99gap=16.0ms 
