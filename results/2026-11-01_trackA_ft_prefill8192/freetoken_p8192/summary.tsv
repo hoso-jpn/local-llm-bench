@@ -1,0 +1,7 @@
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	A	p8192	GSQ-RCO-IQ3_XXS	code	16384	256	0	4.87[4.87-4.89]	142.90[141.75-143.44]	3375.00[3364.40-3376.00]	9.50[9.20-9.80]	-	69.61[69.60-69.61]	21.16[21.03-21.23]	5
+freetoken	A	p8192	GSQ-RCO-IQ3_XXS	code	30720	256	0	6.47[6.46-6.48]	144.93[144.23-145.17]	4753.60[4748.50-4764.20]	9.20[9.10-9.30]	-	69.62[69.61-69.63]	22.70[22.61-22.98]	5
+freetoken	A	p8192	GSQ-RCO-IQ3_XXS	code	4096	256	0	1.69[1.69-1.69]	144.50[142.38-145.52]	2456.20[2453.20-2458.80]	9.40[9.10-9.70]	-	69.59[69.59-69.61]	14.45[14.04-14.80]	5
+freetoken	A	p8192	GSQ-RCO-IQ3_XXS	ja	16384	256	0	5.59[5.59-5.61]	141.56[139.91-142.71]	2942.50[2935.30-2945.40]	9.20[9.00-9.30]	-	69.74[69.74-69.75]	18.53[18.39-18.70]	5
+freetoken	A	p8192	GSQ-RCO-IQ3_XXS	ja	30720	256	0	8.01[8.01-8.02]	140.53[139.87-141.34]	3842.30[3838.50-3846.10]	9.50[9.30-10.00]	-	69.74[69.72-69.75]	19.89[19.75-19.92]	5
+freetoken	A	p8192	GSQ-RCO-IQ3_XXS	ja	4096	256	0	1.81[1.80-1.83]	141.44[139.96-143.22]	2297.40[2270.90-2307.90]	9.90[9.00-13.50]	-	69.76[69.76-69.76]	12.54[12.11-12.63]	5
