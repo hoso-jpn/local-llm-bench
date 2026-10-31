@@ -28,8 +28,8 @@ case "$ENGINE/$TRACK" in
                START=(env FT_STATS=0 bash configs/freetoken/run.sh nvfp4) ;;
   strata/A)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
                START=(env TAIL_SKIP=0 STRATA_EXTRA_ENV="STRATA_PREFILL_CPU_SHARE=0" bash configs/strata/run.sh configs/strata/strata-iq3_xxs-trackA.json) ;;
-  strata/B)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
-               START=(bash configs/strata/run.sh configs/strata/strata-iq3_xxs-shipped.json) ;;
+  strata/B)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_s; FILE=GSQ-RCO-IQ3_S
+               START=(env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json) ;;
   *) echo "未対応: $ENGINE/$TRACK" >&2; exit 1 ;;
 esac
 
