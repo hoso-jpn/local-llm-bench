@@ -3,7 +3,7 @@
 #   bench/prompts/code.txt : llama.cpp（MIT）の src/*.cpp を固定の commit で連結
 #   bench/prompts/ja.txt   : 青空文庫の夏目漱石『こころ』『吾輩は猫である』（著作権切れ）からルビと注記を除いたもの
 # 使い方: bash scripts/prepare_prompts.sh
-set -eu
+set -euo pipefail
 cd "$(dirname "$0")/.."
 OUT=bench/prompts
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
@@ -19,13 +19,21 @@ for f in $(cd "$TMP/llama.cpp" && ls src/*.cpp | sort); do
 done
 
 echo "== ja.txt: 青空文庫 =="
-fetch_aozora() {  # $1 = zip の URL
+fetch_aozora() {  # $1 = zip の URL。整形はロケールに左右されないよう Python で行う
   curl -fsSL "$1" -o "$TMP/a.zip"
   rm -rf "$TMP/a" && mkdir "$TMP/a" && unzip -q -o "$TMP/a.zip" -d "$TMP/a"
-  iconv -f SHIFT_JIS -t UTF-8 "$TMP"/a/*.txt \
-  | sed -e 's/《[^》]*》//g' -e 's/｜//g' -e 's/［＃[^］]*］//g' \
-  | awk 'BEGIN{body=0} /^-------------------------------------------------------$/{body++; next} body>=2' \
-  | sed '/^底本：/,$d'
+  python3 - "$TMP"/a/*.txt <<'PY'
+import re, sys
+t = open(sys.argv[1], "rb").read().decode("cp932").replace("\r\n", "\n")
+# 青空文庫の書式：冒頭の記号説明（ダッシュ行で囲まれた部分）と、末尾の底本情報を除く
+parts = re.split(r"^-{20,}\s*$", t, flags=re.M)
+body = parts[2] if len(parts) >= 3 else t
+body = body.split("\n底本：")[0]
+body = re.sub(r"《[^》]*》", "", body)    # ルビ
+body = body.replace("｜", "")            # ルビの開始位置
+body = re.sub(r"［＃[^］]*］", "", body)  # 入力者注
+sys.stdout.write(body.strip() + "\n")
+PY
 }
 {
   fetch_aozora https://www.aozora.gr.jp/cards/000148/files/773_ruby_5968.zip   # こころ
@@ -34,6 +42,7 @@ fetch_aozora() {  # $1 = zip の URL
 } > "$OUT/ja.txt"
 
 ls -la "$OUT"/*.txt
+if [ "$(wc -c < "$OUT/ja.txt")" -lt 100000 ]; then echo "ja.txt が小さすぎます。取得か整形に失敗しています" >&2; exit 1; fi
 head -c 300 "$OUT/ja.txt"; echo
 python3 - "$LLAMA_TAG" "$LLAMA_COMMIT" <<'PY'
 import sys, re

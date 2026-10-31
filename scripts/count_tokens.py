@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """プロンプト素材のトークン数を、モデル自身の tokenizer で数える。
-使い方: uv run --with transformers --with jinja2 python scripts/count_tokens.py /data/strata/packs/iq3_xxs/tokenizer bench/prompts/*.txt
+使い方: uv run --with transformers --with jinja2 python scripts/count_tokens.py /data/tokenizers/Qwen3.8-Flash-Next bench/prompts/*.txt
 """
 import sys
 from transformers import AutoTokenizer
