@@ -1,0 +1,4 @@
+
+== /model
+   Qwen4ExpForConditionalGeneration, quant modelopt, MoE 48 layers x 512 experts, mixed: some layers per expert, some stacked
+   PASS: config, build, dense load, expert banks

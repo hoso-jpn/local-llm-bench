@@ -1,0 +1,1 @@
+{"path": "/model", "stage": "done", "status": "pass", "problems": [], "warnings": [], "findings": [], "arch": "Qwen4ExpForConditionalGeneration", "dialect": "modelopt", "moe": {"layers": 48, "experts": 512, "layout": "mixed: some layers per expert, some stacked"}, "encoders": [], "missing_only_scales": false, "fixes": [], "fixable_locally": false, "seconds": 19.2}
