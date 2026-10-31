@@ -288,7 +288,7 @@ def run_bench(a):
 def summarize(path):
     rows = [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
     rows = [r for r in rows if not r.get("warmup") and "error" not in r]
-    keys = ("engine", "track", "model_file", "prompt_kind", "input_len", "output_len", "turn")
+    keys = ("engine", "track", "label", "model_file", "prompt_kind", "input_len", "output_len", "turn")
     groups = {}
     for r in rows:
         groups.setdefault(tuple(r.get(k) for k in keys), []).append(r)

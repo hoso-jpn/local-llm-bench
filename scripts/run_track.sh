@@ -6,6 +6,9 @@
 # 例（試運転）:
 #   bash scripts/run_track.sh freetoken A results/2026-10-31_smoke/freetoken \
 #     --source bench/prompts/code.txt --prompt-kind code --input-lens 4096 --output-lens 256 --runs 2
+# 環境変数:
+#   KINDS="code ja"  1回の起動で、bench/prompts/<kind>.txt を順に測る（--source と --prompt-kind は自動で付く）
+#   SESSION=s1       セッション名を --label として記録する（同じ構成を別々に起動した回を区別する）
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ENGINE="$1"; TRACK="$2"; OUT="$3"; shift 3
@@ -48,11 +51,19 @@ echo "ready_after_s=$(( $(date +%s) - T0 ))" | tee "$OUT/startup.txt"
 echo "== [$(date +%T)] 計測（PCIe・GPU を1秒ごとに記録）"
 nvidia-smi --query-gpu=timestamp,pcie.link.gen.current,pcie.link.width.current,utilization.gpu,memory.used,power.draw \
   --format=csv -l 1 > "$OUT/gpu.csv" & SMI=$!
+bench() {
+  uv run -q --with transformers --with jinja2 --with nvidia-ml-py python bench/llm_engine_bench.py \
+    --base-url "$URL/v1" --model "$MODEL" --engine "$ENGINE" --track "$TRACK" --model-file "$FILE" \
+    --tokenizer "$TOKENIZER" --label "${SESSION:-}" --out "$OUT/results.jsonl" "$@" 2>&1 | tee -a "$OUT/bench_stdout.txt"
+  return "${PIPESTATUS[0]}"
+}
 set +e
-uv run -q --with transformers --with jinja2 --with nvidia-ml-py python bench/llm_engine_bench.py \
-  --base-url "$URL/v1" --model "$MODEL" --engine "$ENGINE" --track "$TRACK" --model-file "$FILE" \
-  --tokenizer "$TOKENIZER" --out "$OUT/results.jsonl" "$@" 2>&1 | tee "$OUT/bench_stdout.txt"
-RC=${PIPESTATUS[0]}
+RC=0
+if [ -n "${KINDS:-}" ]; then
+  for k in $KINDS; do bench --source "bench/prompts/$k.txt" --prompt-kind "$k" "$@" || RC=$?; done
+else
+  bench "$@" || RC=$?
+fi
 set -e
 kill $SMI 2>/dev/null || true
 
