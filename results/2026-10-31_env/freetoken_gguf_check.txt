@@ -1,0 +1,93 @@
+== models.md の Flash-Next の項 ==
+11-| GLM-5.2 | [nvidia/GLM-5.2-NVFP4](https://huggingface.co/nvidia/GLM-5.2-NVFP4) |
+12-| GLM-4.7 | [nvidia/GLM-4.7-NVFP4](https://huggingface.co/nvidia/GLM-4.7-NVFP4) |
+13:| Qwen3.8-Flash-Next | [Qwen/Qwen3.8-Flash-Next-FP8](https://huggingface.co/Qwen/Qwen3.8-Flash-Next-FP8), [RadixArk/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/RadixArk/Qwen3.8-Flash-Next-NVFP4), [nvidia/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4) |
+14-| Qwen3.6 / Qwen3.5 MoE | [Qwen/Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B) ([-FP8](https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8)), [nvidia/Qwen3.6-35B-A3B-NVFP4](https://huggingface.co/nvidia/Qwen3.6-35B-A3B-NVFP4), [Qwen/Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) ([-FP8](https://huggingface.co/Qwen/Qwen3.5-35B-A3B-FP8)) |
+15-| Qwen3.8 / Qwen3.6 dense | [Qwen/Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) ([-FP8](https://huggingface.co/Qwen/Qwen3.8-27B-FP8)), [RadixArk/Qwen3.8-27B-NVFP4](https://huggingface.co/RadixArk/Qwen3.8-27B-NVFP4), [Qwen/Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B) ([-FP8](https://huggingface.co/Qwen/Qwen3.6-27B-FP8)), [nvidia/Qwen3.6-27B-NVFP4](https://huggingface.co/nvidia/Qwen3.6-27B-NVFP4) |
+16-| Qwen3-MoE | [Qwen/Qwen3-30B-A3B](https://huggingface.co/Qwen/Qwen3-30B-A3B) |
+17-| Qwen3-VL | [Qwen/Qwen3-VL-8B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct), [Qwen/Qwen3-VL-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct) |
+18-| gpt-oss | [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b), [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) |
+19-| Gemma-4 | [google/gemma-4-26B-A4B-it](https://huggingface.co/google/gemma-4-26B-A4B-it), [nvidia/Gemma-4-26B-A4B-NVFP4](https://huggingface.co/nvidia/Gemma-4-26B-A4B-NVFP4), [google/gemma-4-12B-it](https://huggingface.co/google/gemma-4-12B-it), [nvidia/Gemma-4-31B-IT-NVFP4](https://huggingface.co/nvidia/Gemma-4-31B-IT-NVFP4) .. |
+20-| MiniMax-M2.5 | [nvidia/MiniMax-M2.5-NVFP4](https://huggingface.co/nvidia/MiniMax-M2.5-NVFP4) |
+21-| MiniMax-M3 | [nvidia/MiniMax-M3-NVFP4](https://huggingface.co/nvidia/MiniMax-M3-NVFP4) |
+22-| Muse-Glimmer | [meta-models/Muse-Glimmer-30B](https://huggingface.co/meta-models/Muse-Glimmer-30B), [RedHatAI/Muse-Glimmer-30B-NVFP4](https://huggingface.co/RedHatAI/Muse-Glimmer-30B-NVFP4) |
+23-
+24-### Image input
+25-
+26-These families accept image input by default; pass `--text-model-only` to skip the vision encoder. The flags are described in the
+27-[CLI reference](cli.md#image-input); each family reads them in its own units.
+28-
+29-| Family | Image tokens | `--image-min-tokens` / `--image-max-tokens` | `--mm-processor-kwargs` example |
+30-| --- | --- | --- | --- |
+31-| DeepSeek-V4.1-Flash (ViT tower, streamed under `--mm-encoder-weights host`) | one feature per 42x42 pixels, plus a learned row break per row and two delimiters; checkpoint cap 1024 total span tokens | maximum caps the entire span; minimum maps to a pixel-area floor before the cap; checkpoint minimum area is 544x544 | `{"max_image_tokens": 512, "min_pixels": 295936}` |
+32:| Qwen3.6 (both variants, every listed weight format), Qwen3.8-Flash-Next, Qwen3-VL | one token per 32x32 pixels of the resized image, dynamic resolution | pixel areas in `size.shortest_edge` / `longest_edge`; checkpoint defaults 64 to 16384 tokens | `{"size": {"longest_edge": 1048576}}` |
+33-| Gemma-4 26B-A4B, 31B (`gemma4`: ViT tower, streamed under `--mm-encoder-weights host`) | one of the soft-token budgets 70 / 140 / 280 / 560 / 1120, every image scaled to its budget as far as the aspect ratio allows | the maximum picks the largest budget within it, below 70 is refused at start-up; the minimum has no effect | `{"max_soft_tokens": 1120}` |
+34-| Gemma-4 12B (`gemma4_unified`: linear patch embedder, resident under either placement) | same budgets, one 48x48 super-patch per soft token | same as the tower releases | same |
+35-| GLM-5.3-Flash (`glm5_next`: ViT tower, streamed under `--mm-encoder-weights host`) | one token per 28x28 pixels of the resized image, dynamic resolution on a canvas zero-padded to a 28-multiple | token counts, passed through as the processor's `min_image_tokens` / `max_image_tokens`; checkpoint defaults 16 to 8000 tokens | `{"max_image_tokens": 2048}` |
+36-| Muse-Glimmer-30B (windowed ViT tower, streamed under `--mm-encoder-weights host`) | one token per 28x28 pixels of the resized image, aspect ratio kept under a token cap; checkpoint default 4096 tokens | the maximum is the cap (`max_image_tokens`); the minimum has no effect | `{"max_image_tokens": 1024}` |
+37-| MiniMax-M3 (`minimax_m3`: CLIP-style ViT tower, streamed under `--mm-encoder-weights host`) | one token per 28x28 pixels of the resized image, dynamic resolution | pixel areas in `size.shortest_edge` / `longest_edge`; checkpoint defaults 4 to 576 tokens | `{"size": {"longest_edge": 1048576}}` |
+38-| DeepSeek-V4-Flash-Vision (`deepseek_v4`: native-resolution ViT tower, streamed under `--mm-encoder-weights host`) | one token per 3x3 grid of 14x14 patches, against a per-image cap; the block carries sentinel tokens and lead pads that align it to a 4-token compression stride, so its length depends on where it lands in the prompt | the maximum is a cap on the block (`vision_max_n_token`, checkpoint default 384) and lowers it, the minimum is read as the checkpoint's upscale floor and has no effect | not read |
+39-
+40-## MoE strategies
+41-
+42-`ft serve --moe-strategy {auto,fused,offload,cpu,hybrid}` (`--moe-backend` is the deprecated old spelling):
+43-
+44-- **fused** — experts resident on GPU (needs the VRAM). Serves every expert
+45-  format except DeepSeek-V4's.
+46-- **offload** — experts live in host RAM, an LRU cache of expert slots on GPU;
+47-  misses stream over PCIe.
+48-- **cpu** — misses are computed on the CPU instead of fetched.
+49-- **hybrid** — per step, fetches some misses over PCIe and computes the rest on
+50-  CPU, overlapped. Run `ft bench bw --model <checkpoint>` once per machine and
+51-  model to calibrate the split.
+52-- **auto** — dense models always resolve to `fused`; MoE models resolve to
+53-  `offload`. Unified-memory GPUs differ, see below.
+54-
+55-### Unified-memory GPUs (GB10 / DGX Spark)
+56-
+57-The GPU and the CPU share one DRAM, so offload only copies experts between two
+58-names for the same memory. On these GPUs `auto` resolves every MoE model to
+59-`fused`: the default is the resident path only. DeepSeek-V4 experts
+60-have no resident path and stay on `offload`. Offload-only flags
+61-(`--moe-cpu-layers`, `--moe-cache-size` / `-rate` / `-auto`,
+62-`--moe-prefill-hit-d2d`, `--disable-moe-prefill-overlap`) are ignored with a
+--
+150-  "reasoning_effort": 37}`, and the checkpoint's encoder validates it. Runtime window-cache
+151-  controls use 128-token pages.
+152:- Qwen3.8-Flash-Next keeps a 47.7 GiB PLE n-gram table pinned in host RAM.
+
+== probe_kernels（GPU：この版で動く ggml の型） ==
+Q4_0       ok
+Q4_1       ok
+Q5_0       ok
+Q5_1       ok
+Q8_0       ok
+Q2_K       ok
+Q3_K       ok
+Q4_K       ok
+Q5_K       ok
+Q6_K       ok
+IQ2_XXS    ok
+IQ2_XS     ok
+IQ3_XXS    ok
+IQ1_S      ok
+IQ4_NL     ok
+IQ3_S      ok
+IQ2_S      ok
+IQ4_XS     ok
+IQ1_M      missing mm16 mm512 mmid16 mmid512
+TQ1_0      missing dequant get_rows glu1 glu8 mm1 mm16 mm512 mm8 mmid1 mmid16 mmid512 mmid8
+TQ2_0      missing dequant get_rows glu1 glu8 mm1 mm16 mm512 mm8 mmid1 mmid16 mmid512 mmid8
+MXFP4      ok
+NVFP4      missing get_rows
+Q1_0       ok
+Q2_0       ok
+probe-ok
+
+== check.py（CPU：設定・テンソル・カーネル・tokenizer・チャットテンプレート） ==
+1 files to check, 0 already in /out/freetoken_gguf_check.jsonl
+ok   /gguf/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf
+1/1 files of served architectures pass
+  qwen4exp         1/1
+1/1 files of served architectures pass
+  qwen4exp         1/1
