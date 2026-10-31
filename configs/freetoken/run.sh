@@ -37,8 +37,13 @@ ARGS=(--model-path "$MODEL" --served-model-name "$SERVED" --host 0.0.0.0 --port 
 [ "${FT_STATS:-0}" = 1 ] && ARGS+=(--moe-collect-stats)
 # shellcheck disable=SC2206
 [ -n "${FT_EXTRA:-}" ] && ARGS+=($FT_EXTRA)
+# JIT でコンパイルしたカーネル（Triton、tvm-ffi）をホストに残し、2回目以降の起動を速くする。
+# 初回起動では CUDA graph の取り込みに約190秒かかった（2026-10-31）。版ごとに分ける。
+CACHE_DIR="/data/freetoken-bench/cache/${IMG##*:}"
+sudo mkdir -p "$CACHE_DIR"
 docker run -d --name "$NAME" --gpus device=0 -p 127.0.0.1:8081:8080 \
   --memory 118g --memory-swap 118g --shm-size 64m --ipc host --ulimit memlock=-1 \
+  -v "$CACHE_DIR:/root/.cache" -e TRITON_CACHE_DIR=/root/.cache/triton \
   "${MOUNT[@]}" "$IMG" ft serve "${ARGS[@]}"
 echo "起動中: $NAME（$MODE、$IMG）"
 echo "ft serve ${ARGS[*]}"
