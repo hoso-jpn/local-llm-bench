@@ -11,7 +11,14 @@ BASE="$(basename "$CFG")"
 if docker ps --format '{{.Names}}' | grep -qi freetoken; then
   echo "FreeToken が動いています。先に止めてください（RAM が足りなくなります）" >&2; exit 1
 fi
-cp "$CFG" "/data/strata/config/$BASE"   # 書き込めない場合: sudo bash scripts/prepare_dirs.sh
+# STRATA_CTX があれば --max-context を置き換えた設定を作る（長い文脈・長い生成の評価用）
+if [ -n "${STRATA_CTX:-}" ]; then
+  BASE="${BASE%.json}-ctx${STRATA_CTX}.json"
+  python3 -c 'import json,sys; c=json.load(open(sys.argv[1])); a=c["args"]; a[a.index("--max-context")+1]=sys.argv[2]; json.dump(c,open(sys.argv[3],"w"),indent=1)' \
+    "$CFG" "$STRATA_CTX" "/data/strata/config/$BASE"
+else
+  cp "$CFG" "/data/strata/config/$BASE"   # 書き込めない場合: sudo bash scripts/prepare_dirs.sh
+fi
 ENVS=(-e MODEL="$MODEL" -e FAMILY=qwen -e CONTEXT=32768 -e VISION=no -e KV=int8 -e CONFIG="/data/config/$BASE")
 if [ -n "${TAIL_SKIP+x}" ]; then ENVS+=(-e STRATA_ROUTE_TAIL_SKIP="$TAIL_SKIP"); fi
 # 追加の環境変数（空白区切りの KEY=VALUE）。トラックAでは STRATA_PREFILL_CPU_SHARE=0

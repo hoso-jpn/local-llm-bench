@@ -35,7 +35,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "quality"
 TASKS = ("gsm8k", "humaneval", "jcqa", "json")
+HARD_TASKS = ("aime", "math5")
+LC_TASKS = ("lc_needle", "lc_multikey", "lc_multihop")
 LIMITS = {"gsm8k": 300, "humaneval": 164, "jcqa": 300, "json": 50}
+LC_LENGTHS = (16384, 32768, 65536, 131072)
+LC_PER_CELL = 10          # 1つの（課題, 長さ）につき10問。資料はコードと日本語を半分ずつ
+LC_RESERVE = 400          # 指示文と埋め込む文のぶん、資料を短くするトークン数
 
 
 # ============================================================ prepare
@@ -100,10 +105,109 @@ def prepare(_a):
                     "gold": str(r["label"])})
     _write("jcqa", out, f"{repo}/{path}"); sources["jcqa"] = f"{repo}/{path}"
 
+    # AIME 2025・2026（MathArena、CC BY-NC-SA 4.0）：各30問
+    out = []
+    for year in (2025, 2026):
+        repo = f"MathArena/aime_{year}"
+        files = [f for f in api.list_repo_files(repo, repo_type="dataset") if f.endswith(".parquet")]
+        rows = _read_parquet(repo, sorted(files)[0])
+        for r in rows:
+            out.append({"id": f"aime{year}-{int(r['problem_idx']):02d}", "problem": r["problem"],
+                        "gold": str(int(r["answer"]))})
+        sources[f"aime{year}"] = f"{repo}/{sorted(files)[0]}"
+    _write("aime", out, "MathArena/aime_2025, aime_2026")
+
+    # MATH-500 のレベル5（HuggingFaceH4/MATH-500）
+    repo = "HuggingFaceH4/MATH-500"; path = _find_parquet(api, repo, "test")
+    rows = [r for r in _read_parquet(repo, path) if int(r["level"]) == 5]
+    out = [{"id": "math5-" + r["unique_id"].replace("/", "_").replace(".json", ""), "problem": r["problem"],
+            "gold": r["answer"], "subject": r["subject"]} for r in rows]
+    _write("math5", out, f"{repo}/{path}（level 5）"); sources["math5"] = f"{repo}/{path}"
+
     # JSON 抽出：固定の乱数で生成（著作物を含まない）
     _write("json", make_json_tasks(), "合成（seed 20261101）"); sources["json"] = "synthetic seed 20261101"
     with open(DATA / "SOURCES.json", "w", encoding="utf-8") as f:
         json.dump(sources, f, ensure_ascii=False, indent=1)
+
+
+def prepare_lc(a):
+    """長い文脈の課題を作る。資料（bench/prompts/*.txt）の切り出し位置と埋め込む文だけを保存し、
+    問題文は実行時に組み立てる（ファイルを小さく保つため）。tokenizer で長さを正確に合わせる。"""
+    from transformers import AutoTokenizer
+    tok = AutoTokenizer.from_pretrained(a.tokenizer)
+    rnd = random.Random(20261102)
+    hay = {}
+    for kind in ("code", "ja"):
+        text = (ROOT / "bench" / "prompts" / f"{kind}.txt").read_text(encoding="utf-8")
+        enc = tok(text, add_special_tokens=False, return_offsets_mapping=True)
+        hay[kind] = (text, enc["offset_mapping"])
+    out = []
+    for task in LC_TASKS:
+        for length in LC_LENGTHS:
+            for i in range(LC_PER_CELL):
+                kind = "code" if i % 2 == 0 else "ja"
+                text, offs = hay[kind]
+                n = length - LC_RESERVE
+                start_tok = rnd.randint(0, len(offs) - n - 1)
+                c0, c1 = offs[start_tok][0], offs[start_tok + n - 1][1]
+                item = {"id": f"{task}-{length // 1024}k-{i:02d}", "task_kind": task, "length": length,
+                        "haystack": kind, "char_start": c0, "char_end": c1}
+                item.update(_make_needles(task, rnd))
+                out.append(item)
+    _write("lc", out, "合成（seed 20261102）。資料は bench/prompts/code.txt・ja.txt")
+
+
+def _code(rnd):
+    return "".join(rnd.choice("ABCDEFGHJKLMNPQRSTUVWXYZ") for _ in range(3)) + "-" + str(rnd.randint(1000, 9999))
+
+
+def _make_needles(task, rnd):
+    if task == "lc_needle":
+        v = _code(rnd)
+        return {"needles": [{"depth": round(rnd.uniform(0.05, 0.95), 3), "text": f"【メモ】保管庫の合言葉は「{v}」です。"}],
+                "question": "資料の中に書かれている保管庫の合言葉は何ですか。合言葉だけを答えてください。", "gold": v}
+    if task == "lc_multikey":
+        keys = rnd.sample(["赤", "青", "緑", "黄", "紫", "橙", "白", "黒", "銀", "金"], 8)
+        vals = [_code(rnd) for _ in keys]
+        depths = sorted(round(rnd.uniform(0.05, 0.95), 3) for _ in keys)
+        target = rnd.randrange(len(keys))
+        return {"needles": [{"depth": d, "text": f"【メモ】{k}の箱の番号は「{v}」です。"} for d, k, v in zip(depths, keys, vals)],
+                "question": f"資料の中に、いくつかの色の箱の番号が書かれています。{keys[target]}の箱の番号は何ですか。番号だけを答えてください。",
+                "gold": vals[target], "distractors": [v for j, v in enumerate(vals) if j != target]}
+    if task == "lc_multihop":
+        names = rnd.sample(["アルファ", "ブラボー", "チャーリー", "デルタ", "エコー", "フォックス", "ゴルフ", "ホテル"], 4)
+        v = _code(rnd)
+        depths = sorted(round(rnd.uniform(0.05, 0.95), 3) for _ in range(3))
+        order = rnd.sample(range(3), 3)   # 参照の順番と、資料の中の位置の順番を一致させない
+        facts = [f"【メモ】装置{names[0]}の設定値は装置{names[1]}と同じです。",
+                 f"【メモ】装置{names[1]}の設定値は装置{names[2]}と同じです。",
+                 f"【メモ】装置{names[2]}の設定値は「{v}」です。"]
+        return {"needles": [{"depth": depths[order[j]], "text": facts[j]} for j in range(3)],
+                "question": f"資料の中のメモをたどると、装置{names[0]}の設定値は何になりますか。設定値だけを答えてください。",
+                "gold": v}
+    raise ValueError(task)
+
+
+_HAY = {}
+
+
+def _haystack(kind):
+    if kind not in _HAY:
+        _HAY[kind] = (ROOT / "bench" / "prompts" / f"{kind}.txt").read_text(encoding="utf-8")
+    return _HAY[kind]
+
+
+def build_lc_prompt(item):
+    text = _haystack(item["haystack"])[item["char_start"]:item["char_end"]]
+    # 深さの位置の直後の改行に差し込む（行の途中を切らない）
+    inserts = []
+    for nd in item["needles"]:
+        pos = int(len(text) * nd["depth"])
+        nl = text.find("\n", pos)
+        inserts.append((len(text) if nl < 0 else nl + 1, nd["text"]))
+    for pos, t in sorted(inserts, reverse=True):
+        text = text[:pos] + t + "\n" + text[pos:]
+    return f"次の資料を読んで、最後の質問に答えてください。\n\n<資料>\n{text}\n</資料>\n\n質問: {item['question']}"
 
 
 def make_json_tasks(n=LIMITS["json"], seed=20261101):
@@ -160,6 +264,10 @@ def build_prompt(task, item):
                 f"質問: {item['question']}\n{lines}\n\n答え:")
     if task == "json":
         return JSON_INSTRUCTION + item["text"]
+    if task in ("aime", "math5"):
+        return f"{item['problem']}\n\nPlease reason step by step, and put your final answer within \\boxed{{}}."
+    if task == "lc":
+        return build_lc_prompt(item)
     raise ValueError(task)
 
 
@@ -187,16 +295,22 @@ def run(a):
             if "error" not in r:
                 done.add(r["id"])
     tasks = [t for t in a.tasks.split(",") if t]
+    lengths = {int(x) for x in a.lc_lengths.split(",")} if a.lc_lengths else None
     with open(out, "a", encoding="utf-8") as f:
         for task in tasks:
-            items = load_task(task)[: a.limit or None]
+            if task == "lc":
+                items = [it for it in load_task("lc") if lengths is None or it["length"] in lengths]
+            else:
+                items = load_task(task)
+            items = items[: a.limit or None]
             todo = [it for it in items if it["id"] not in done]
             print(f"[{a.label}] {task}: {len(items)} 問中 {len(todo)} 問を実行")
             for k, it in enumerate(todo):
                 body = {"model": a.model, "messages": [{"role": "user", "content": build_prompt(task, it)}],
                         "max_tokens": a.max_tokens, "temperature": 0, "reasoning_effort": a.effort}
                 t0 = time.perf_counter()
-                rec = {"id": it["id"], "task": task, "label": a.label, "effort": a.effort,
+                rec = {"id": it["id"], "task": it.get("task_kind", task), "label": a.label, "effort": a.effort,
+                       "length": it.get("length"),
                        "ts": time.strftime("%Y-%m-%dT%H:%M:%S")}
                 try:
                     resp = chat(a.base_url, a.api_key, body, a.timeout)
@@ -267,6 +381,71 @@ def score_json(content, gold):
                                                    "extra_keys": sorted(set(obj) - set(gold))}
 
 
+def last_boxed(text):
+    """最後の \\boxed{...} の中身（波括弧の入れ子に対応）"""
+    i = text.rfind("\\boxed")
+    if i < 0:
+        return None
+    j = text.find("{", i)
+    if j < 0:
+        return None
+    depth = 0
+    for k in range(j, len(text)):
+        if text[k] == "{":
+            depth += 1
+        elif text[k] == "}":
+            depth -= 1
+            if depth == 0:
+                return text[j + 1:k]
+    return None
+
+
+def score_aime(content, gold):
+    b = last_boxed(content)
+    cand = b if b is not None else (re.findall(r"\d+", content) or [None])[-1]
+    if cand is None:
+        return False, None
+    m = re.search(r"-?\d+", cand.replace(",", ""))
+    return (m is not None and int(m.group(0)) == int(gold)), cand.strip()
+
+
+def _norm_tex(x):
+    x = x.strip().strip("$")
+    for a_, b_ in (("\\dfrac", "\\frac"), ("\\tfrac", "\\frac"), ("\\left", ""), ("\\right", ""),
+                   ("^\\circ", ""), ("^{\\circ}", ""), ("\\!", ""), ("\\,", ""), ("\\ ", ""), (" ", "")):
+        x = x.replace(a_, b_)
+    x = re.sub(r"\\text\{([^}]*)\}", r"\1", x)
+    return x.rstrip(".")
+
+
+def score_math(content, gold):
+    b = last_boxed(content)
+    if b is None:
+        return False, None
+    try:
+        from math_verify import parse, verify   # 式として同じかを判定する（あれば使う）
+        ok = verify(parse(f"${gold}$"), parse(f"${b}$"))
+        return bool(ok) or _norm_tex(b) == _norm_tex(gold), b
+    except ImportError:
+        return _norm_tex(b) == _norm_tex(gold), b
+
+
+def score_lc(content, item):
+    c = content.replace(" ", "")
+    ok = item["gold"] in c and not any(d in c for d in item.get("distractors", []))
+    found = re.findall(r"[A-Z]{3}-\d{4}", content)
+    return ok, (found[-1] if found else content.strip()[:40])
+
+
+def degenerate(text):
+    """出力の終わりが同じ文の繰り返し（ループ）になっているか。圧縮率で判定する"""
+    import zlib
+    tail = text[-4000:]
+    if len(tail) < 2000:
+        return False
+    return len(zlib.compress(tail.encode())) / len(tail.encode()) < 0.12
+
+
 def extract_code(content, item):
     blocks = re.findall(r"```(?:python|py)?\s*\n(.*?)```", content, flags=re.S)
     code = blocks[-1] if blocks else content
@@ -329,7 +508,8 @@ def score(a):
         for r in rows:
             latest[r["id"]] = r
         rows = list(latest.values())
-        items = {t: {it["id"]: it for it in load_task(t)} for t in {r["task"] for r in rows}}
+        file_of = lambda t: "lc" if t.startswith("lc_") else t
+        items = {t: {it["id"]: it for it in load_task(file_of(t))} for t in {r["task"] for r in rows}}
         programs = {}
         for r in rows:
             if r["task"] == "humaneval" and "error" not in r:
@@ -340,9 +520,11 @@ def score(a):
         out = Path(path).with_name("scored.jsonl")
         with open(out, "w", encoding="utf-8") as f:
             for r in rows:
-                s = {k: r.get(k) for k in ("id", "task", "label", "effort", "elapsed_s", "finish_reason")}
+                s = {k: r.get(k) for k in ("id", "task", "label", "effort", "elapsed_s", "finish_reason", "length")}
                 u = r.get("usage") or {}
                 s["completion_tokens"] = u.get("completion_tokens")
+                s["prompt_tokens"] = u.get("prompt_tokens")
+                s["loop"] = degenerate((r.get("reasoning") or "") + (r.get("content") or ""))
                 if "error" in r:
                     s.update(correct=False, error=r["error"])
                 else:
@@ -356,6 +538,12 @@ def score(a):
                     elif r["task"] == "humaneval":
                         s["answer"] = he.get(r["id"], "missing")
                         s["correct"] = s["answer"] == "pass"
+                    elif r["task"] == "aime":
+                        s["correct"], s["answer"] = score_aime(r["content"], it["gold"])
+                    elif r["task"] == "math5":
+                        s["correct"], s["answer"] = score_math(r["content"], it["gold"])
+                    elif r["task"].startswith("lc_"):
+                        s["correct"], s["answer"] = score_lc(r["content"], it)
                 f.write(json.dumps(s, ensure_ascii=False) + "\n")
         print(f"採点: {path} -> {out}（{len(rows)} 件）")
 
@@ -375,17 +563,19 @@ def report(a):
     rows = [json.loads(l) for p in a.files for l in open(p, encoding="utf-8")]
     groups = {}
     for r in rows:
-        groups.setdefault((r["label"], r["task"]), []).append(r)
-    print("| 構成 | 課題 | 問題数 | 正答 | 正答率 | 95%信頼区間 | エラー | 打ち切り | 1問あたり | 正答1件あたり | 出力トークン（中央値） |")
-    print("| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |")
+        t = r["task"] + (f"@{r['length'] // 1024}K" if r.get("length") else "")
+        groups.setdefault((r["label"], t), []).append(r)
+    print("| 構成 | 課題 | 問題数 | 正答 | 正答率 | 95%信頼区間 | エラー | 打ち切り | ループ | 1問あたり | 正答1件あたり | 出力トークン（中央値） |")
+    print("| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |")
     for (label, task), rs in sorted(groups.items()):
         n = len(rs); k = sum(1 for r in rs if r["correct"])
         lo, hi = wilson(k, n)
         err = sum(1 for r in rs if r.get("error"))
         cut = sum(1 for r in rs if r.get("finish_reason") == "length")
+        loop = sum(1 for r in rs if r.get("loop"))
         t = sum(r.get("elapsed_s") or 0 for r in rs)
         toks = [r["completion_tokens"] for r in rs if r.get("completion_tokens")]
-        print(f"| {label} | {task} | {n} | {k} | {k / n * 100:.1f}% | {lo * 100:.1f}〜{hi * 100:.1f}% | {err} | {cut} | "
+        print(f"| {label} | {task} | {n} | {k} | {k / n * 100:.1f}% | {lo * 100:.1f}〜{hi * 100:.1f}% | {err} | {cut} | {loop} | "
               f"{t / n:.1f} s | {(t / k if k else float('nan')):.1f} s | {statistics.median(toks) if toks else '-'} |")
 
 
@@ -420,18 +610,20 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("prepare")
+    pl = sub.add_parser("prepare-lc"); pl.add_argument("--tokenizer", default="/data/tokenizers/Qwen3.8-Flash-Next")
     r = sub.add_parser("run")
     r.add_argument("--base-url", required=True); r.add_argument("--model", default="default")
     r.add_argument("--api-key", default="local"); r.add_argument("--label", required=True)
     r.add_argument("--tasks", default=",".join(TASKS)); r.add_argument("--limit", type=int, default=0)
     r.add_argument("--effort", default="low"); r.add_argument("--max-tokens", type=int, default=4096)
-    r.add_argument("--timeout", type=float, default=900); r.add_argument("--out", required=True)
+    r.add_argument("--timeout", type=float, default=3600); r.add_argument("--out", required=True)
+    r.add_argument("--lc-lengths", default="", help="長い文脈の課題で使う長さ（例: 16384,32768）。空なら全部")
     s = sub.add_parser("score"); s.add_argument("files", nargs="+")
     s.add_argument("--sandbox", choices=["docker", "none"], default="docker")
     rp = sub.add_parser("report"); rp.add_argument("files", nargs="+")
     c = sub.add_parser("compare"); c.add_argument("a"); c.add_argument("b")
     a, rest = p.parse_known_args()
-    {"prepare": prepare, "run": run, "score": score, "report": report, "compare": compare}[a.cmd](a)
+    {"prepare": prepare, "prepare-lc": prepare_lc, "run": run, "score": score, "report": report, "compare": compare}[a.cmd](a)
 
 
 if __name__ == "__main__":

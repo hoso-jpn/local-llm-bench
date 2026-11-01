@@ -19,7 +19,7 @@ for d in /data/strata/config /data/freetoken-bench/cache; do
   if [ ! -w "$d" ]; then echo "$d に書き込めません。先に: sudo bash scripts/prepare_dirs.sh" >&2; exit 1; fi
 done
 TOKENIZER="${TOKENIZER:-/data/tokenizers/Qwen3.8-Flash-Next}"
-READY_TIMEOUT="${READY_TIMEOUT:-1200}"
+READY_TIMEOUT="${READY_TIMEOUT:-1800}"
 
 # トラックC はトラックB と同じ構成（出荷状態）で、多ターンを測る
 CFG_TRACK="$TRACK"; [ "$TRACK" = C ] && CFG_TRACK=B
@@ -30,13 +30,15 @@ case "$ENGINE/$CFG_TRACK" in
                START=(env FT_STATS=0 bash configs/freetoken/run.sh nvfp4) ;;
   strata/A)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
                START=(env TAIL_SKIP=0 STRATA_EXTRA_ENV="STRATA_PREFILL_CPU_SHARE=0" bash configs/strata/run.sh configs/strata/strata-iq3_xxs-trackA.json) ;;
+  strata/BX)   URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS   # IQ3_XXS の出荷状態
+               START=(bash configs/strata/run.sh configs/strata/strata-iq3_xxs-shipped.json) ;;
   strata/B)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_s; FILE=GSQ-RCO-IQ3_S
                START=(env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json) ;;
   *) echo "未対応: $ENGINE/$TRACK" >&2; exit 1 ;;
 esac
 
 if [ "${BENCH:-speed}" = quality ]; then   # データがないままエンジンを起動しない
-  for t in gsm8k humaneval jcqa json; do
+  for t in ${QUALITY_FILES:-gsm8k humaneval jcqa json}; do
     [ -s "data/quality/$t.jsonl" ] || { echo "data/quality/$t.jsonl がありません。先に: uv run --with huggingface_hub --with pyarrow python bench/quality_eval.py prepare" >&2; exit 1; }
   done
 fi
