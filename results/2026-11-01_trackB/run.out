@@ -1,0 +1,639 @@
+nohup: 入力を無視します
+######## [09:27:07] freetoken / s1
+== [09:27:07] 環境を記録
+== [09:27:07] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+別のエンジンが動いています。先に止めてください:
+freetoken-bench
+!! freetoken s1 が失敗。続けます
+######## [09:27:37] strata / s1
+== [09:27:37] 環境を記録
+== [09:27:37] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+FreeToken が動いています。先に止めてください（RAM が足りなくなります）
+!! strata s1 が失敗。続けます
+######## [09:28:07] strata / s2
+== [09:28:07] 環境を記録
+== [09:28:07] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+FreeToken が動いています。先に止めてください（RAM が足りなくなります）
+!! strata s2 が失敗。続けます
+######## [09:28:37] freetoken / s2
+== [09:28:37] 環境を記録
+== [09:28:37] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+別のエンジンが動いています。先に止めてください:
+freetoken-bench
+!! freetoken s2 が失敗。続けます
+dexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=3.343s decode=60.88 tok/s cached=None p99gap=34.8ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.498s decode=63.36 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.504s decode=65.82 tok/s cached=None p99gap=27.1ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.513s decode=62.26 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.51s decode=65.25 tok/s cached=None p99gap=28.7ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.509s decode=61.49 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.506s decode=55.4 tok/s cached=None p99gap=31.8ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.502s decode=58.93 tok/s cached=None p99gap=31.2ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.488s decode=59.76 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.51s decode=59.09 tok/s cached=None p99gap=32.2ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.504s decode=58.39 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.495s decode=60.84 tok/s cached=None p99gap=31.1ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=2.763s decode=58.85 tok/s cached=None p99gap=28.3ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=2.748s decode=62.32 tok/s cached=None p99gap=26.2ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.746s decode=60.34 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=2.738s decode=59.92 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=2.739s decode=60.73 tok/s cached=None p99gap=28.7ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.748s decode=60.05 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.756s decode=59.48 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.78s decode=60.33 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=2.749s decode=59.42 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.738s decode=59.8 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.732s decode=60.28 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=2.733s decode=59.54 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=8.253s decode=61.11 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=7.802s decode=62.49 tok/s cached=None p99gap=25.0ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=7.815s decode=60.7 tok/s cached=None p99gap=29.2ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=7.897s decode=62.5 tok/s cached=None p99gap=29.5ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=7.856s decode=61.8 tok/s cached=None p99gap=28.6ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=7.814s decode=60.6 tok/s cached=None p99gap=26.7ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=7.833s decode=60.75 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=7.823s decode=60.86 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=7.798s decode=61.07 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=7.826s decode=61.25 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=7.831s decode=60.55 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=7.828s decode=60.63 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=10.309s decode=62.24 tok/s cached=None p99gap=29.1ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=10.314s decode=62.08 tok/s cached=None p99gap=28.3ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=10.333s decode=63.6 tok/s cached=None p99gap=26.8ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=10.323s decode=62.15 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=10.316s decode=62.76 tok/s cached=None p99gap=28.2ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=10.328s decode=63.19 tok/s cached=None p99gap=28.0ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=10.309s decode=61.42 tok/s cached=None p99gap=31.2ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=10.297s decode=61.52 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=10.318s decode=60.3 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=10.334s decode=61.14 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=10.312s decode=61.99 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=10.388s decode=60.53 tok/s cached=None p99gap=30.5ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.567s decode=63.7 tok/s cached=None p99gap=32.8ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.566s decode=67.25 tok/s cached=None p99gap=31.6ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.565s decode=66.95 tok/s cached=None p99gap=35.1ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.561s decode=67.19 tok/s cached=None p99gap=32.4ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.558s decode=66.26 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.553s decode=66.47 tok/s cached=None p99gap=38.1ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=3.114s decode=67.36 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.559s decode=66.9 tok/s cached=None p99gap=32.6ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.543s decode=66.63 tok/s cached=None p99gap=31.9ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.559s decode=67.67 tok/s cached=None p99gap=32.7ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.561s decode=67.3 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.55s decode=66.41 tok/s cached=None p99gap=32.9ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=2.979s decode=66.19 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=3.01s decode=68.12 tok/s cached=None p99gap=29.5ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=3.0s decode=58.58 tok/s cached=None p99gap=33.5ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=2.99s decode=67.39 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=2.958s decode=66.52 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.994s decode=66.03 tok/s cached=None p99gap=27.2ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.974s decode=67.73 tok/s cached=None p99gap=32.9ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.97s decode=69.04 tok/s cached=None p99gap=28.1ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=2.994s decode=67.21 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.985s decode=67.8 tok/s cached=None p99gap=29.1ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.99s decode=68.6 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=2.999s decode=66.97 tok/s cached=None p99gap=29.5ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=12.778s decode=64.91 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=10.212s decode=66.83 tok/s cached=None p99gap=28.0ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=9.745s decode=67.23 tok/s cached=None p99gap=25.9ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=9.753s decode=67.46 tok/s cached=None p99gap=26.8ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=9.669s decode=66.11 tok/s cached=None p99gap=25.8ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=9.725s decode=66.41 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=9.729s decode=70.36 tok/s cached=None p99gap=27.5ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=9.739s decode=68.89 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=9.86s decode=67.77 tok/s cached=None p99gap=27.9ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=9.685s decode=66.41 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=9.928s decode=68.5 tok/s cached=None p99gap=27.9ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=9.799s decode=69.19 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=18.0s decode=61.79 tok/s cached=None p99gap=29.2ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=17.75s decode=65.77 tok/s cached=None p99gap=31.6ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=16.459s decode=67.79 tok/s cached=None p99gap=27.2ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=16.565s decode=65.45 tok/s cached=None p99gap=31.6ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=16.563s decode=65.87 tok/s cached=None p99gap=27.1ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=16.642s decode=68.39 tok/s cached=None p99gap=22.5ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=16.575s decode=67.68 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=16.456s decode=66.98 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=16.545s decode=69.82 tok/s cached=None p99gap=27.0ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=16.558s decode=68.41 tok/s cached=None p99gap=28.6ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=16.547s decode=68.68 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=16.512s decode=69.61 tok/s cached=None p99gap=28.7ms 
+== [09:58:03] 停止してログを保存
+保存して停止しました: results/2026-11-01_trackB/freetoken_s1
+合計 236
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  1 09:58 .
+drwxrwxr-x 6 yusuke-hosokawa yusuke-hosokawa   4096 11月  1 09:28 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  10580 11月  1 09:58 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  1 09:27 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  21810 11月  1 09:58 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    444 11月  1 09:58 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 105579 11月  1 09:58 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  1 09:27 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  61981 11月  1 09:58 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  1 09:27 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s1	NVFP4	code	1024	1024	0	2.50[2.49-2.51]	59.09[58.39-60.84]	434.10[432.30-435.40]	31.20[30.60-32.20]	-	50.73[50.71-50.74]	15.18[14.16-15.22]	5
+freetoken	B	s1	NVFP4	code	1024	256	0	2.51[2.50-2.51]	63.36[61.49-65.82]	432.60[431.00-434.40]	29.90[27.10-31.50]	-	50.64[50.49-50.71]	17.76[17.24-19.96]	5
+freetoken	B	s1	NVFP4	code	16384	1024	0	7.83[7.80-7.83]	60.86[60.55-61.25]	2100.50[2099.70-2108.50]	30.00[29.60-30.90]	-	50.68[50.67-50.69]	17.22[17.05-17.77]	5
+freetoken	B	s1	NVFP4	code	16384	256	0	7.82[7.80-7.90]	61.80[60.60-62.50]	2104.20[2082.10-2107.70]	28.60[25.00-29.50]	-	50.67[50.66-50.69]	22.62[21.80-22.95]	5
+freetoken	B	s1	NVFP4	code	30720	1024	0	10.32[10.30-10.39]	61.14[60.30-61.99]	2983.20[2963.20-2989.40]	30.30[29.00-30.70]	-	50.65[50.64-50.67]	18.39[17.82-18.82]	5
+freetoken	B	s1	NVFP4	code	30720	256	0	10.32[10.31-10.33]	62.76[62.08-63.60]	2981.70[2979.10-2983.90]	28.00[26.80-28.30]	-	50.67[50.67-50.68]	24.16[23.31-24.52]	5
+freetoken	B	s1	NVFP4	code	4096	1024	0	2.74[2.73-2.78]	59.80[59.42-60.33]	1517.30[1494.70-1520.90]	30.40[29.60-30.90]	-	50.72[50.70-50.72]	14.35[14.05-14.51]	5
+freetoken	B	s1	NVFP4	code	4096	256	0	2.75[2.74-2.75]	60.34[59.92-62.32]	1512.20[1511.80-1517.80]	29.00[26.20-30.80]	-	50.73[50.73-50.74]	17.66[17.01-18.17]	5
+freetoken	B	s1	NVFP4	ja	1024	1024	0	2.56[2.54-2.56]	66.90[66.41-67.67]	428.40[426.70-431.30]	32.60[31.50-32.90]	-	50.79[50.78-50.79]	13.13[12.69-13.61]	5
+freetoken	B	s1	NVFP4	ja	1024	256	0	2.56[2.55-2.57]	66.95[66.26-67.25]	426.80[426.00-430.00]	32.40[29.60-38.10]	-	50.79[50.76-50.81]	18.06[17.49-18.74]	5
+freetoken	B	s1	NVFP4	ja	16384	1024	0	9.80[9.69-9.93]	68.50[66.41-69.19]	1679.10[1657.10-1698.80]	30.00[27.90-30.90]	-	50.77[50.77-50.78]	14.92[14.78-15.32]	5
+freetoken	B	s1	NVFP4	ja	16384	256	0	9.74[9.67-10.21]	66.83[66.11-67.46]	1688.10[1611.50-1701.90]	26.80[25.80-30.70]	-	50.78[50.77-50.79]	18.99[17.77-19.61]	5
+freetoken	B	s1	NVFP4	ja	30720	1024	0	16.55[16.46-16.56]	68.68[66.98-69.82]	1861.00[1859.50-1871.10]	28.70[27.00-30.70]	-	50.75[50.68-50.76]	13.96[13.71-14.34]	5
+freetoken	B	s1	NVFP4	ja	30720	256	0	16.57[16.46-17.75]	65.87[65.45-68.39]	1858.80[1734.50-1870.70]	27.20[22.50-31.60]	-	50.77[50.77-50.78]	16.55[15.78-16.73]	5
+freetoken	B	s1	NVFP4	ja	4096	1024	0	2.99[2.97-3.00]	67.80[66.97-69.04]	1393.80[1389.60-1403.00]	29.50[28.10-30.70]	-	50.78[50.77-50.78]	12.49[11.47-13.33]	5
+freetoken	B	s1	NVFP4	ja	4096	256	0	2.99[2.96-3.01]	66.52[58.58-68.12]	1391.40[1383.90-1408.30]	29.90[27.20-33.50]	-	50.79[50.78-50.79]	15.42[15.00-16.44]	5
+######## [09:58:39] strata / s1
+== [09:58:39] 環境を記録
+== [09:58:39] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+f5aabdfc1a88c3a411d7d675d0c6431831355476233cc0fed3382b54d5c91e88
+起動中: strata-bench（config=strata-iq3_s-shipped.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=20
+== [09:58:59] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=1024 out=256 warmup turn=0: TTFT=1.149s decode=171.95 tok/s cached=0 p99gap=21.0ms 
+[strata/B] in=1024 out=256 run 0 turn=0: TTFT=1.06s decode=207.53 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=1024 out=256 run 1 turn=0: TTFT=1.058s decode=207.54 tok/s cached=0 p99gap=15.5ms 
+[strata/B] in=1024 out=256 run 2 turn=0: TTFT=1.059s decode=212.46 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=1024 out=256 run 3 turn=0: TTFT=1.059s decode=200.23 tok/s cached=0 p99gap=14.5ms 
+[strata/B] in=1024 out=256 run 4 turn=0: TTFT=1.058s decode=209.19 tok/s cached=0 p99gap=20.1ms 
+[strata/B] in=1024 out=1024 warmup turn=0: TTFT=1.059s decode=216.75 tok/s cached=0 p99gap=19.7ms 
+[strata/B] in=1024 out=1024 run 0 turn=0: TTFT=1.069s decode=223.77 tok/s cached=0 p99gap=17.0ms 
+[strata/B] in=1024 out=1024 run 1 turn=0: TTFT=1.07s decode=219.66 tok/s cached=0 p99gap=18.8ms 
+[strata/B] in=1024 out=1024 run 2 turn=0: TTFT=1.07s decode=215.27 tok/s cached=0 p99gap=17.9ms 
+[strata/B] in=1024 out=1024 run 3 turn=0: TTFT=1.071s decode=216.74 tok/s cached=0 p99gap=17.8ms 
+[strata/B] in=1024 out=1024 run 4 turn=0: TTFT=1.07s decode=225.63 tok/s cached=0 p99gap=17.4ms 
+[strata/B] in=4096 out=256 warmup turn=0: TTFT=1.266s decode=201.94 tok/s cached=0 p99gap=18.1ms 
+[strata/B] in=4096 out=256 run 0 turn=0: TTFT=1.17s decode=201.66 tok/s cached=0 p99gap=15.3ms 
+[strata/B] in=4096 out=256 run 1 turn=0: TTFT=1.168s decode=205.93 tok/s cached=0 p99gap=13.9ms 
+[strata/B] in=4096 out=256 run 2 turn=0: TTFT=1.167s decode=218.69 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=4096 out=256 run 3 turn=0: TTFT=1.167s decode=216.73 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=4096 out=256 run 4 turn=0: TTFT=1.168s decode=212.48 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=1024 warmup turn=0: TTFT=1.167s decode=229.15 tok/s cached=0 p99gap=14.6ms 
+[strata/B] in=4096 out=1024 run 0 turn=0: TTFT=1.176s decode=224.52 tok/s cached=0 p99gap=15.6ms 
+[strata/B] in=4096 out=1024 run 1 turn=0: TTFT=1.177s decode=225.98 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=4096 out=1024 run 2 turn=0: TTFT=1.18s decode=219.77 tok/s cached=0 p99gap=15.5ms 
+[strata/B] in=4096 out=1024 run 3 turn=0: TTFT=1.177s decode=217.52 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=4096 out=1024 run 4 turn=0: TTFT=1.176s decode=226.27 tok/s cached=0 p99gap=14.6ms 
+[strata/B] in=16384 out=256 warmup turn=0: TTFT=3.01s decode=201.47 tok/s cached=0 p99gap=17.9ms 
+[strata/B] in=16384 out=256 run 0 turn=0: TTFT=2.897s decode=219.46 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=16384 out=256 run 1 turn=0: TTFT=2.87s decode=212.28 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=16384 out=256 run 2 turn=0: TTFT=2.901s decode=212.78 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=16384 out=256 run 3 turn=0: TTFT=2.889s decode=226.33 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=16384 out=256 run 4 turn=0: TTFT=2.893s decode=213.67 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=16384 out=1024 warmup turn=0: TTFT=2.883s decode=222.38 tok/s cached=0 p99gap=15.6ms 
+[strata/B] in=16384 out=1024 run 0 turn=0: TTFT=2.912s decode=213.53 tok/s cached=0 p99gap=14.6ms 
+[strata/B] in=16384 out=1024 run 1 turn=0: TTFT=2.897s decode=229.03 tok/s cached=0 p99gap=15.7ms 
+[strata/B] in=16384 out=1024 run 2 turn=0: TTFT=2.906s decode=211.79 tok/s cached=0 p99gap=15.2ms 
+[strata/B] in=16384 out=1024 run 3 turn=0: TTFT=2.904s decode=227.82 tok/s cached=0 p99gap=15.7ms 
+[strata/B] in=16384 out=1024 run 4 turn=0: TTFT=2.905s decode=224.53 tok/s cached=0 p99gap=15.9ms 
+[strata/B] in=30720 out=256 warmup turn=0: TTFT=4.946s decode=199.7 tok/s cached=0 p99gap=16.6ms 
+[strata/B] in=30720 out=256 run 0 turn=0: TTFT=4.933s decode=214.98 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=30720 out=256 run 1 turn=0: TTFT=4.949s decode=208.86 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=256 run 2 turn=0: TTFT=4.932s decode=211.7 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=30720 out=256 run 3 turn=0: TTFT=4.948s decode=211.39 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=30720 out=256 run 4 turn=0: TTFT=4.931s decode=198.28 tok/s cached=0 p99gap=13.9ms 
+[strata/B] in=30720 out=1024 warmup turn=0: TTFT=4.95s decode=220.76 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=30720 out=1024 run 0 turn=0: TTFT=4.945s decode=218.51 tok/s cached=0 p99gap=15.9ms 
+[strata/B] in=30720 out=1024 run 1 turn=0: TTFT=4.947s decode=212.55 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=30720 out=1024 run 2 turn=0: TTFT=4.944s decode=221.69 tok/s cached=0 p99gap=15.2ms 
+[strata/B] in=30720 out=1024 run 3 turn=0: TTFT=4.946s decode=218.16 tok/s cached=0 p99gap=14.8ms 
+[strata/B] in=30720 out=1024 run 4 turn=0: TTFT=4.931s decode=215.41 tok/s cached=0 p99gap=16.1ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=1024 out=256 warmup turn=0: TTFT=1.138s decode=148.41 tok/s cached=0 p99gap=22.0ms 
+[strata/B] in=1024 out=256 run 0 turn=0: TTFT=1.067s decode=180.59 tok/s cached=0 p99gap=13.7ms 
+[strata/B] in=1024 out=256 run 1 turn=0: TTFT=1.062s decode=180.86 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=1024 out=256 run 2 turn=0: TTFT=1.06s decode=177.55 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=1024 out=256 run 3 turn=0: TTFT=1.059s decode=189.21 tok/s cached=0 p99gap=12.6ms 
+[strata/B] in=1024 out=256 run 4 turn=0: TTFT=1.06s decode=182.1 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=1024 out=1024 warmup turn=0: TTFT=1.061s decode=174.46 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=1024 out=1024 run 0 turn=0: TTFT=1.063s decode=173.95 tok/s cached=0 p99gap=13.6ms 
+[strata/B] in=1024 out=1024 run 1 turn=0: TTFT=1.062s decode=177.98 tok/s cached=0 p99gap=13.2ms 
+[strata/B] in=1024 out=1024 run 2 turn=0: TTFT=1.065s decode=177.57 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=1024 out=1024 run 3 turn=0: TTFT=1.062s decode=181.57 tok/s cached=0 p99gap=13.2ms 
+[strata/B] in=1024 out=1024 run 4 turn=0: TTFT=1.062s decode=181.46 tok/s cached=0 p99gap=13.3ms 
+[strata/B] in=4096 out=256 warmup turn=0: TTFT=1.379s decode=180.11 tok/s cached=0 p99gap=14.6ms 
+[strata/B] in=4096 out=256 run 0 turn=0: TTFT=1.167s decode=185.92 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=4096 out=256 run 1 turn=0: TTFT=1.167s decode=185.05 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=4096 out=256 run 2 turn=0: TTFT=1.167s decode=184.06 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=4096 out=256 run 3 turn=0: TTFT=1.167s decode=189.69 tok/s cached=0 p99gap=12.3ms 
+[strata/B] in=4096 out=256 run 4 turn=0: TTFT=1.168s decode=184.76 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=4096 out=1024 warmup turn=0: TTFT=1.168s decode=177.69 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=4096 out=1024 run 0 turn=0: TTFT=1.171s decode=177.6 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 1 turn=0: TTFT=1.171s decode=173.39 tok/s cached=0 p99gap=15.0ms 
+[strata/B] in=4096 out=1024 run 2 turn=0: TTFT=1.176s decode=177.74 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=4096 out=1024 run 3 turn=0: TTFT=1.171s decode=174.12 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=1024 run 4 turn=0: TTFT=1.171s decode=179.37 tok/s cached=0 p99gap=13.7ms 
+[strata/B] in=16384 out=256 warmup turn=0: TTFT=3.069s decode=175.57 tok/s cached=0 p99gap=13.6ms 
+[strata/B] in=16384 out=256 run 0 turn=0: TTFT=2.752s decode=177.55 tok/s cached=0 p99gap=14.1ms 
+[strata/B] in=16384 out=256 run 1 turn=0: TTFT=2.768s decode=182.47 tok/s cached=0 p99gap=15.5ms 
+[strata/B] in=16384 out=256 run 2 turn=0: TTFT=2.772s decode=183.47 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=16384 out=256 run 3 turn=0: TTFT=2.762s decode=181.88 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=16384 out=256 run 4 turn=0: TTFT=2.767s decode=182.94 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=16384 out=1024 warmup turn=0: TTFT=2.834s decode=176.1 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=16384 out=1024 run 0 turn=0: TTFT=2.77s decode=173.64 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=16384 out=1024 run 1 turn=0: TTFT=2.778s decode=177.9 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=16384 out=1024 run 2 turn=0: TTFT=2.772s decode=180.21 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=16384 out=1024 run 3 turn=0: TTFT=2.771s decode=176.36 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=16384 out=1024 run 4 turn=0: TTFT=2.758s decode=178.05 tok/s cached=0 p99gap=13.7ms 
+[strata/B] in=30720 out=256 warmup turn=0: TTFT=5.004s decode=164.63 tok/s cached=0 p99gap=15.0ms 
+[strata/B] in=30720 out=256 run 0 turn=0: TTFT=4.903s decode=169.66 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=30720 out=256 run 1 turn=0: TTFT=4.922s decode=178.26 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=256 run 2 turn=0: TTFT=4.907s decode=168.3 tok/s cached=0 p99gap=13.2ms 
+[strata/B] in=30720 out=256 run 3 turn=0: TTFT=4.895s decode=174.75 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=30720 out=256 run 4 turn=0: TTFT=4.917s decode=181.28 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=30720 out=1024 warmup turn=0: TTFT=4.923s decode=174.09 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=30720 out=1024 run 0 turn=0: TTFT=4.913s decode=172.67 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=30720 out=1024 run 1 turn=0: TTFT=4.916s decode=170.61 tok/s cached=0 p99gap=14.3ms 
+[strata/B] in=30720 out=1024 run 2 turn=0: TTFT=4.932s decode=174.78 tok/s cached=0 p99gap=14.3ms 
+[strata/B] in=30720 out=1024 run 3 turn=0: TTFT=4.9s decode=167.18 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=30720 out=1024 run 4 turn=0: TTFT=4.923s decode=171.23 tok/s cached=0 p99gap=13.7ms 
+== [10:11:43] 停止してログを保存
+保存して停止しました: results/2026-11-01_trackB/strata_s1
+合計 184
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  1 10:11 .
+drwxrwxr-x 6 yusuke-hosokawa yusuke-hosokawa  4096 11月  1 09:28 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 10081 11月  1 10:11 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  4498 11月  1 10:11 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa  8311 11月  1 10:11 engine-strata-iq3_s.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  1 09:58 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 43782 11月  1 10:11 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  1 09:58 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 76176 11月  1 10:11 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  1 09:58 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    15 11月  1 10:11 strata_env.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+strata	B	s1	GSQ-RCO-IQ3_S	code	1024	1024	0	1.07[1.07-1.07]	219.66[215.27-225.63]	1011.70[1010.00-1014.30]	17.80[17.00-18.80]	0.74[0.74-0.77]	69.32[69.32-69.33]	7.39[6.30-8.08]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	1024	256	0	1.06[1.06-1.06]	207.54[200.23-212.46]	1022.50[1020.00-1025.50]	15.10[13.80-20.10]	0.72[0.68-0.74]	69.33[69.32-69.34]	12.92[12.69-13.01]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	16384	1024	0	2.90[2.90-2.91]	224.53[211.79-229.03]	5660.30[5647.40-5674.60]	15.70[14.60-15.90]	0.77[0.73-0.79]	69.17[69.16-69.18]	10.45[9.32-11.16]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	16384	256	0	2.89[2.87-2.90]	213.67[212.28-226.33]	5683.80[5669.00-5729.50]	12.80[12.50-12.90]	0.73[0.72-0.77]	69.18[69.14-69.19]	18.30[16.55-18.82]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	30720	1024	0	4.95[4.93-4.95]	218.16[212.55-221.69]	6224.10[6221.80-6242.00]	15.20[14.80-16.10]	0.75[0.73-0.78]	69.17[69.16-69.18]	14.82[14.64-15.16]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	30720	256	0	4.93[4.93-4.95]	211.39[198.28-214.98]	6239.80[6219.90-6242.00]	13.10[12.80-13.90]	0.70[0.67-0.74]	69.17[69.16-69.18]	22.70[22.39-23.06]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	4096	1024	0	1.18[1.18-1.18]	224.52[217.52-226.27]	3531.90[3523.90-3537.10]	15.10[14.60-15.60]	0.74[0.72-0.77]	69.31[69.28-69.32]	6.91[6.84-7.70]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	4096	256	0	1.17[1.17-1.17]	212.48[201.66-218.69]	3557.50[3548.20-3562.60]	13.00[12.70-15.30]	0.67[0.64-0.70]	69.32[69.31-69.33]	15.85[15.51-16.11]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	1024	1024	0	1.06[1.06-1.06]	177.98[173.95-181.57]	1029.30[1027.60-1031.80]	13.20[12.90-13.60]	0.57[0.55-0.58]	69.41[69.40-69.42]	4.91[4.81-5.32]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	1024	256	0	1.06[1.06-1.07]	180.86[177.55-189.21]	1033.20[1026.60-1034.90]	12.70[12.50-13.70]	0.54[0.50-0.58]	69.42[69.41-69.42]	12.39[11.26-12.72]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	16384	1024	0	2.77[2.76-2.78]	177.90[173.64-180.21]	5938.10[5924.20-5967.80]	13.70[13.40-14.00]	0.62[0.59-0.63]	69.29[69.29-69.30]	9.12[9.00-9.42]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	16384	256	0	2.77[2.75-2.77]	182.47[177.55-183.47]	5946.90[5936.80-5978.10]	12.80[12.70-15.50]	0.61[0.59-0.64]	69.30[69.29-69.31]	18.18[17.89-18.23]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	30720	1024	0	4.92[4.90-4.93]	171.23[167.18-174.78]	6263.50[6243.40-6284.10]	14.00[13.70-14.30]	0.59[0.56-0.62]	69.22[69.19-69.22]	12.94[12.18-13.27]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	30720	256	0	4.91[4.89-4.92]	174.75[168.30-181.28]	6274.10[6255.10-6288.70]	12.90[12.70-13.20]	0.57[0.53-0.60]	69.22[69.21-69.29]	21.20[20.65-21.45]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	4096	1024	0	1.17[1.17-1.18]	177.60[173.39-179.37]	3557.30[3542.60-3560.60]	14.00[13.70-15.00]	0.57[0.56-0.60]	69.41[69.40-69.41]	5.73[5.41-6.00]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	4096	256	0	1.17[1.17-1.17]	185.05[184.06-189.69]	3570.50[3564.20-3571.40]	12.40[12.30-13.40]	0.57[0.56-0.58]	69.42[69.39-69.43]	13.99[13.97-14.07]	5
+######## [10:12:15] strata / s2
+== [10:12:15] 環境を記録
+== [10:12:15] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+ebedce95de7a118c00506958dd3841e4249a606832417c0a3e2aa6f7cece80ab
+起動中: strata-bench（config=strata-iq3_s-shipped.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=15
+== [10:12:30] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=1024 out=256 warmup turn=0: TTFT=1.142s decode=176.67 tok/s cached=0 p99gap=21.1ms 
+[strata/B] in=1024 out=256 run 0 turn=0: TTFT=1.06s decode=211.07 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=1024 out=256 run 1 turn=0: TTFT=1.059s decode=194.5 tok/s cached=0 p99gap=16.9ms 
+[strata/B] in=1024 out=256 run 2 turn=0: TTFT=1.059s decode=213.03 tok/s cached=0 p99gap=20.0ms 
+[strata/B] in=1024 out=256 run 3 turn=0: TTFT=1.058s decode=201.89 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=1024 out=256 run 4 turn=0: TTFT=1.059s decode=216.98 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=1024 out=1024 warmup turn=0: TTFT=1.059s decode=213.96 tok/s cached=0 p99gap=19.6ms 
+[strata/B] in=1024 out=1024 run 0 turn=0: TTFT=1.072s decode=222.22 tok/s cached=0 p99gap=18.8ms 
+[strata/B] in=1024 out=1024 run 1 turn=0: TTFT=1.071s decode=225.19 tok/s cached=0 p99gap=18.4ms 
+[strata/B] in=1024 out=1024 run 2 turn=0: TTFT=1.069s decode=221.56 tok/s cached=0 p99gap=17.6ms 
+[strata/B] in=1024 out=1024 run 3 turn=0: TTFT=1.069s decode=221.51 tok/s cached=0 p99gap=18.4ms 
+[strata/B] in=1024 out=1024 run 4 turn=0: TTFT=1.07s decode=221.62 tok/s cached=0 p99gap=19.1ms 
+[strata/B] in=4096 out=256 warmup turn=0: TTFT=1.263s decode=206.37 tok/s cached=0 p99gap=17.8ms 
+[strata/B] in=4096 out=256 run 0 turn=0: TTFT=1.171s decode=211.13 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=256 run 1 turn=0: TTFT=1.168s decode=211.78 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=256 run 2 turn=0: TTFT=1.168s decode=212.25 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=256 run 3 turn=0: TTFT=1.167s decode=211.92 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=256 run 4 turn=0: TTFT=1.168s decode=213.11 tok/s cached=0 p99gap=12.6ms 
+[strata/B] in=4096 out=1024 warmup turn=0: TTFT=1.167s decode=222.08 tok/s cached=0 p99gap=15.0ms 
+[strata/B] in=4096 out=1024 run 0 turn=0: TTFT=1.176s decode=218.8 tok/s cached=0 p99gap=15.2ms 
+[strata/B] in=4096 out=1024 run 1 turn=0: TTFT=1.176s decode=224.18 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 2 turn=0: TTFT=1.177s decode=218.45 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 3 turn=0: TTFT=1.177s decode=218.13 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 4 turn=0: TTFT=1.177s decode=222.59 tok/s cached=0 p99gap=15.6ms 
+[strata/B] in=16384 out=256 warmup turn=0: TTFT=3.011s decode=210.59 tok/s cached=0 p99gap=16.8ms 
+[strata/B] in=16384 out=256 run 0 turn=0: TTFT=2.888s decode=219.25 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=16384 out=256 run 1 turn=0: TTFT=2.949s decode=220.71 tok/s cached=0 p99gap=12.6ms 
+[strata/B] in=16384 out=256 run 2 turn=0: TTFT=2.882s decode=221.62 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=16384 out=256 run 3 turn=0: TTFT=2.889s decode=203.24 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=16384 out=256 run 4 turn=0: TTFT=2.888s decode=222.13 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=16384 out=1024 warmup turn=0: TTFT=2.881s decode=222.08 tok/s cached=0 p99gap=15.2ms 
+[strata/B] in=16384 out=1024 run 0 turn=0: TTFT=2.903s decode=223.56 tok/s cached=0 p99gap=16.0ms 
+[strata/B] in=16384 out=1024 run 1 turn=0: TTFT=2.902s decode=228.29 tok/s cached=0 p99gap=15.6ms 
+[strata/B] in=16384 out=1024 run 2 turn=0: TTFT=2.903s decode=220.37 tok/s cached=0 p99gap=15.3ms 
+[strata/B] in=16384 out=1024 run 3 turn=0: TTFT=2.906s decode=225.5 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=16384 out=1024 run 4 turn=0: TTFT=2.901s decode=218.85 tok/s cached=0 p99gap=15.7ms 
+[strata/B] in=30720 out=256 warmup turn=0: TTFT=4.945s decode=198.43 tok/s cached=0 p99gap=17.1ms 
+[strata/B] in=30720 out=256 run 0 turn=0: TTFT=4.938s decode=212.49 tok/s cached=0 p99gap=13.3ms 
+[strata/B] in=30720 out=256 run 1 turn=0: TTFT=4.95s decode=204.8 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=30720 out=256 run 2 turn=0: TTFT=4.951s decode=206.36 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=256 run 3 turn=0: TTFT=4.948s decode=213.34 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=30720 out=256 run 4 turn=0: TTFT=4.992s decode=216.67 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=1024 warmup turn=0: TTFT=4.933s decode=214.48 tok/s cached=0 p99gap=14.6ms 
+[strata/B] in=30720 out=1024 run 0 turn=0: TTFT=4.949s decode=216.23 tok/s cached=0 p99gap=14.7ms 
+[strata/B] in=30720 out=1024 run 1 turn=0: TTFT=4.964s decode=220.7 tok/s cached=0 p99gap=15.0ms 
+[strata/B] in=30720 out=1024 run 2 turn=0: TTFT=4.942s decode=220.68 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=30720 out=1024 run 3 turn=0: TTFT=4.943s decode=217.84 tok/s cached=0 p99gap=14.8ms 
+[strata/B] in=30720 out=1024 run 4 turn=0: TTFT=4.946s decode=212.26 tok/s cached=0 p99gap=15.0ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=1024 out=256 warmup turn=0: TTFT=1.134s decode=149.19 tok/s cached=0 p99gap=21.7ms 
+[strata/B] in=1024 out=256 run 0 turn=0: TTFT=1.062s decode=180.81 tok/s cached=0 p99gap=16.7ms 
+[strata/B] in=1024 out=256 run 1 turn=0: TTFT=1.062s decode=177.1 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=1024 out=256 run 2 turn=0: TTFT=1.058s decode=181.97 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=1024 out=256 run 3 turn=0: TTFT=1.059s decode=186.11 tok/s cached=0 p99gap=12.2ms 
+[strata/B] in=1024 out=256 run 4 turn=0: TTFT=1.061s decode=182.79 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=1024 out=1024 warmup turn=0: TTFT=1.06s decode=176.5 tok/s cached=0 p99gap=13.7ms 
+[strata/B] in=1024 out=1024 run 0 turn=0: TTFT=1.064s decode=177.88 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=1024 out=1024 run 1 turn=0: TTFT=1.064s decode=178.96 tok/s cached=0 p99gap=13.9ms 
+[strata/B] in=1024 out=1024 run 2 turn=0: TTFT=1.064s decode=182.38 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=1024 out=1024 run 3 turn=0: TTFT=1.065s decode=176.62 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=1024 out=1024 run 4 turn=0: TTFT=1.062s decode=179.05 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=4096 out=256 warmup turn=0: TTFT=1.376s decode=175.79 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=4096 out=256 run 0 turn=0: TTFT=1.167s decode=186.02 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=4096 out=256 run 1 turn=0: TTFT=1.168s decode=183.73 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=4096 out=256 run 2 turn=0: TTFT=1.167s decode=181.97 tok/s cached=0 p99gap=12.3ms 
+[strata/B] in=4096 out=256 run 3 turn=0: TTFT=1.167s decode=184.38 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=256 run 4 turn=0: TTFT=1.167s decode=187.9 tok/s cached=0 p99gap=12.2ms 
+[strata/B] in=4096 out=1024 warmup turn=0: TTFT=1.167s decode=177.94 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=1024 run 0 turn=0: TTFT=1.171s decode=179.98 tok/s cached=0 p99gap=13.9ms 
+[strata/B] in=4096 out=1024 run 1 turn=0: TTFT=1.17s decode=175.32 tok/s cached=0 p99gap=14.3ms 
+[strata/B] in=4096 out=1024 run 2 turn=0: TTFT=1.17s decode=180.26 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=1024 run 3 turn=0: TTFT=1.171s decode=174.95 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=4096 out=1024 run 4 turn=0: TTFT=1.171s decode=174.47 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=16384 out=256 warmup turn=0: TTFT=3.072s decode=176.58 tok/s cached=0 p99gap=14.5ms 
+[strata/B] in=16384 out=256 run 0 turn=0: TTFT=2.753s decode=182.84 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=16384 out=256 run 1 turn=0: TTFT=2.764s decode=176.0 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=16384 out=256 run 2 turn=0: TTFT=2.768s decode=181.35 tok/s cached=0 p99gap=14.8ms 
+[strata/B] in=16384 out=256 run 3 turn=0: TTFT=2.749s decode=188.89 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=16384 out=256 run 4 turn=0: TTFT=2.763s decode=174.02 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=16384 out=1024 warmup turn=0: TTFT=2.769s decode=172.41 tok/s cached=0 p99gap=14.1ms 
+[strata/B] in=16384 out=1024 run 0 turn=0: TTFT=2.759s decode=180.49 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=16384 out=1024 run 1 turn=0: TTFT=2.754s decode=174.06 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=16384 out=1024 run 2 turn=0: TTFT=2.767s decode=180.17 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=16384 out=1024 run 3 turn=0: TTFT=2.771s decode=175.39 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=16384 out=1024 run 4 turn=0: TTFT=2.768s decode=177.3 tok/s cached=0 p99gap=13.3ms 
+[strata/B] in=30720 out=256 warmup turn=0: TTFT=4.999s decode=184.78 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=30720 out=256 run 0 turn=0: TTFT=4.923s decode=173.15 tok/s cached=0 p99gap=13.2ms 
+[strata/B] in=30720 out=256 run 1 turn=0: TTFT=4.903s decode=187.34 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=256 run 2 turn=0: TTFT=4.915s decode=186.1 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=30720 out=256 run 3 turn=0: TTFT=4.9s decode=170.69 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=30720 out=256 run 4 turn=0: TTFT=4.909s decode=186.5 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=30720 out=1024 warmup turn=0: TTFT=4.92s decode=169.76 tok/s cached=0 p99gap=13.6ms 
+[strata/B] in=30720 out=1024 run 0 turn=0: TTFT=4.912s decode=171.07 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=30720 out=1024 run 1 turn=0: TTFT=4.91s decode=166.59 tok/s cached=0 p99gap=14.7ms 
+[strata/B] in=30720 out=1024 run 2 turn=0: TTFT=4.913s decode=174.36 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=30720 out=1024 run 3 turn=0: TTFT=4.911s decode=167.88 tok/s cached=0 p99gap=15.3ms 
+[strata/B] in=30720 out=1024 run 4 turn=0: TTFT=4.913s decode=180.57 tok/s cached=0 p99gap=14.3ms 
+== [10:25:13] 停止してログを保存
+保存して停止しました: results/2026-11-01_trackB/strata_s2
+合計 184
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  1 10:25 .
+drwxrwxr-x 6 yusuke-hosokawa yusuke-hosokawa  4096 11月  1 09:28 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 10080 11月  1 10:25 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  4503 11月  1 10:25 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa  8244 11月  1 10:25 engine-strata-iq3_s.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  1 10:12 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 43709 11月  1 10:25 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  1 10:12 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 76175 11月  1 10:25 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  1 10:12 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    15 11月  1 10:25 strata_env.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+strata	B	s2	GSQ-RCO-IQ3_S	code	1024	1024	0	1.07[1.07-1.07]	221.62[221.51-225.19]	1011.10[1009.90-1015.40]	18.40[17.60-19.10]	0.77[0.75-0.79]	69.26[69.25-69.28]	6.60[6.39-7.20]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	1024	256	0	1.06[1.06-1.06]	211.07[194.50-216.98]	1021.30[1017.90-1025.40]	15.40[12.50-20.00]	0.73[0.67-0.76]	69.25[69.21-69.27]	13.25[12.66-13.37]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	16384	1024	0	2.90[2.90-2.91]	223.56[218.85-228.29]	5663.60[5657.50-5667.70]	15.60[15.10-16.00]	0.78[0.75-0.79]	69.11[69.10-69.12]	10.87[10.83-11.41]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	16384	256	0	2.89[2.88-2.95]	220.71[203.24-222.13]	5693.60[5576.90-5705.20]	12.70[12.50-13.00]	0.74[0.72-0.75]	69.12[69.12-69.13]	18.27[16.70-18.87]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	30720	1024	0	4.95[4.94-4.96]	217.84[212.26-220.70]	6223.20[6200.20-6227.90]	15.00[14.70-15.40]	0.75[0.74-0.77]	69.10[69.10-69.11]	15.18[14.81-15.43]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	30720	256	0	4.95[4.94-4.99]	212.49[204.80-216.67]	6218.30[6165.00-6232.90]	12.90[12.80-13.30]	0.71[0.68-0.76]	69.11[69.09-69.11]	22.86[22.52-23.17]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	4096	1024	0	1.18[1.18-1.18]	218.80[218.13-224.18]	3530.90[3528.60-3532.40]	14.90[14.90-15.60]	0.74[0.72-0.75]	69.25[69.25-69.26]	7.26[6.95-7.97]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	4096	256	0	1.17[1.17-1.17]	211.92[211.13-213.11]	3556.90[3549.90-3560.00]	12.70[12.60-13.80]	0.69[0.67-0.70]	69.25[69.24-69.26]	15.73[15.55-15.79]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	1024	1024	0	1.06[1.06-1.06]	178.96[176.62-182.38]	1029.00[1026.90-1030.90]	13.50[13.40-14.20]	0.57[0.56-0.59]	69.37[69.36-69.38]	4.98[4.61-5.50]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	1024	256	0	1.06[1.06-1.06]	181.97[177.10-186.11]	1030.00[1027.20-1034.90]	12.50[12.20-16.70]	0.53[0.52-0.58]	69.35[69.33-69.36]	11.78[11.37-12.50]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	16384	1024	0	2.77[2.75-2.77]	177.30[174.06-180.49]	5946.30[5937.20-5975.70]	13.80[13.30-14.00]	0.62[0.60-0.62]	69.22[69.21-69.23]	9.31[9.11-9.50]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	16384	256	0	2.76[2.75-2.77]	181.35[174.02-188.89]	5955.70[5945.20-5985.60]	12.90[12.50-14.80]	0.59[0.56-0.65]	69.23[69.22-69.23]	18.12[17.61-18.20]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	30720	1024	0	4.91[4.91-4.91]	171.07[166.59-180.57]	6269.40[6266.30-6271.20]	14.30[13.50-15.30]	0.58[0.56-0.64]	69.23[69.21-69.24]	12.63[12.48-13.01]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	30720	256	0	4.91[4.90-4.92]	186.10[170.69-187.34]	6271.90[6254.90-6283.80]	13.00[12.70-13.20]	0.61[0.54-0.64]	69.23[69.22-69.24]	21.31[20.63-21.62]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	4096	1024	0	1.17[1.17-1.17]	175.32[174.47-180.26]	3557.50[3555.90-3561.80]	14.00[13.80-14.30]	0.58[0.56-0.60]	69.36[69.35-69.37]	5.79[5.62-5.83]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	4096	256	0	1.17[1.17-1.17]	184.38[181.97-187.90]	3568.80[3563.50-3571.00]	12.40[12.20-12.70]	0.57[0.54-0.57]	69.36[69.36-69.37]	14.05[13.90-14.10]	5
+######## [10:25:45] freetoken / s2
+== [10:25:45] 環境を記録
+== [10:25:45] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+8f40b56fe20b52be2cd9c87e1d2351d88d8facd973c40691ac15950cf91b6fab
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy offload --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 32768 --max-prefill-length 8192 --kv-reserve-tokens 32768 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=63
+== [10:26:48] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.83s decode=60.49 tok/s cached=None p99gap=35.1ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.584s decode=62.44 tok/s cached=None p99gap=32.1ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.588s decode=63.14 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.569s decode=62.39 tok/s cached=None p99gap=32.1ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.574s decode=63.92 tok/s cached=None p99gap=27.9ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.592s decode=61.39 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.593s decode=58.64 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.575s decode=59.41 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.595s decode=60.28 tok/s cached=None p99gap=31.2ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.594s decode=58.69 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.598s decode=58.49 tok/s cached=None p99gap=32.2ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.596s decode=60.83 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=3.0s decode=59.25 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=3.014s decode=60.59 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.997s decode=61.29 tok/s cached=None p99gap=27.5ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=3.0s decode=58.93 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=3.002s decode=61.42 tok/s cached=None p99gap=27.0ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.958s decode=61.01 tok/s cached=None p99gap=28.8ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.979s decode=59.24 tok/s cached=None p99gap=32.3ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.981s decode=59.88 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=2.988s decode=58.36 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.965s decode=59.2 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.973s decode=59.29 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=2.973s decode=58.26 tok/s cached=None p99gap=31.1ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=8.349s decode=61.26 tok/s cached=None p99gap=31.1ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=8.31s decode=61.21 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=8.328s decode=61.31 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=8.377s decode=63.53 tok/s cached=None p99gap=27.0ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=8.317s decode=60.31 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=8.319s decode=63.01 tok/s cached=None p99gap=26.9ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=8.297s decode=61.29 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=8.264s decode=59.93 tok/s cached=None p99gap=31.8ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=8.322s decode=60.66 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=8.231s decode=60.21 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=8.311s decode=60.44 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=8.303s decode=60.74 tok/s cached=None p99gap=28.0ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=10.897s decode=61.77 tok/s cached=None p99gap=27.5ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=10.938s decode=60.21 tok/s cached=None p99gap=27.6ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=10.961s decode=60.51 tok/s cached=None p99gap=28.6ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=10.982s decode=59.79 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=10.98s decode=60.04 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=10.922s decode=60.67 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=10.966s decode=61.76 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=10.956s decode=60.45 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=10.93s decode=59.86 tok/s cached=None p99gap=31.2ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=10.884s decode=60.88 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=10.919s decode=60.74 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=11.007s decode=60.72 tok/s cached=None p99gap=29.4ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.686s decode=65.31 tok/s cached=None p99gap=37.7ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.691s decode=66.53 tok/s cached=None p99gap=33.8ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.687s decode=66.27 tok/s cached=None p99gap=31.6ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.711s decode=65.61 tok/s cached=None p99gap=26.1ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.675s decode=66.38 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.7s decode=65.64 tok/s cached=None p99gap=33.8ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.701s decode=66.87 tok/s cached=None p99gap=32.1ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.685s decode=67.55 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.711s decode=66.17 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.695s decode=66.93 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=3.618s decode=65.57 tok/s cached=None p99gap=32.5ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.677s decode=66.89 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=3.341s decode=66.89 tok/s cached=None p99gap=26.5ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=3.419s decode=67.07 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=4.662s decode=63.8 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=3.382s decode=67.48 tok/s cached=None p99gap=29.3ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=3.368s decode=65.27 tok/s cached=None p99gap=28.8ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=3.358s decode=65.23 tok/s cached=None p99gap=35.5ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=3.345s decode=68.22 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=3.365s decode=66.53 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=3.345s decode=67.49 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=3.367s decode=66.71 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=3.365s decode=67.7 tok/s cached=None p99gap=28.2ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=3.402s decode=66.79 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=10.667s decode=65.23 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=10.556s decode=65.0 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=10.618s decode=65.99 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=10.531s decode=65.62 tok/s cached=None p99gap=27.2ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=10.611s decode=65.94 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=10.647s decode=67.56 tok/s cached=None p99gap=26.4ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=10.612s decode=66.37 tok/s cached=None p99gap=33.9ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=10.626s decode=68.51 tok/s cached=None p99gap=31.3ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=10.551s decode=70.05 tok/s cached=None p99gap=29.1ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=10.479s decode=67.93 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=10.579s decode=68.9 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=10.571s decode=68.02 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=16.082s decode=65.54 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=16.13s decode=66.92 tok/s cached=None p99gap=25.2ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=15.973s decode=65.07 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=15.956s decode=67.27 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=16.012s decode=69.19 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=16.061s decode=69.4 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=16.125s decode=68.26 tok/s cached=None p99gap=27.3ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=16.088s decode=69.14 tok/s cached=None p99gap=27.2ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=16.053s decode=66.89 tok/s cached=None p99gap=32.2ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=16.052s decode=70.23 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=15.991s decode=67.97 tok/s cached=None p99gap=32.8ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=16.042s decode=67.45 tok/s cached=None p99gap=30.6ms 
+== [10:57:54] 停止してログを保存
+保存して停止しました: results/2026-11-01_trackB/freetoken_s2
+合計 240
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  1 10:58 .
+drwxrwxr-x 6 yusuke-hosokawa yusuke-hosokawa   4096 11月  1 09:28 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  10601 11月  1 10:57 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  1 10:25 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  21732 11月  1 10:57 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    444 11月  1 10:57 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 106819 11月  1 10:57 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  1 10:25 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  61992 11月  1 10:57 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  1 10:26 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s2	NVFP4	code	1024	1024	0	2.60[2.58-2.60]	59.41[58.49-60.83]	417.50[417.00-419.50]	30.90[30.10-32.20]	-	51.71[51.70-51.72]	15.02[14.41-15.49]	5
+freetoken	B	s2	NVFP4	code	1024	256	0	2.58[2.57-2.59]	62.44[61.39-63.92]	419.50[417.40-421.20]	30.50[27.90-32.10]	-	51.72[51.71-51.73]	17.92[17.31-18.34]	5
+freetoken	B	s2	NVFP4	code	16384	1024	0	8.30[8.23-8.32]	60.44[59.93-60.74]	1980.70[1975.60-1997.70]	29.90[28.00-31.80]	-	51.64[51.64-51.65]	17.14[16.66-17.66]	5
+freetoken	B	s2	NVFP4	code	16384	256	0	8.32[8.31-8.38]	61.31[60.31-63.53]	1976.60[1963.00-1978.70]	28.40[26.90-31.00]	-	51.65[51.64-51.66]	21.77[21.47-22.12]	5
+freetoken	B	s2	NVFP4	code	30720	1024	0	10.93[10.88-11.01]	60.72[59.86-60.88]	2815.60[2796.60-2828.10]	30.50[29.40-31.20]	-	51.65[51.63-51.65]	18.06[17.67-18.33]	5
+freetoken	B	s2	NVFP4	code	30720	256	0	10.96[10.92-10.98]	60.21[59.79-60.67]	2807.90[2803.10-2818.00]	28.60[27.60-30.60]	-	51.65[51.63-51.67]	23.01[22.73-23.35]	5
+freetoken	B	s2	NVFP4	code	4096	1024	0	2.97[2.96-2.99]	59.20[58.26-59.88]	1397.10[1391.00-1401.10]	30.70[29.90-31.10]	-	51.70[51.68-51.70]	14.19[13.62-14.74]	5
+freetoken	B	s2	NVFP4	code	4096	256	0	3.00[2.96-3.01]	61.01[58.93-61.42]	1385.10[1377.40-1404.90]	28.80[27.00-31.50]	-	51.71[51.70-51.72]	16.96[16.13-17.94]	5
+freetoken	B	s2	NVFP4	ja	1024	1024	0	2.69[2.68-3.62]	66.89[65.57-67.55]	406.60[302.10-408.70]	31.40[30.50-32.50]	-	51.77[51.76-51.78]	12.28[11.64-13.03]	5
+freetoken	B	s2	NVFP4	ja	1024	256	0	2.69[2.67-2.71]	66.27[65.61-66.53]	406.80[403.90-408.60]	31.60[26.10-33.80]	-	51.77[51.75-51.78]	16.88[16.31-17.27]	5
+freetoken	B	s2	NVFP4	ja	16384	1024	0	10.57[10.48-10.63]	68.51[67.93-70.05]	1556.30[1548.40-1570.10]	29.90[28.40-31.30]	-	51.77[51.76-51.77]	14.30[14.05-14.69]	5
+freetoken	B	s2	NVFP4	ja	16384	256	0	10.61[10.53-10.65]	65.94[65.00-67.56]	1550.40[1545.70-1562.50]	30.00[26.40-30.80]	-	51.77[51.76-51.78]	18.65[18.22-18.95]	5
+freetoken	B	s2	NVFP4	ja	30720	1024	0	16.05[15.99-16.09]	67.97[66.89-70.23]	1918.30[1914.00-1925.40]	30.60[27.20-32.80]	-	51.75[51.69-51.76]	14.41[14.30-14.55]	5
+freetoken	B	s2	NVFP4	ja	30720	256	0	16.01[15.96-16.13]	67.27[65.07-69.40]	1922.80[1908.90-1929.90]	30.70[25.20-31.00]	-	51.76[51.74-51.77]	17.12[16.98-17.52]	5
+freetoken	B	s2	NVFP4	ja	4096	1024	0	3.37[3.35-3.40]	66.79[66.53-67.70]	1238.40[1224.60-1245.10]	30.60[28.20-31.70]	-	51.77[51.76-51.77]	12.39[12.16-12.61]	5
+freetoken	B	s2	NVFP4	ja	4096	256	0	3.38[3.36-4.66]	65.27[63.80-67.48]	1231.70[894.00-1239.40]	29.40[28.80-35.50]	-	51.77[51.76-51.77]	15.97[13.30-16.38]	5
+######## 全体の集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s1	NVFP4	code	1024	1024	0	2.50[2.49-2.51]	59.09[58.39-60.84]	434.10[432.30-435.40]	31.20[30.60-32.20]	-	50.73[50.71-50.74]	15.18[14.16-15.22]	5
+freetoken	B	s1	NVFP4	code	1024	256	0	2.51[2.50-2.51]	63.36[61.49-65.82]	432.60[431.00-434.40]	29.90[27.10-31.50]	-	50.64[50.49-50.71]	17.76[17.24-19.96]	5
+freetoken	B	s1	NVFP4	code	16384	1024	0	7.83[7.80-7.83]	60.86[60.55-61.25]	2100.50[2099.70-2108.50]	30.00[29.60-30.90]	-	50.68[50.67-50.69]	17.22[17.05-17.77]	5
+freetoken	B	s1	NVFP4	code	16384	256	0	7.82[7.80-7.90]	61.80[60.60-62.50]	2104.20[2082.10-2107.70]	28.60[25.00-29.50]	-	50.67[50.66-50.69]	22.62[21.80-22.95]	5
+freetoken	B	s1	NVFP4	code	30720	1024	0	10.32[10.30-10.39]	61.14[60.30-61.99]	2983.20[2963.20-2989.40]	30.30[29.00-30.70]	-	50.65[50.64-50.67]	18.39[17.82-18.82]	5
+freetoken	B	s1	NVFP4	code	30720	256	0	10.32[10.31-10.33]	62.76[62.08-63.60]	2981.70[2979.10-2983.90]	28.00[26.80-28.30]	-	50.67[50.67-50.68]	24.16[23.31-24.52]	5
+freetoken	B	s1	NVFP4	code	4096	1024	0	2.74[2.73-2.78]	59.80[59.42-60.33]	1517.30[1494.70-1520.90]	30.40[29.60-30.90]	-	50.72[50.70-50.72]	14.35[14.05-14.51]	5
+freetoken	B	s1	NVFP4	code	4096	256	0	2.75[2.74-2.75]	60.34[59.92-62.32]	1512.20[1511.80-1517.80]	29.00[26.20-30.80]	-	50.73[50.73-50.74]	17.66[17.01-18.17]	5
+freetoken	B	s1	NVFP4	ja	1024	1024	0	2.56[2.54-2.56]	66.90[66.41-67.67]	428.40[426.70-431.30]	32.60[31.50-32.90]	-	50.79[50.78-50.79]	13.13[12.69-13.61]	5
+freetoken	B	s1	NVFP4	ja	1024	256	0	2.56[2.55-2.57]	66.95[66.26-67.25]	426.80[426.00-430.00]	32.40[29.60-38.10]	-	50.79[50.76-50.81]	18.06[17.49-18.74]	5
+freetoken	B	s1	NVFP4	ja	16384	1024	0	9.80[9.69-9.93]	68.50[66.41-69.19]	1679.10[1657.10-1698.80]	30.00[27.90-30.90]	-	50.77[50.77-50.78]	14.92[14.78-15.32]	5
+freetoken	B	s1	NVFP4	ja	16384	256	0	9.74[9.67-10.21]	66.83[66.11-67.46]	1688.10[1611.50-1701.90]	26.80[25.80-30.70]	-	50.78[50.77-50.79]	18.99[17.77-19.61]	5
+freetoken	B	s1	NVFP4	ja	30720	1024	0	16.55[16.46-16.56]	68.68[66.98-69.82]	1861.00[1859.50-1871.10]	28.70[27.00-30.70]	-	50.75[50.68-50.76]	13.96[13.71-14.34]	5
+freetoken	B	s1	NVFP4	ja	30720	256	0	16.57[16.46-17.75]	65.87[65.45-68.39]	1858.80[1734.50-1870.70]	27.20[22.50-31.60]	-	50.77[50.77-50.78]	16.55[15.78-16.73]	5
+freetoken	B	s1	NVFP4	ja	4096	1024	0	2.99[2.97-3.00]	67.80[66.97-69.04]	1393.80[1389.60-1403.00]	29.50[28.10-30.70]	-	50.78[50.77-50.78]	12.49[11.47-13.33]	5
+freetoken	B	s1	NVFP4	ja	4096	256	0	2.99[2.96-3.01]	66.52[58.58-68.12]	1391.40[1383.90-1408.30]	29.90[27.20-33.50]	-	50.79[50.78-50.79]	15.42[15.00-16.44]	5
+freetoken	B	s2	NVFP4	code	1024	1024	0	2.60[2.58-2.60]	59.41[58.49-60.83]	417.50[417.00-419.50]	30.90[30.10-32.20]	-	51.71[51.70-51.72]	15.02[14.41-15.49]	5
+freetoken	B	s2	NVFP4	code	1024	256	0	2.58[2.57-2.59]	62.44[61.39-63.92]	419.50[417.40-421.20]	30.50[27.90-32.10]	-	51.72[51.71-51.73]	17.92[17.31-18.34]	5
+freetoken	B	s2	NVFP4	code	16384	1024	0	8.30[8.23-8.32]	60.44[59.93-60.74]	1980.70[1975.60-1997.70]	29.90[28.00-31.80]	-	51.64[51.64-51.65]	17.14[16.66-17.66]	5
+freetoken	B	s2	NVFP4	code	16384	256	0	8.32[8.31-8.38]	61.31[60.31-63.53]	1976.60[1963.00-1978.70]	28.40[26.90-31.00]	-	51.65[51.64-51.66]	21.77[21.47-22.12]	5
+freetoken	B	s2	NVFP4	code	30720	1024	0	10.93[10.88-11.01]	60.72[59.86-60.88]	2815.60[2796.60-2828.10]	30.50[29.40-31.20]	-	51.65[51.63-51.65]	18.06[17.67-18.33]	5
+freetoken	B	s2	NVFP4	code	30720	256	0	10.96[10.92-10.98]	60.21[59.79-60.67]	2807.90[2803.10-2818.00]	28.60[27.60-30.60]	-	51.65[51.63-51.67]	23.01[22.73-23.35]	5
+freetoken	B	s2	NVFP4	code	4096	1024	0	2.97[2.96-2.99]	59.20[58.26-59.88]	1397.10[1391.00-1401.10]	30.70[29.90-31.10]	-	51.70[51.68-51.70]	14.19[13.62-14.74]	5
+freetoken	B	s2	NVFP4	code	4096	256	0	3.00[2.96-3.01]	61.01[58.93-61.42]	1385.10[1377.40-1404.90]	28.80[27.00-31.50]	-	51.71[51.70-51.72]	16.96[16.13-17.94]	5
+freetoken	B	s2	NVFP4	ja	1024	1024	0	2.69[2.68-3.62]	66.89[65.57-67.55]	406.60[302.10-408.70]	31.40[30.50-32.50]	-	51.77[51.76-51.78]	12.28[11.64-13.03]	5
+freetoken	B	s2	NVFP4	ja	1024	256	0	2.69[2.67-2.71]	66.27[65.61-66.53]	406.80[403.90-408.60]	31.60[26.10-33.80]	-	51.77[51.75-51.78]	16.88[16.31-17.27]	5
+freetoken	B	s2	NVFP4	ja	16384	1024	0	10.57[10.48-10.63]	68.51[67.93-70.05]	1556.30[1548.40-1570.10]	29.90[28.40-31.30]	-	51.77[51.76-51.77]	14.30[14.05-14.69]	5
+freetoken	B	s2	NVFP4	ja	16384	256	0	10.61[10.53-10.65]	65.94[65.00-67.56]	1550.40[1545.70-1562.50]	30.00[26.40-30.80]	-	51.77[51.76-51.78]	18.65[18.22-18.95]	5
+freetoken	B	s2	NVFP4	ja	30720	1024	0	16.05[15.99-16.09]	67.97[66.89-70.23]	1918.30[1914.00-1925.40]	30.60[27.20-32.80]	-	51.75[51.69-51.76]	14.41[14.30-14.55]	5
+freetoken	B	s2	NVFP4	ja	30720	256	0	16.01[15.96-16.13]	67.27[65.07-69.40]	1922.80[1908.90-1929.90]	30.70[25.20-31.00]	-	51.76[51.74-51.77]	17.12[16.98-17.52]	5
+freetoken	B	s2	NVFP4	ja	4096	1024	0	3.37[3.35-3.40]	66.79[66.53-67.70]	1238.40[1224.60-1245.10]	30.60[28.20-31.70]	-	51.77[51.76-51.77]	12.39[12.16-12.61]	5
+freetoken	B	s2	NVFP4	ja	4096	256	0	3.38[3.36-4.66]	65.27[63.80-67.48]	1231.70[894.00-1239.40]	29.40[28.80-35.50]	-	51.77[51.76-51.77]	15.97[13.30-16.38]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	1024	1024	0	1.07[1.07-1.07]	219.66[215.27-225.63]	1011.70[1010.00-1014.30]	17.80[17.00-18.80]	0.74[0.74-0.77]	69.32[69.32-69.33]	7.39[6.30-8.08]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	1024	256	0	1.06[1.06-1.06]	207.54[200.23-212.46]	1022.50[1020.00-1025.50]	15.10[13.80-20.10]	0.72[0.68-0.74]	69.33[69.32-69.34]	12.92[12.69-13.01]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	16384	1024	0	2.90[2.90-2.91]	224.53[211.79-229.03]	5660.30[5647.40-5674.60]	15.70[14.60-15.90]	0.77[0.73-0.79]	69.17[69.16-69.18]	10.45[9.32-11.16]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	16384	256	0	2.89[2.87-2.90]	213.67[212.28-226.33]	5683.80[5669.00-5729.50]	12.80[12.50-12.90]	0.73[0.72-0.77]	69.18[69.14-69.19]	18.30[16.55-18.82]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	30720	1024	0	4.95[4.93-4.95]	218.16[212.55-221.69]	6224.10[6221.80-6242.00]	15.20[14.80-16.10]	0.75[0.73-0.78]	69.17[69.16-69.18]	14.82[14.64-15.16]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	30720	256	0	4.93[4.93-4.95]	211.39[198.28-214.98]	6239.80[6219.90-6242.00]	13.10[12.80-13.90]	0.70[0.67-0.74]	69.17[69.16-69.18]	22.70[22.39-23.06]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	4096	1024	0	1.18[1.18-1.18]	224.52[217.52-226.27]	3531.90[3523.90-3537.10]	15.10[14.60-15.60]	0.74[0.72-0.77]	69.31[69.28-69.32]	6.91[6.84-7.70]	5
+strata	B	s1	GSQ-RCO-IQ3_S	code	4096	256	0	1.17[1.17-1.17]	212.48[201.66-218.69]	3557.50[3548.20-3562.60]	13.00[12.70-15.30]	0.67[0.64-0.70]	69.32[69.31-69.33]	15.85[15.51-16.11]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	1024	1024	0	1.06[1.06-1.06]	177.98[173.95-181.57]	1029.30[1027.60-1031.80]	13.20[12.90-13.60]	0.57[0.55-0.58]	69.41[69.40-69.42]	4.91[4.81-5.32]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	1024	256	0	1.06[1.06-1.07]	180.86[177.55-189.21]	1033.20[1026.60-1034.90]	12.70[12.50-13.70]	0.54[0.50-0.58]	69.42[69.41-69.42]	12.39[11.26-12.72]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	16384	1024	0	2.77[2.76-2.78]	177.90[173.64-180.21]	5938.10[5924.20-5967.80]	13.70[13.40-14.00]	0.62[0.59-0.63]	69.29[69.29-69.30]	9.12[9.00-9.42]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	16384	256	0	2.77[2.75-2.77]	182.47[177.55-183.47]	5946.90[5936.80-5978.10]	12.80[12.70-15.50]	0.61[0.59-0.64]	69.30[69.29-69.31]	18.18[17.89-18.23]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	30720	1024	0	4.92[4.90-4.93]	171.23[167.18-174.78]	6263.50[6243.40-6284.10]	14.00[13.70-14.30]	0.59[0.56-0.62]	69.22[69.19-69.22]	12.94[12.18-13.27]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	30720	256	0	4.91[4.89-4.92]	174.75[168.30-181.28]	6274.10[6255.10-6288.70]	12.90[12.70-13.20]	0.57[0.53-0.60]	69.22[69.21-69.29]	21.20[20.65-21.45]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	4096	1024	0	1.17[1.17-1.18]	177.60[173.39-179.37]	3557.30[3542.60-3560.60]	14.00[13.70-15.00]	0.57[0.56-0.60]	69.41[69.40-69.41]	5.73[5.41-6.00]	5
+strata	B	s1	GSQ-RCO-IQ3_S	ja	4096	256	0	1.17[1.17-1.17]	185.05[184.06-189.69]	3570.50[3564.20-3571.40]	12.40[12.30-13.40]	0.57[0.56-0.58]	69.42[69.39-69.43]	13.99[13.97-14.07]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	1024	1024	0	1.07[1.07-1.07]	221.62[221.51-225.19]	1011.10[1009.90-1015.40]	18.40[17.60-19.10]	0.77[0.75-0.79]	69.26[69.25-69.28]	6.60[6.39-7.20]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	1024	256	0	1.06[1.06-1.06]	211.07[194.50-216.98]	1021.30[1017.90-1025.40]	15.40[12.50-20.00]	0.73[0.67-0.76]	69.25[69.21-69.27]	13.25[12.66-13.37]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	16384	1024	0	2.90[2.90-2.91]	223.56[218.85-228.29]	5663.60[5657.50-5667.70]	15.60[15.10-16.00]	0.78[0.75-0.79]	69.11[69.10-69.12]	10.87[10.83-11.41]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	16384	256	0	2.89[2.88-2.95]	220.71[203.24-222.13]	5693.60[5576.90-5705.20]	12.70[12.50-13.00]	0.74[0.72-0.75]	69.12[69.12-69.13]	18.27[16.70-18.87]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	30720	1024	0	4.95[4.94-4.96]	217.84[212.26-220.70]	6223.20[6200.20-6227.90]	15.00[14.70-15.40]	0.75[0.74-0.77]	69.10[69.10-69.11]	15.18[14.81-15.43]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	30720	256	0	4.95[4.94-4.99]	212.49[204.80-216.67]	6218.30[6165.00-6232.90]	12.90[12.80-13.30]	0.71[0.68-0.76]	69.11[69.09-69.11]	22.86[22.52-23.17]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	4096	1024	0	1.18[1.18-1.18]	218.80[218.13-224.18]	3530.90[3528.60-3532.40]	14.90[14.90-15.60]	0.74[0.72-0.75]	69.25[69.25-69.26]	7.26[6.95-7.97]	5
+strata	B	s2	GSQ-RCO-IQ3_S	code	4096	256	0	1.17[1.17-1.17]	211.92[211.13-213.11]	3556.90[3549.90-3560.00]	12.70[12.60-13.80]	0.69[0.67-0.70]	69.25[69.24-69.26]	15.73[15.55-15.79]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	1024	1024	0	1.06[1.06-1.06]	178.96[176.62-182.38]	1029.00[1026.90-1030.90]	13.50[13.40-14.20]	0.57[0.56-0.59]	69.37[69.36-69.38]	4.98[4.61-5.50]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	1024	256	0	1.06[1.06-1.06]	181.97[177.10-186.11]	1030.00[1027.20-1034.90]	12.50[12.20-16.70]	0.53[0.52-0.58]	69.35[69.33-69.36]	11.78[11.37-12.50]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	16384	1024	0	2.77[2.75-2.77]	177.30[174.06-180.49]	5946.30[5937.20-5975.70]	13.80[13.30-14.00]	0.62[0.60-0.62]	69.22[69.21-69.23]	9.31[9.11-9.50]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	16384	256	0	2.76[2.75-2.77]	181.35[174.02-188.89]	5955.70[5945.20-5985.60]	12.90[12.50-14.80]	0.59[0.56-0.65]	69.23[69.22-69.23]	18.12[17.61-18.20]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	30720	1024	0	4.91[4.91-4.91]	171.07[166.59-180.57]	6269.40[6266.30-6271.20]	14.30[13.50-15.30]	0.58[0.56-0.64]	69.23[69.21-69.24]	12.63[12.48-13.01]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	30720	256	0	4.91[4.90-4.92]	186.10[170.69-187.34]	6271.90[6254.90-6283.80]	13.00[12.70-13.20]	0.61[0.54-0.64]	69.23[69.22-69.24]	21.31[20.63-21.62]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	4096	1024	0	1.17[1.17-1.17]	175.32[174.47-180.26]	3557.50[3555.90-3561.80]	14.00[13.80-14.30]	0.58[0.56-0.60]	69.36[69.35-69.37]	5.79[5.62-5.83]	5
+strata	B	s2	GSQ-RCO-IQ3_S	ja	4096	256	0	1.17[1.17-1.17]	184.38[181.97-187.90]	3568.80[3563.50-3571.00]	12.40[12.20-12.70]	0.57[0.54-0.57]	69.36[69.36-69.37]	14.05[13.90-14.10]	5

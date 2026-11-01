@@ -1,0 +1,100 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=1024 out=256 warmup turn=0: TTFT=1.142s decode=176.67 tok/s cached=0 p99gap=21.1ms 
+[strata/B] in=1024 out=256 run 0 turn=0: TTFT=1.06s decode=211.07 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=1024 out=256 run 1 turn=0: TTFT=1.059s decode=194.5 tok/s cached=0 p99gap=16.9ms 
+[strata/B] in=1024 out=256 run 2 turn=0: TTFT=1.059s decode=213.03 tok/s cached=0 p99gap=20.0ms 
+[strata/B] in=1024 out=256 run 3 turn=0: TTFT=1.058s decode=201.89 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=1024 out=256 run 4 turn=0: TTFT=1.059s decode=216.98 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=1024 out=1024 warmup turn=0: TTFT=1.059s decode=213.96 tok/s cached=0 p99gap=19.6ms 
+[strata/B] in=1024 out=1024 run 0 turn=0: TTFT=1.072s decode=222.22 tok/s cached=0 p99gap=18.8ms 
+[strata/B] in=1024 out=1024 run 1 turn=0: TTFT=1.071s decode=225.19 tok/s cached=0 p99gap=18.4ms 
+[strata/B] in=1024 out=1024 run 2 turn=0: TTFT=1.069s decode=221.56 tok/s cached=0 p99gap=17.6ms 
+[strata/B] in=1024 out=1024 run 3 turn=0: TTFT=1.069s decode=221.51 tok/s cached=0 p99gap=18.4ms 
+[strata/B] in=1024 out=1024 run 4 turn=0: TTFT=1.07s decode=221.62 tok/s cached=0 p99gap=19.1ms 
+[strata/B] in=4096 out=256 warmup turn=0: TTFT=1.263s decode=206.37 tok/s cached=0 p99gap=17.8ms 
+[strata/B] in=4096 out=256 run 0 turn=0: TTFT=1.171s decode=211.13 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=256 run 1 turn=0: TTFT=1.168s decode=211.78 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=256 run 2 turn=0: TTFT=1.168s decode=212.25 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=256 run 3 turn=0: TTFT=1.167s decode=211.92 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=256 run 4 turn=0: TTFT=1.168s decode=213.11 tok/s cached=0 p99gap=12.6ms 
+[strata/B] in=4096 out=1024 warmup turn=0: TTFT=1.167s decode=222.08 tok/s cached=0 p99gap=15.0ms 
+[strata/B] in=4096 out=1024 run 0 turn=0: TTFT=1.176s decode=218.8 tok/s cached=0 p99gap=15.2ms 
+[strata/B] in=4096 out=1024 run 1 turn=0: TTFT=1.176s decode=224.18 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 2 turn=0: TTFT=1.177s decode=218.45 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 3 turn=0: TTFT=1.177s decode=218.13 tok/s cached=0 p99gap=14.9ms 
+[strata/B] in=4096 out=1024 run 4 turn=0: TTFT=1.177s decode=222.59 tok/s cached=0 p99gap=15.6ms 
+[strata/B] in=16384 out=256 warmup turn=0: TTFT=3.011s decode=210.59 tok/s cached=0 p99gap=16.8ms 
+[strata/B] in=16384 out=256 run 0 turn=0: TTFT=2.888s decode=219.25 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=16384 out=256 run 1 turn=0: TTFT=2.949s decode=220.71 tok/s cached=0 p99gap=12.6ms 
+[strata/B] in=16384 out=256 run 2 turn=0: TTFT=2.882s decode=221.62 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=16384 out=256 run 3 turn=0: TTFT=2.889s decode=203.24 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=16384 out=256 run 4 turn=0: TTFT=2.888s decode=222.13 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=16384 out=1024 warmup turn=0: TTFT=2.881s decode=222.08 tok/s cached=0 p99gap=15.2ms 
+[strata/B] in=16384 out=1024 run 0 turn=0: TTFT=2.903s decode=223.56 tok/s cached=0 p99gap=16.0ms 
+[strata/B] in=16384 out=1024 run 1 turn=0: TTFT=2.902s decode=228.29 tok/s cached=0 p99gap=15.6ms 
+[strata/B] in=16384 out=1024 run 2 turn=0: TTFT=2.903s decode=220.37 tok/s cached=0 p99gap=15.3ms 
+[strata/B] in=16384 out=1024 run 3 turn=0: TTFT=2.906s decode=225.5 tok/s cached=0 p99gap=15.1ms 
+[strata/B] in=16384 out=1024 run 4 turn=0: TTFT=2.901s decode=218.85 tok/s cached=0 p99gap=15.7ms 
+[strata/B] in=30720 out=256 warmup turn=0: TTFT=4.945s decode=198.43 tok/s cached=0 p99gap=17.1ms 
+[strata/B] in=30720 out=256 run 0 turn=0: TTFT=4.938s decode=212.49 tok/s cached=0 p99gap=13.3ms 
+[strata/B] in=30720 out=256 run 1 turn=0: TTFT=4.95s decode=204.8 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=30720 out=256 run 2 turn=0: TTFT=4.951s decode=206.36 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=256 run 3 turn=0: TTFT=4.948s decode=213.34 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=30720 out=256 run 4 turn=0: TTFT=4.992s decode=216.67 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=1024 warmup turn=0: TTFT=4.933s decode=214.48 tok/s cached=0 p99gap=14.6ms 
+[strata/B] in=30720 out=1024 run 0 turn=0: TTFT=4.949s decode=216.23 tok/s cached=0 p99gap=14.7ms 
+[strata/B] in=30720 out=1024 run 1 turn=0: TTFT=4.964s decode=220.7 tok/s cached=0 p99gap=15.0ms 
+[strata/B] in=30720 out=1024 run 2 turn=0: TTFT=4.942s decode=220.68 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=30720 out=1024 run 3 turn=0: TTFT=4.943s decode=217.84 tok/s cached=0 p99gap=14.8ms 
+[strata/B] in=30720 out=1024 run 4 turn=0: TTFT=4.946s decode=212.26 tok/s cached=0 p99gap=15.0ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=1024 out=256 warmup turn=0: TTFT=1.134s decode=149.19 tok/s cached=0 p99gap=21.7ms 
+[strata/B] in=1024 out=256 run 0 turn=0: TTFT=1.062s decode=180.81 tok/s cached=0 p99gap=16.7ms 
+[strata/B] in=1024 out=256 run 1 turn=0: TTFT=1.062s decode=177.1 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=1024 out=256 run 2 turn=0: TTFT=1.058s decode=181.97 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=1024 out=256 run 3 turn=0: TTFT=1.059s decode=186.11 tok/s cached=0 p99gap=12.2ms 
+[strata/B] in=1024 out=256 run 4 turn=0: TTFT=1.061s decode=182.79 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=1024 out=1024 warmup turn=0: TTFT=1.06s decode=176.5 tok/s cached=0 p99gap=13.7ms 
+[strata/B] in=1024 out=1024 run 0 turn=0: TTFT=1.064s decode=177.88 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=1024 out=1024 run 1 turn=0: TTFT=1.064s decode=178.96 tok/s cached=0 p99gap=13.9ms 
+[strata/B] in=1024 out=1024 run 2 turn=0: TTFT=1.064s decode=182.38 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=1024 out=1024 run 3 turn=0: TTFT=1.065s decode=176.62 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=1024 out=1024 run 4 turn=0: TTFT=1.062s decode=179.05 tok/s cached=0 p99gap=13.4ms 
+[strata/B] in=4096 out=256 warmup turn=0: TTFT=1.376s decode=175.79 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=4096 out=256 run 0 turn=0: TTFT=1.167s decode=186.02 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=4096 out=256 run 1 turn=0: TTFT=1.168s decode=183.73 tok/s cached=0 p99gap=12.4ms 
+[strata/B] in=4096 out=256 run 2 turn=0: TTFT=1.167s decode=181.97 tok/s cached=0 p99gap=12.3ms 
+[strata/B] in=4096 out=256 run 3 turn=0: TTFT=1.167s decode=184.38 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=4096 out=256 run 4 turn=0: TTFT=1.167s decode=187.9 tok/s cached=0 p99gap=12.2ms 
+[strata/B] in=4096 out=1024 warmup turn=0: TTFT=1.167s decode=177.94 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=1024 run 0 turn=0: TTFT=1.171s decode=179.98 tok/s cached=0 p99gap=13.9ms 
+[strata/B] in=4096 out=1024 run 1 turn=0: TTFT=1.17s decode=175.32 tok/s cached=0 p99gap=14.3ms 
+[strata/B] in=4096 out=1024 run 2 turn=0: TTFT=1.17s decode=180.26 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=4096 out=1024 run 3 turn=0: TTFT=1.171s decode=174.95 tok/s cached=0 p99gap=14.2ms 
+[strata/B] in=4096 out=1024 run 4 turn=0: TTFT=1.171s decode=174.47 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=16384 out=256 warmup turn=0: TTFT=3.072s decode=176.58 tok/s cached=0 p99gap=14.5ms 
+[strata/B] in=16384 out=256 run 0 turn=0: TTFT=2.753s decode=182.84 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=16384 out=256 run 1 turn=0: TTFT=2.764s decode=176.0 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=16384 out=256 run 2 turn=0: TTFT=2.768s decode=181.35 tok/s cached=0 p99gap=14.8ms 
+[strata/B] in=16384 out=256 run 3 turn=0: TTFT=2.749s decode=188.89 tok/s cached=0 p99gap=12.8ms 
+[strata/B] in=16384 out=256 run 4 turn=0: TTFT=2.763s decode=174.02 tok/s cached=0 p99gap=12.5ms 
+[strata/B] in=16384 out=1024 warmup turn=0: TTFT=2.769s decode=172.41 tok/s cached=0 p99gap=14.1ms 
+[strata/B] in=16384 out=1024 run 0 turn=0: TTFT=2.759s decode=180.49 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=16384 out=1024 run 1 turn=0: TTFT=2.754s decode=174.06 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=16384 out=1024 run 2 turn=0: TTFT=2.767s decode=180.17 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=16384 out=1024 run 3 turn=0: TTFT=2.771s decode=175.39 tok/s cached=0 p99gap=14.0ms 
+[strata/B] in=16384 out=1024 run 4 turn=0: TTFT=2.768s decode=177.3 tok/s cached=0 p99gap=13.3ms 
+[strata/B] in=30720 out=256 warmup turn=0: TTFT=4.999s decode=184.78 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=30720 out=256 run 0 turn=0: TTFT=4.923s decode=173.15 tok/s cached=0 p99gap=13.2ms 
+[strata/B] in=30720 out=256 run 1 turn=0: TTFT=4.903s decode=187.34 tok/s cached=0 p99gap=12.9ms 
+[strata/B] in=30720 out=256 run 2 turn=0: TTFT=4.915s decode=186.1 tok/s cached=0 p99gap=13.0ms 
+[strata/B] in=30720 out=256 run 3 turn=0: TTFT=4.9s decode=170.69 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=30720 out=256 run 4 turn=0: TTFT=4.909s decode=186.5 tok/s cached=0 p99gap=12.7ms 
+[strata/B] in=30720 out=1024 warmup turn=0: TTFT=4.92s decode=169.76 tok/s cached=0 p99gap=13.6ms 
+[strata/B] in=30720 out=1024 run 0 turn=0: TTFT=4.912s decode=171.07 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=30720 out=1024 run 1 turn=0: TTFT=4.91s decode=166.59 tok/s cached=0 p99gap=14.7ms 
+[strata/B] in=30720 out=1024 run 2 turn=0: TTFT=4.913s decode=174.36 tok/s cached=0 p99gap=13.8ms 
+[strata/B] in=30720 out=1024 run 3 turn=0: TTFT=4.911s decode=167.88 tok/s cached=0 p99gap=15.3ms 
+[strata/B] in=30720 out=1024 run 4 turn=0: TTFT=4.913s decode=180.57 tok/s cached=0 p99gap=14.3ms 
