@@ -289,6 +289,9 @@ print(json.dumps(res))
 '''
 
 
+SANDBOX_IMAGE = os.environ.get("QUALITY_SANDBOX_IMAGE", "python:3.12-slim")
+
+
 def run_humaneval_sandbox(programs, sandbox):
     """programs: {id: source}。ネットワークなし・読み取り専用・権限なしのコンテナで1問10秒まで実行する。"""
     if not programs:
@@ -306,7 +309,7 @@ def run_humaneval_sandbox(programs, sandbox):
             cmd = ["docker", "run", "--rm", "--pull", "never", "--network", "none", "--memory", "2g",
                    "--cpus", "4", "--pids-limit", "256", "--read-only", "--tmpfs", "/tmp:rw,size=256m",
                    "--cap-drop", "ALL", "--security-opt", "no-new-privileges", "--user", "65534:65534",
-                   "-v", f"{d}:/work:ro", "python:3.12", "python", "/work/runner.py"]
+                   "-v", f"{d}:/work:ro", SANDBOX_IMAGE, "python", "/work/runner.py"]
         else:  # テスト専用。モデルの出力を素のまま実行するので、本番では使わない
             cmd = ["python3", str(d / "runner.py")]
             (d / "runner.py").write_text(RUNNER.replace("/work/", str(d) + "/").replace('cwd="/tmp"', f'cwd="{d}"'))

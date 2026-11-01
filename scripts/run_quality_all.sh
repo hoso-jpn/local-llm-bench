@@ -10,7 +10,9 @@ cd "$(dirname "$0")/.."
 OUT="${1:?出力ディレクトリを指定}"
 git ls-files --error-unmatch "$OUT/prereg.md" > /dev/null 2>&1 || { echo "$OUT/prereg.md をコミットしてください" >&2; exit 1; }
 ls data/quality/{gsm8k,humaneval,jcqa,json}.jsonl > /dev/null || { echo "先に quality_eval.py prepare を実行してください" >&2; exit 1; }
-docker image inspect python:3.12 > /dev/null || { echo "HumanEval の実行用イメージ python:3.12 がありません" >&2; exit 1; }
+IMG="${QUALITY_SANDBOX_IMAGE:-python:3.12-slim}"
+docker image inspect "$IMG" > /dev/null || { echo "HumanEval の実行用イメージ $IMG がありません: docker pull $IMG" >&2; exit 1; }
+docker image inspect "$IMG" --format '{{index .RepoDigests 0}}' > "$OUT/sandbox_image.txt"
 export BENCH=quality
 for step in ${STEPS:-strata:B strata:A freetoken:A freetoken:B}; do
   set -- ${step/:/ }
