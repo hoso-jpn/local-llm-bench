@@ -1,0 +1,46 @@
+[freetoken-B] gsm8k: 300 問中 300 問を実行
+  gsm8k 20/300  直近 9.1s
+  gsm8k 40/300  直近 10.8s
+  gsm8k 60/300  直近 5.7s
+  gsm8k 80/300  直近 5.0s
+  gsm8k 100/300  直近 9.0s
+  gsm8k 120/300  直近 41.1s
+  gsm8k 140/300  直近 7.7s
+  gsm8k 160/300  直近 6.3s
+  gsm8k 180/300  直近 5.3s
+  gsm8k 200/300  直近 8.4s
+  gsm8k 220/300  直近 6.8s
+  gsm8k 240/300  直近 7.0s
+  gsm8k 260/300  直近 9.8s
+  gsm8k 280/300  直近 8.4s
+  gsm8k 300/300  直近 8.9s
+[freetoken-B] humaneval: 164 問中 164 問を実行
+  humaneval 20/164  直近 8.5s
+  humaneval 40/164  直近 20.0s
+  humaneval 60/164  直近 22.9s
+  humaneval 80/164  直近 13.3s
+  humaneval 100/164  直近 35.8s
+  humaneval 120/164  直近 16.1s
+  humaneval 140/164  直近 13.2s
+  humaneval 160/164  直近 16.7s
+  humaneval 164/164  直近 25.3s
+[freetoken-B] jcqa: 300 問中 300 問を実行
+  jcqa 20/300  直近 4.3s
+  jcqa 40/300  直近 5.1s
+  jcqa 60/300  直近 5.3s
+  jcqa 80/300  直近 5.4s
+  jcqa 100/300  直近 4.6s
+  jcqa 120/300  直近 5.1s
+  jcqa 140/300  直近 3.6s
+  jcqa 160/300  直近 5.0s
+  jcqa 180/300  直近 4.9s
+  jcqa 200/300  直近 5.1s
+  jcqa 220/300  直近 5.2s
+  jcqa 240/300  直近 4.8s
+  jcqa 260/300  直近 4.6s
+  jcqa 280/300  直近 4.7s
+  jcqa 300/300  直近 5.5s
+[freetoken-B] json: 50 問中 50 問を実行
+  json 20/50  直近 6.9s
+  json 40/50  直近 6.7s
+  json 50/50  直近 6.6s
