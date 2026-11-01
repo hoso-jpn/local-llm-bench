@@ -2,5 +2,6 @@
  "gsm8k": "openai/gsm8k/main/test-00000-of-00001.parquet",
  "humaneval": "openai/openai_humaneval/openai_humaneval/test-00000-of-00001.parquet",
  "jcqa": "leemeng/jcommonsenseqa-v1.1/data/validation-00000-of-00001-40f65e99de401641.parquet",
- "json": "synthetic seed 20261101"
+ "json": "synthetic seed 20261101",
+ "math5": "HuggingFaceH4/MATH-500/test.jsonl"
 }
