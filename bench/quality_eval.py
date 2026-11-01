@@ -50,7 +50,7 @@ HF_CACHE = os.environ.get("QUALITY_HF_CACHE",
 
 
 def _find_parquet(api, repo, *must):
-    files = [f for f in api.list_repo_files(repo, repo_type="dataset") if f.endswith(".parquet")]
+    files = [f for f in api.list_repo_files(repo, repo_type="dataset") if f.endswith((".parquet", ".jsonl"))]
     hits = [f for f in files if all(m in f for m in must)]
     if not hits:
         raise SystemExit(f"{repo}: {must} に合う parquet がありません: {files}")
@@ -61,6 +61,8 @@ def _read_parquet(repo, path, revision=None):
     from huggingface_hub import hf_hub_download
     import pyarrow.parquet as pq
     local = hf_hub_download(repo, path, repo_type="dataset", revision=revision, cache_dir=HF_CACHE)
+    if path.endswith(".jsonl"):
+        return [json.loads(l) for l in open(local, encoding="utf-8") if l.strip()]
     return pq.read_table(local).to_pylist()
 
 
@@ -72,7 +74,9 @@ def _write(task, rows, source):
     print(f"{task}: {len(rows)} 問 -> {DATA / f'{task}.jsonl'}  （出典: {source}）")
 
 
-def prepare(_a):
+def prepare(a):
+    only = set(a.only.split(",")) if getattr(a, "only", "") else None
+    want = lambda t: only is None or t in only
     from huggingface_hub import HfApi
     api = HfApi()
     Path(HF_CACHE).mkdir(parents=True, exist_ok=True)
@@ -80,6 +84,20 @@ def prepare(_a):
     sources = {}
 
     # GSM8K（MIT）：test の先頭から
+    if want("gsm8k"): _prep_gsm8k(api, sources)
+    if want("humaneval"): _prep_humaneval(api, sources)
+    if want("jcqa"): _prep_jcqa(api, sources)
+    if want("aime"): _prep_aime(api, sources)
+    if want("math5"): _prep_math5(api, sources)
+    if want("json"):
+        _write("json", make_json_tasks(), "合成（seed 20261101）"); sources["json"] = "synthetic seed 20261101"
+    old = json.load(open(DATA / "SOURCES.json")) if (DATA / "SOURCES.json").exists() else {}
+    old.update(sources)
+    with open(DATA / "SOURCES.json", "w", encoding="utf-8") as f:
+        json.dump(old, f, ensure_ascii=False, indent=1)
+
+
+def _prep_gsm8k(api, sources):
     repo = "openai/gsm8k"; path = _find_parquet(api, repo, "main/", "test")
     rows = _read_parquet(repo, path)[: LIMITS["gsm8k"]]
     out = []
@@ -88,6 +106,8 @@ def prepare(_a):
         out.append({"id": f"gsm8k-{i:04d}", "question": r["question"], "gold": gold})
     _write("gsm8k", out, f"{repo}/{path}"); sources["gsm8k"] = f"{repo}/{path}"
 
+
+def _prep_humaneval(api, sources):
     # HumanEval（MIT）：全164問
     repo = "openai/openai_humaneval"; path = _find_parquet(api, repo, "test")
     rows = _read_parquet(repo, path)[: LIMITS["humaneval"]]
@@ -95,6 +115,8 @@ def prepare(_a):
             "entry_point": r["entry_point"]} for r in rows]
     _write("humaneval", out, f"{repo}/{path}"); sources["humaneval"] = f"{repo}/{path}"
 
+
+def _prep_jcqa(api, sources):
     # JCommonsenseQA v1.1（CC-BY-4.0）：validation の先頭から
     repo = "leemeng/jcommonsenseqa-v1.1"; path = _find_parquet(api, repo, "validation")
     rows = _read_parquet(repo, path)[: LIMITS["jcqa"]]
@@ -105,6 +127,8 @@ def prepare(_a):
                     "gold": str(r["label"])})
     _write("jcqa", out, f"{repo}/{path}"); sources["jcqa"] = f"{repo}/{path}"
 
+
+def _prep_aime(api, sources):
     # AIME 2025・2026（MathArena、CC BY-NC-SA 4.0）：各30問
     out = []
     for year in (2025, 2026):
@@ -117,17 +141,14 @@ def prepare(_a):
         sources[f"aime{year}"] = f"{repo}/{sorted(files)[0]}"
     _write("aime", out, "MathArena/aime_2025, aime_2026")
 
+
+def _prep_math5(api, sources):
     # MATH-500 のレベル5（HuggingFaceH4/MATH-500）
     repo = "HuggingFaceH4/MATH-500"; path = _find_parquet(api, repo, "test")
     rows = [r for r in _read_parquet(repo, path) if int(r["level"]) == 5]
     out = [{"id": "math5-" + r["unique_id"].replace("/", "_").replace(".json", ""), "problem": r["problem"],
             "gold": r["answer"], "subject": r["subject"]} for r in rows]
     _write("math5", out, f"{repo}/{path}（level 5）"); sources["math5"] = f"{repo}/{path}"
-
-    # JSON 抽出：固定の乱数で生成（著作物を含まない）
-    _write("json", make_json_tasks(), "合成（seed 20261101）"); sources["json"] = "synthetic seed 20261101"
-    with open(DATA / "SOURCES.json", "w", encoding="utf-8") as f:
-        json.dump(sources, f, ensure_ascii=False, indent=1)
 
 
 def prepare_lc(a):
@@ -609,7 +630,7 @@ def compare(a):
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("prepare")
+    pp = sub.add_parser("prepare"); pp.add_argument("--only", default="", help="取得する課題（例: math5,aime）。空なら全部")
     pl = sub.add_parser("prepare-lc"); pl.add_argument("--tokenizer", default="/data/tokenizers/Qwen3.8-Flash-Next")
     r = sub.add_parser("run")
     r.add_argument("--base-url", required=True); r.add_argument("--model", default="default")
