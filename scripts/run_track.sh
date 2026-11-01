@@ -58,6 +58,11 @@ echo "== [$(date +%T)] 計測（PCIe・GPU を1秒ごとに記録）"
 nvidia-smi --query-gpu=timestamp,pcie.link.gen.current,pcie.link.width.current,utilization.gpu,memory.used,power.draw \
   --format=csv -l 1 > "$OUT/gpu.csv" & SMI=$!
 bench() {
+  if [ "${BENCH:-speed}" = quality ]; then   # 品質評価（bench/quality_eval.py）
+    python3 bench/quality_eval.py run --base-url "$URL/v1" --model "$MODEL" \
+      --label "${QLABEL:-$ENGINE-$TRACK}" --out "$OUT/quality.jsonl" "$@" 2>&1 | tee -a "$OUT/bench_stdout.txt"
+    return "${PIPESTATUS[0]}"
+  fi
   uv run -q --with transformers --with jinja2 --with nvidia-ml-py python bench/llm_engine_bench.py \
     --base-url "$URL/v1" --model "$MODEL" --engine "$ENGINE" --track "$TRACK" --model-file "$FILE" \
     --tokenizer "$TOKENIZER" --label "${SESSION:-}" --out "$OUT/results.jsonl" "$@" 2>&1 | tee -a "$OUT/bench_stdout.txt"
@@ -76,5 +81,6 @@ kill $SMI 2>/dev/null || true
 echo "== [$(date +%T)] 停止してログを保存"
 if [ "$ENGINE" = freetoken ]; then bash configs/freetoken/stop.sh "$OUT"; else bash configs/strata/stop.sh "$OUT"; fi
 echo "== 集計"
-python3 bench/llm_engine_bench.py --summarize "$OUT/results.jsonl" | tee "$OUT/summary.tsv"
+if [ "${BENCH:-speed}" = quality ]; then echo "（品質評価は bench/quality_eval.py score / report で集計する）"
+else python3 bench/llm_engine_bench.py --summarize "$OUT/results.jsonl" | tee "$OUT/summary.tsv"; fi
 exit $RC
