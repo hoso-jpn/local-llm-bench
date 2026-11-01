@@ -1,0 +1,5 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=4.419s decode=59.04 tok/s cached=None p99gap=34.5ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=3.422s decode=60.78 tok/s cached=None p99gap=27.5ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.642s decode=59.74 tok/s cached=None p99gap=31.7ms 
