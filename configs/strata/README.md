@@ -7,6 +7,7 @@
 | --- | --- | --- |
 | `strata-iq3_xxs-shipped.json` | トラックB（出荷状態）の基準 | セットアップが生成したもの（2026-10-31）そのまま。`--spec 4 --spec-min-p 0.5` |
 | `strata-iq3_xxs-trackA.json` | トラックA | MTP の下書きを0にする：`--spec 2 --mtp-max-t 1`（`--spec 0` は起動時に拒否される）。ほかは shipped と同じ |
+| `strata-iq3_s-shipped.json` | トラックB（出荷状態） | IQ3_S のセットアップが生成したもの（2026-11-01）そのまま |
 | `run.sh` | 起動 | 設定を `/data/strata/config/` に置き、`CONFIG` 環境変数で指定して起動する。FreeToken が動いていれば止まる |
 | `stop.sh` | 停止 | エンジンのログ・コンテナのログ・`STRATA_*` 環境変数を `results/<run>/` に保存してから止める |
 
