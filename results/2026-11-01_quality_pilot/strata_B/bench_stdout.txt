@@ -1,0 +1,8 @@
+[pilot] gsm8k: 5 問中 5 問を実行
+  gsm8k 5/5  直近 1.1s
+[pilot] humaneval: 5 問中 5 問を実行
+  humaneval 5/5  直近 2.2s
+[pilot] jcqa: 5 問中 5 問を実行
+  jcqa 5/5  直近 0.9s
+[pilot] json: 5 問中 5 問を実行
+  json 5/5  直近 1.1s
