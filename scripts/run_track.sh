@@ -35,6 +35,12 @@ case "$ENGINE/$CFG_TRACK" in
   *) echo "未対応: $ENGINE/$TRACK" >&2; exit 1 ;;
 esac
 
+if [ "${BENCH:-speed}" = quality ]; then   # データがないままエンジンを起動しない
+  for t in gsm8k humaneval jcqa json; do
+    [ -s "data/quality/$t.jsonl" ] || { echo "data/quality/$t.jsonl がありません。先に: uv run --with huggingface_hub --with pyarrow python bench/quality_eval.py prepare" >&2; exit 1; }
+  done
+fi
+
 echo "== [$(date +%T)] 環境を記録"
 bash scripts/env_check.sh "$OUT/env_check.txt" > /dev/null 2>&1 || true
 git rev-parse HEAD > "$OUT/repo_commit.txt"

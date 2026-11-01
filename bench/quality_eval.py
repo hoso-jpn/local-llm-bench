@@ -39,6 +39,11 @@ LIMITS = {"gsm8k": 300, "humaneval": 164, "jcqa": 300, "json": 50}
 
 
 # ============================================================ prepare
+# Hugging Face のキャッシュは、この評価専用の場所に置く（~/.cache/huggingface が他の用途で root の持ち物になっていることがあるため）
+HF_CACHE = os.environ.get("QUALITY_HF_CACHE",
+                          str(Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "local-llm-bench" / "hf"))
+
+
 def _find_parquet(api, repo, *must):
     files = [f for f in api.list_repo_files(repo, repo_type="dataset") if f.endswith(".parquet")]
     hits = [f for f in files if all(m in f for m in must)]
@@ -50,7 +55,7 @@ def _find_parquet(api, repo, *must):
 def _read_parquet(repo, path, revision=None):
     from huggingface_hub import hf_hub_download
     import pyarrow.parquet as pq
-    local = hf_hub_download(repo, path, repo_type="dataset", revision=revision)
+    local = hf_hub_download(repo, path, repo_type="dataset", revision=revision, cache_dir=HF_CACHE)
     return pq.read_table(local).to_pylist()
 
 
@@ -65,6 +70,8 @@ def _write(task, rows, source):
 def prepare(_a):
     from huggingface_hub import HfApi
     api = HfApi()
+    Path(HF_CACHE).mkdir(parents=True, exist_ok=True)
+    print(f"Hugging Face のキャッシュ: {HF_CACHE}")
     sources = {}
 
     # GSM8K（MIT）：test の先頭から
