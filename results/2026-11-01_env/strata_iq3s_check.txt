@@ -1,0 +1,61 @@
+== 設定ファイル ==
+{
+ "exe": "/opt/strata/engine/strata",
+ "args": [
+  "--pack",
+  "/data/packs/iq3_s",
+  "--native",
+  "/data/models/IQ3_S/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00001-of-00002.gguf",
+  "--ple-gguf",
+  "/data/models/IQ3_S/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00002-of-00002.gguf",
+  "--expert-profile",
+  "/opt/strata/data/expert-profile.bin",
+  "--expert-cache",
+  "auto",
+  "--prefill",
+  "auto",
+  "--spec",
+  "4",
+  "--spec-min-p",
+  "0.5",
+  "--mtp",
+  "/data/mtp/rt",
+  "--max-context",
+  "32768",
+  "--kv",
+  "int8"
+ ],
+ "cwd": "/opt/strata",
+ "tokenizer": "/data/packs/iq3_s/tokenizer",
+ "model_name": "qwen3.8-flash-next-iq3_s",
+ "log": "/opt/strata/strata-iq3_s.log",
+ "lib_dirs": [
+  "/usr/local/cuda/bin",
+  "/usr/local/cuda/lib64"
+ ],
+ "port": 8080,
+ "gpu": 0,
+ "gpus_asked": true,
+ "host": "0.0.0.0"
+}
+== GGUF ==
+合計 81657908
+drwxr-xr-x 2 root root        4096 11月  1 04:37 .
+drwxr-xr-x 4 root root        4096 11月  1 04:11 ..
+-rw-r--r-- 1 root root 54817524224 11月  1 04:37 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00001-of-00002.gguf
+-rw-r--r-- 1 root root          16 11月  1 04:37 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00001-of-00002.gguf.done
+-rw-r--r-- 2 root root 28800138432 10月 31 08:22 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00002-of-00002.gguf
+-rw-r--r-- 1 root root          16 11月  1 04:37 Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00002-of-00002.gguf.done
+316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113  /data/strata/models/IQ3_S/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00002-of-00002.gguf
+== 起動時の情報 ==
+  EXPERIMENTAL - speed projection: a small control vector applied while the model runs (layers 4-44).
+  [ok] experimental speed projection: off
+  Several requests at once (opt-in): --parallel 2 decodes up to 2 together instead of one after the other (each takes ~0.6 GB of VRAM from the expert cache; docs/BATCHING.md).
+[strata] experts loaded: 46.84 GiB at 6.23 GiB/s (25 s so far)
+[strata] filling the GPU's expert cache (12488 experts, 23.70 GiB of VRAM) ...
+== メモリ ==
+               total        used        free      shared  buff/cache   available
+Mem:             123          56           0           0          67          66
+Swap:             15           0          15
+memory.used [MiB], memory.total [MiB]
+31710 MiB, 32607 MiB
