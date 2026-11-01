@@ -21,7 +21,9 @@ done
 TOKENIZER="${TOKENIZER:-/data/tokenizers/Qwen3.8-Flash-Next}"
 READY_TIMEOUT="${READY_TIMEOUT:-1200}"
 
-case "$ENGINE/$TRACK" in
+# トラックC はトラックB と同じ構成（出荷状態）で、多ターンを測る
+CFG_TRACK="$TRACK"; [ "$TRACK" = C ] && CFG_TRACK=B
+case "$ENGINE/$CFG_TRACK" in
   freetoken/A) URL=http://127.0.0.1:8081; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
                START=(env FT_STATS=0 bash configs/freetoken/run.sh gguf-iq3_xxs) ;;
   freetoken/B) URL=http://127.0.0.1:8081; MODEL=qwen3.8-flash-next-nvfp4; FILE=NVFP4
