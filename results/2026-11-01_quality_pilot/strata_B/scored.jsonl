@@ -1,0 +1,20 @@
+{"id": "gsm8k-0000", "task": "gsm8k", "label": "pilot", "effort": "low", "elapsed_s": 1.415, "finish_reason": "stop", "completion_tokens": 152, "correct": true, "answer": "18"}
+{"id": "gsm8k-0001", "task": "gsm8k", "label": "pilot", "effort": "low", "elapsed_s": 0.796, "finish_reason": "stop", "completion_tokens": 104, "correct": true, "answer": "3"}
+{"id": "gsm8k-0002", "task": "gsm8k", "label": "pilot", "effort": "low", "elapsed_s": 1.799, "finish_reason": "stop", "completion_tokens": 352, "correct": true, "answer": "70000"}
+{"id": "gsm8k-0003", "task": "gsm8k", "label": "pilot", "effort": "low", "elapsed_s": 0.805, "finish_reason": "stop", "completion_tokens": 127, "correct": true, "answer": "540"}
+{"id": "gsm8k-0004", "task": "gsm8k", "label": "pilot", "effort": "low", "elapsed_s": 1.052, "finish_reason": "stop", "completion_tokens": 187, "correct": true, "answer": "20"}
+{"id": "HumanEval-0", "task": "humaneval", "label": "pilot", "effort": "low", "elapsed_s": 2.209, "finish_reason": "stop", "completion_tokens": 326, "answer": "pass", "correct": true}
+{"id": "HumanEval-1", "task": "humaneval", "label": "pilot", "effort": "low", "elapsed_s": 3.061, "finish_reason": "stop", "completion_tokens": 606, "answer": "pass", "correct": true}
+{"id": "HumanEval-2", "task": "humaneval", "label": "pilot", "effort": "low", "elapsed_s": 1.452, "finish_reason": "stop", "completion_tokens": 223, "answer": "pass", "correct": true}
+{"id": "HumanEval-3", "task": "humaneval", "label": "pilot", "effort": "low", "elapsed_s": 1.446, "finish_reason": "stop", "completion_tokens": 250, "answer": "pass", "correct": true}
+{"id": "HumanEval-4", "task": "humaneval", "label": "pilot", "effort": "low", "elapsed_s": 2.231, "finish_reason": "stop", "completion_tokens": 417, "answer": "pass", "correct": true}
+{"id": "jcqa-8939", "task": "jcqa", "label": "pilot", "effort": "low", "elapsed_s": 1.221, "finish_reason": "stop", "completion_tokens": 146, "correct": true, "answer": "2"}
+{"id": "jcqa-8940", "task": "jcqa", "label": "pilot", "effort": "low", "elapsed_s": 1.153, "finish_reason": "stop", "completion_tokens": 143, "correct": true, "answer": "2"}
+{"id": "jcqa-8941", "task": "jcqa", "label": "pilot", "effort": "low", "elapsed_s": 1.126, "finish_reason": "stop", "completion_tokens": 174, "correct": true, "answer": "0"}
+{"id": "jcqa-8942", "task": "jcqa", "label": "pilot", "effort": "low", "elapsed_s": 1.016, "finish_reason": "stop", "completion_tokens": 158, "correct": true, "answer": "0"}
+{"id": "jcqa-8943", "task": "jcqa", "label": "pilot", "effort": "low", "elapsed_s": 0.851, "finish_reason": "stop", "completion_tokens": 153, "correct": true, "answer": "0"}
+{"id": "json-000", "task": "json", "label": "pilot", "effort": "low", "elapsed_s": 1.525, "finish_reason": "stop", "completion_tokens": 220, "correct": true, "detail": {"parse_ok": true, "fields_correct": 6, "extra_keys": []}}
+{"id": "json-001", "task": "json", "label": "pilot", "effort": "low", "elapsed_s": 1.326, "finish_reason": "stop", "completion_tokens": 234, "correct": true, "detail": {"parse_ok": true, "fields_correct": 6, "extra_keys": []}}
+{"id": "json-002", "task": "json", "label": "pilot", "effort": "low", "elapsed_s": 1.107, "finish_reason": "stop", "completion_tokens": 220, "correct": true, "detail": {"parse_ok": true, "fields_correct": 6, "extra_keys": []}}
+{"id": "json-003", "task": "json", "label": "pilot", "effort": "low", "elapsed_s": 1.425, "finish_reason": "stop", "completion_tokens": 280, "correct": true, "detail": {"parse_ok": true, "fields_correct": 6, "extra_keys": []}}
+{"id": "json-004", "task": "json", "label": "pilot", "effort": "low", "elapsed_s": 1.106, "finish_reason": "stop", "completion_tokens": 223, "correct": true, "detail": {"parse_ok": true, "fields_correct": 6, "extra_keys": []}}
