@@ -21,9 +21,20 @@ AIと実装01 の4章「次はoffloadとhybridを同一条件で比較する」�
 | 順番 | ABBA（B s1 → H s1 → H s2 → B s2）。サーバは常に1つだけ起動する。`scripts/run_ft_hybrid.sh` |
 | 品質（余力があれば） | H で GSM8K・HumanEval・JCQA・JSON（2026-11-01_quality と同じ課題・設定）。freetoken_B（offload）と答えの一致を比べる |
 
-### v0.2.0 の `ft bench bw`（取得後に追記）
+### v0.2.0 の `ft bench bw`（2026-11-03、取得後に追記。予想は変えていない）
 
-（`results/2026-11-03_env/ft_bench_bw_nvfp4_v020.txt`）
+`results/2026-11-03_env/ft_bench_bw_nvfp4_v020.txt`（既定のスレッド数 15）
+
+| 項目 | 値 |
+| --- | --- |
+| 上限（ハードのみ） | CPU STREAM 読み出し 51.2 GB/s、PCIe H2D 28.9 GB/s、D2H 28.7 GB/s |
+| NVFP4 の expert（H=2560、I=640、top_k=10） | 1個 2.65 MB |
+| 単独で測った速さ | CPU-MoE 42.1 GB/s、PCIe gather 27.0 GB/s、比率 1.56 倍 → **offload を推奨**（基準 2.0 倍） |
+| 同時に動かしたとき | CPU-MoE 25.1 GB/s ＋ PCIe 24.0 GB/s。hybrid はキャッシュにない expert の **48.9% を PCIe で運び、残りを CPU で計算する** |
+
+プロファイルは `/root/.cache/freetoken/benchbw/<GPU の UUID>.json` に保存され、serve と同じキャッシュのマウント（`/data/freetoken-bench/cache/127aa0a920ce-cu130-v1/`）から読める。ヘルプによると、行はスレッド数ごとに分かれる（`layer_kind_key`）。この回は既定の 15 スレッドで測ったが、serve は `--moe-cpu-threads 16` で起動するため、16 スレッドでも測り直して行を足す（`FT_BW_ARGS="--cpu-threads 16"`）。H の起動ログで、どの割合が使われたかを確かめる。
+
+参考：同時に動かしたときの合計（約 49 GB/s）は、PCIe 単独（27.0 GB/s）の約 1.8 倍。キャッシュにない expert の扱いだけを見れば、hybrid の上限はここにある。
 
 ## 基準（トラックB の offload、v0.2.0）
 
