@@ -2,7 +2,7 @@
 # 1つのエンジンを起動し、準備完了を待って計測し、ログを保存して止めるまでを行う。
 # 使い方:
 #   bash scripts/run_track.sh <engine> <track> <出力ディレクトリ> [llm_engine_bench.py に渡す引数...]
-#   engine: freetoken | strata     track: A | B
+#   engine: freetoken | strata     track: A | B | C（freetoken は H・H0 も：hybrid。Issue #9）
 # 例（試運転）:
 #   bash scripts/run_track.sh freetoken A results/2026-10-31_smoke/freetoken \
 #     --source bench/prompts/code.txt --prompt-kind code --input-lens 4096 --output-lens 256 --runs 2
@@ -28,6 +28,10 @@ case "$ENGINE/$CFG_TRACK" in
                START=(env FT_STATS=0 bash configs/freetoken/run.sh gguf-iq3_xxs) ;;
   freetoken/B) URL=http://127.0.0.1:8081; MODEL=qwen3.8-flash-next-nvfp4; FILE=NVFP4
                START=(env FT_STATS=0 bash configs/freetoken/run.sh nvfp4) ;;
+  freetoken/H) URL=http://127.0.0.1:8081; MODEL=qwen3.8-flash-next-nvfp4; FILE=NVFP4      # トラックB と同じ構成で hybrid（Issue #9）
+               START=(env FT_STATS=0 FT_STRATEGY=hybrid FT_HYBRID_FETCH=-1 bash configs/freetoken/run.sh nvfp4) ;;
+  freetoken/H0) URL=http://127.0.0.1:8081; MODEL=qwen3.8-flash-next-nvfp4; FILE=NVFP4     # hybrid で PCIe からは運ばず、すべて CPU で計算
+               START=(env FT_STATS=0 FT_STRATEGY=hybrid FT_HYBRID_FETCH=0 bash configs/freetoken/run.sh nvfp4) ;;
   strata/A)    URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS
                START=(env TAIL_SKIP=0 STRATA_EXTRA_ENV="STRATA_PREFILL_CPU_SHARE=0" bash configs/strata/run.sh configs/strata/strata-iq3_xxs-trackA.json) ;;
   strata/BX)   URL=http://127.0.0.1:8082; MODEL=qwen3.8-flash-next-iq3_xxs; FILE=GSQ-RCO-IQ3_XXS   # IQ3_XXS の出荷状態

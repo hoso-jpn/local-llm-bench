@@ -9,6 +9,8 @@
 #   FT_CACHE   prefix cache（naive | radix）。トラックCでは radix
 #   FT_PREFILL prefill のチャンク（既定 8192。前回記事とトラックA本計測は 2048。results/2026-11-01_trackA_ft_prefill8192/）
 #   FT_CTX     コンテキスト長（既定 32768）。KV キャッシュもこの長さぶん確保する（その分 expert のスロットが減る）
+#   FT_STRATEGY       MoE の戦略（既定 offload）。hybrid にすると、キャッシュにない expert の一部を CPU で計算する（Issue #9）
+#   FT_HYBRID_FETCH   hybrid のとき --moe-hybrid-max-fetch に渡す値（既定 -1 = auto。ft bench bw の結果から決まる。0 = すべて CPU）
 #   FT_EXTRA   追加の ft serve 引数
 # 前提: Strata など他のエンジンが止まっていること。
 set -eu
@@ -37,11 +39,16 @@ esac
 # 前回記事（0.1.2）の起動オプションを v0.2.0 の名前で引き継ぐ（seedcore-ops/docs/FREETOKEN-MEMORY.md）。
 # ただし prefill のチャンクは、2026-11-01 の感度確認を受けて 2048 から 8192 に変えた
 ARGS=(--model-path "$MODEL" --served-model-name "$SERVED" --host 0.0.0.0 --port 8080
-      --moe-strategy offload --moe-cache-auto --memory-ratio 0.88
+      --moe-strategy "${FT_STRATEGY:-offload}" --moe-cache-auto --memory-ratio 0.88
       --max-running-requests 1 --max-seq-len-override "${FT_CTX:-32768}"
       --max-prefill-length "${FT_PREFILL:-8192}" --kv-reserve-tokens "${FT_CTX:-32768}" --moe-cpu-threads 16
       --cache-type "$CACHE" --enable-cache-report)
 ARGS+=("${EXTRA_MODE[@]}")
+case "${FT_STRATEGY:-offload}" in
+  offload) ;;
+  hybrid)  ARGS+=(--moe-hybrid-max-fetch "${FT_HYBRID_FETCH:--1}") ;;
+  *) echo "FT_STRATEGY は offload か hybrid: ${FT_STRATEGY}" >&2; exit 1 ;;
+esac
 [ "${FT_STATS:-0}" = 1 ] && ARGS+=(--moe-collect-stats)
 # shellcheck disable=SC2206
 [ -n "${FT_EXTRA:-}" ] && ARGS+=($FT_EXTRA)
