@@ -1,0 +1,20 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[strata/BX] in=65536 out=256 warmup turn=0: TTFT=10.405s decode=184.03 tok/s cached=0 p99gap=18.4ms 
+[strata/BX] in=65536 out=256 run 0 turn=0: TTFT=10.015s decode=200.82 tok/s cached=0 p99gap=15.0ms 
+[strata/BX] in=65536 out=256 run 1 turn=0: TTFT=10.029s decode=213.08 tok/s cached=0 p99gap=13.0ms 
+[strata/BX] in=65536 out=256 run 2 turn=0: TTFT=10.023s decode=213.13 tok/s cached=0 p99gap=12.9ms 
+[strata/BX] in=131072 out=256 warmup turn=0: TTFT=20.233s decode=210.67 tok/s cached=0 p99gap=13.2ms 
+[strata/BX] in=131072 out=256 run 0 turn=0: TTFT=20.222s decode=213.58 tok/s cached=0 p99gap=12.9ms 
+[strata/BX] in=131072 out=256 run 1 turn=0: TTFT=20.211s decode=201.92 tok/s cached=0 p99gap=12.6ms 
+[strata/BX] in=131072 out=256 run 2 turn=0: TTFT=20.235s decode=214.56 tok/s cached=0 p99gap=12.9ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[strata/BX] in=65536 out=256 warmup turn=0: TTFT=10.845s decode=159.89 tok/s cached=0 p99gap=19.0ms 
+[strata/BX] in=65536 out=256 run 0 turn=0: TTFT=9.98s decode=179.23 tok/s cached=0 p99gap=14.6ms 
+[strata/BX] in=65536 out=256 run 1 turn=0: TTFT=9.949s decode=181.43 tok/s cached=0 p99gap=12.7ms 
+[strata/BX] in=65536 out=256 run 2 turn=0: TTFT=9.94s decode=164.52 tok/s cached=0 p99gap=13.1ms 
+[strata/BX] in=131072 out=256 warmup turn=0: TTFT=20.358s decode=184.44 tok/s cached=0 p99gap=16.0ms 
+[strata/BX] in=131072 out=256 run 0 turn=0: TTFT=20.48s decode=168.77 tok/s cached=0 p99gap=12.9ms 
+[strata/BX] in=131072 out=256 run 1 turn=0: TTFT=20.403s decode=168.09 tok/s cached=0 p99gap=12.7ms 
+[strata/BX] in=131072 out=256 run 2 turn=0: TTFT=20.473s decode=167.31 tok/s cached=0 p99gap=12.5ms 

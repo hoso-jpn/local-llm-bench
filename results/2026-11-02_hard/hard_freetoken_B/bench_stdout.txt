@@ -1,0 +1,4 @@
+[freetoken-B] aime: 60 問中 60 問を実行
+  aime 20/60  直近 249.2s
+  aime 40/60  直近 621.6s
+  aime 60/60  直近 576.2s

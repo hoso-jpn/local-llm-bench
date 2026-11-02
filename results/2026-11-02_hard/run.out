@@ -1,0 +1,411 @@
+nohup: 入力を無視します
+######## [08:40:24] lc / strata / BX
+== [08:40:24] 環境を記録
+== [08:40:24] 起動: bash configs/strata/run.sh configs/strata/strata-iq3_xxs-shipped.json
+d578c1236691b9aff347fdaccaa86951e14d6285530cb18f8980c15f110f338d
+起動中: strata-bench（config=strata-iq3_xxs-shipped-ctx135168.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=25
+== [08:40:49] 計測（PCIe・GPU を1秒ごとに記録）
+[strata-BX] lc: 120 問中 120 問を実行
+  lc 20/120  直近 5.4s
+  lc 40/120  直近 20.7s
+  lc 60/120  直近 6.3s
+  lc 80/120  直近 21.0s
+  lc 100/120  直近 6.0s
+  lc 120/120  直近 21.1s
+== [09:01:01] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/lc_strata_BX
+合計 264
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  2 09:01 .
+drwxrwxr-x 3 yusuke-hosokawa yusuke-hosokawa   4096 11月  2 08:40 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    199 11月  2 09:01 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   5276 11月  2 09:01 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa   9662 11月  2 09:01 engine-strata-iq3_xxs.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  2 08:40 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  70216 11月  2 09:01 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 136349 11月  2 09:01 quality.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  2 08:40 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  2 08:40 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     15 11月  2 09:01 strata_env.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+######## [09:01:33] lc / strata / B
+== [09:01:33] 環境を記録
+== [09:01:33] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+c9f6d91deb20241f688ebde2e7b460f01b599b0199a3e2af7d0f2a3e6ee7f86a
+起動中: strata-bench（config=strata-iq3_s-shipped-ctx135168.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=25
+== [09:01:58] 計測（PCIe・GPU を1秒ごとに記録）
+[strata-B] lc: 120 問中 120 問を実行
+  lc 20/120  直近 5.6s
+  lc 40/120  直近 21.4s
+  lc 60/120  直近 6.0s
+  lc 80/120  直近 22.1s
+  lc 100/120  直近 6.2s
+  lc 120/120  直近 21.7s
+== [09:22:50] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/lc_strata_B
+合計 256
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  2 09:22 .
+drwxrwxr-x 4 yusuke-hosokawa yusuke-hosokawa   4096 11月  2 09:01 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    198 11月  2 09:22 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   5321 11月  2 09:22 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa  10046 11月  2 09:22 engine-strata-iq3_s.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  2 09:01 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  72587 11月  2 09:22 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 130756 11月  2 09:22 quality.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  2 09:01 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  2 09:01 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     15 11月  2 09:22 strata_env.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+######## [09:23:21] lc / freetoken / B
+== [09:23:21] 環境を記録
+== [09:23:21] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+39439fdfabea82bbe06603e7193a88e01f9e2904171d1ce9ff8373126be90754
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy offload --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 135168 --max-prefill-length 8192 --kv-reserve-tokens 135168 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=63
+== [09:24:24] 計測（PCIe・GPU を1秒ごとに記録）
+[freetoken-B] lc: 120 問中 120 問を実行
+  lc 20/120  直近 14.3s
+  lc 40/120  直近 52.6s
+  lc 60/120  直近 16.7s
+  lc 80/120  直近 52.6s
+  lc 100/120  直近 17.7s
+  lc 120/120  直近 53.4s
+== [10:12:54] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/lc_freetoken_B
+合計 312
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  2 10:13 .
+drwxrwxr-x 5 yusuke-hosokawa yusuke-hosokawa   4096 11月  2 09:23 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    204 11月  2 10:12 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  2 09:23 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  20121 11月  2 10:12 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    446 11月  2 10:12 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 167919 11月  2 10:12 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  92918 11月  2 10:12 quality.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  2 09:23 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  2 09:24 startup.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+######## [10:13:30] speed / strata / BX
+== [10:13:31] 環境を記録
+== [10:13:31] 起動: bash configs/strata/run.sh configs/strata/strata-iq3_xxs-shipped.json
+8a0282fe489958eb1681cd23440dde94a12ebb7b315a769c291a9afd7f621e32
+起動中: strata-bench（config=strata-iq3_xxs-shipped-ctx135168.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=15
+== [10:13:46] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[strata/BX] in=65536 out=256 warmup turn=0: TTFT=10.405s decode=184.03 tok/s cached=0 p99gap=18.4ms 
+[strata/BX] in=65536 out=256 run 0 turn=0: TTFT=10.015s decode=200.82 tok/s cached=0 p99gap=15.0ms 
+[strata/BX] in=65536 out=256 run 1 turn=0: TTFT=10.029s decode=213.08 tok/s cached=0 p99gap=13.0ms 
+[strata/BX] in=65536 out=256 run 2 turn=0: TTFT=10.023s decode=213.13 tok/s cached=0 p99gap=12.9ms 
+[strata/BX] in=131072 out=256 warmup turn=0: TTFT=20.233s decode=210.67 tok/s cached=0 p99gap=13.2ms 
+[strata/BX] in=131072 out=256 run 0 turn=0: TTFT=20.222s decode=213.58 tok/s cached=0 p99gap=12.9ms 
+[strata/BX] in=131072 out=256 run 1 turn=0: TTFT=20.211s decode=201.92 tok/s cached=0 p99gap=12.6ms 
+[strata/BX] in=131072 out=256 run 2 turn=0: TTFT=20.235s decode=214.56 tok/s cached=0 p99gap=12.9ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[strata/BX] in=65536 out=256 warmup turn=0: TTFT=10.845s decode=159.89 tok/s cached=0 p99gap=19.0ms 
+[strata/BX] in=65536 out=256 run 0 turn=0: TTFT=9.98s decode=179.23 tok/s cached=0 p99gap=14.6ms 
+[strata/BX] in=65536 out=256 run 1 turn=0: TTFT=9.949s decode=181.43 tok/s cached=0 p99gap=12.7ms 
+[strata/BX] in=65536 out=256 run 2 turn=0: TTFT=9.94s decode=164.52 tok/s cached=0 p99gap=13.1ms 
+[strata/BX] in=131072 out=256 warmup turn=0: TTFT=20.358s decode=184.44 tok/s cached=0 p99gap=16.0ms 
+[strata/BX] in=131072 out=256 run 0 turn=0: TTFT=20.48s decode=168.77 tok/s cached=0 p99gap=12.9ms 
+[strata/BX] in=131072 out=256 run 1 turn=0: TTFT=20.403s decode=168.09 tok/s cached=0 p99gap=12.7ms 
+[strata/BX] in=131072 out=256 run 2 turn=0: TTFT=20.473s decode=167.31 tok/s cached=0 p99gap=12.5ms 
+== [10:18:49] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/speed_strata_BX
+合計 72
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  2 10:18 .
+drwxrwxr-x 6 yusuke-hosokawa yusuke-hosokawa  4096 11月  2 10:13 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  2284 11月  2 10:18 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  2053 11月  2 10:18 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa  3534 11月  2 10:18 engine-strata-iq3_xxs.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  2 10:13 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 17610 11月  2 10:18 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  2 10:13 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 12783 11月  2 10:18 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  2 10:13 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    15 11月  2 10:18 strata_env.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+strata	BX	s1	GSQ-RCO-IQ3_XXS	code	131072	256	0	20.22[20.21-20.23]	213.58[201.92-214.56]	6486.70[6482.80-6490.60]	12.90[12.60-12.90]	0.71[0.66-0.71]	75.20[75.20-75.20]	19.77[19.41-20.39]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	code	65536	256	0	10.02[10.02-10.03]	213.08[200.82-213.13]	6549.30[6545.00-6554.70]	13.00[12.90-15.00]	0.71[0.67-0.76]	75.43[75.42-75.44]	19.56[19.48-20.05]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	ja	131072	256	0	20.47[20.40-20.48]	168.09[167.31-168.77]	6405.60[6403.50-6427.60]	12.70[12.50-12.90]	0.50[0.49-0.52]	75.29[75.27-75.30]	19.08[18.58-19.27]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	ja	65536	256	0	9.95[9.94-9.98]	179.23[164.52-181.43]	6593.90[6573.90-6599.80]	13.10[12.70-14.60]	0.61[0.52-0.63]	75.53[75.51-75.54]	18.89[18.39-18.99]	3
+######## [10:19:21] speed / strata / B
+== [10:19:21] 環境を記録
+== [10:19:21] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+9053c8e8c619b170e4059006e983454b92692acbdf4cd5b76c59eb2d7d7d4a6e
+起動中: strata-bench（config=strata-iq3_s-shipped-ctx135168.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=25
+== [10:19:46] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=65536 out=256 warmup turn=0: TTFT=10.849s decode=169.19 tok/s cached=0 p99gap=22.2ms 
+[strata/B] in=65536 out=256 run 0 turn=0: TTFT=10.571s decode=197.55 tok/s cached=0 p99gap=18.3ms 
+[strata/B] in=65536 out=256 run 1 turn=0: TTFT=10.521s decode=200.59 tok/s cached=0 p99gap=14.3ms 
+[strata/B] in=65536 out=256 run 2 turn=0: TTFT=10.503s decode=211.18 tok/s cached=0 p99gap=13.1ms 
+[strata/B] in=131072 out=256 warmup turn=0: TTFT=21.055s decode=199.1 tok/s cached=0 p99gap=14.1ms 
+[strata/B] in=131072 out=256 run 0 turn=0: TTFT=21.024s decode=200.67 tok/s cached=0 p99gap=13.7ms 
+[strata/B] in=131072 out=256 run 1 turn=0: TTFT=21.023s decode=191.09 tok/s cached=0 p99gap=13.5ms 
+[strata/B] in=131072 out=256 run 2 turn=0: TTFT=21.01s decode=201.78 tok/s cached=0 p99gap=13.6ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[strata/B] in=65536 out=256 warmup turn=0: TTFT=11.246s decode=146.59 tok/s cached=0 p99gap=22.1ms 
+[strata/B] in=65536 out=256 run 0 turn=0: TTFT=10.437s decode=162.85 tok/s cached=0 p99gap=16.1ms 
+[strata/B] in=65536 out=256 run 1 turn=0: TTFT=10.368s decode=165.81 tok/s cached=0 p99gap=15.4ms 
+[strata/B] in=65536 out=256 run 2 turn=0: TTFT=10.408s decode=161.12 tok/s cached=0 p99gap=14.5ms 
+[strata/B] in=131072 out=256 warmup turn=0: TTFT=21.163s decode=175.97 tok/s cached=0 p99gap=16.1ms 
+[strata/B] in=131072 out=256 run 0 turn=0: TTFT=21.228s decode=164.94 tok/s cached=0 p99gap=15.7ms 
+[strata/B] in=131072 out=256 run 1 turn=0: TTFT=21.206s decode=166.04 tok/s cached=0 p99gap=13.2ms 
+[strata/B] in=131072 out=256 run 2 turn=0: TTFT=21.25s decode=170.63 tok/s cached=0 p99gap=14.4ms 
+== [10:24:59] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/speed_strata_B
+合計 72
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  2 10:25 .
+drwxrwxr-x 7 yusuke-hosokawa yusuke-hosokawa  4096 11月  2 10:19 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  2271 11月  2 10:24 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  2093 11月  2 10:24 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa  3574 11月  2 10:24 engine-strata-iq3_s.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  2 10:19 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 18195 11月  2 10:24 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  2 10:19 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 12738 11月  2 10:24 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  2 10:19 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    15 11月  2 10:24 strata_env.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+strata	B	s1	GSQ-RCO-IQ3_S	code	131072	256	0	21.02[21.01-21.02]	200.67[191.09-201.78]	6239.60[6239.40-6243.80]	13.60[13.50-13.70]	0.74[0.71-0.76]	68.28[68.28-68.29]	25.55[24.76-25.64]	3
+strata	B	s1	GSQ-RCO-IQ3_S	code	65536	256	0	10.52[10.50-10.57]	200.59[197.55-211.18]	6239.30[6209.80-6249.70]	14.30[13.10-18.30]	0.75[0.70-0.76]	68.44[68.39-68.44]	23.34[23.17-23.49]	3
+strata	B	s1	GSQ-RCO-IQ3_S	ja	131072	256	0	21.23[21.21-21.25]	166.04[164.94-170.63]	6177.70[6171.30-6184.10]	14.40[13.20-15.70]	0.61[0.59-0.62]	68.28[68.27-68.38]	24.32[23.60-24.67]	3
+strata	B	s1	GSQ-RCO-IQ3_S	ja	65536	256	0	10.41[10.37-10.44]	162.85[161.12-165.81]	6303.60[6286.00-6327.60]	15.40[14.50-16.10]	0.61[0.52-0.63]	68.51[68.51-68.52]	23.48[23.17-23.79]	3
+######## [10:25:31] speed / freetoken / B
+== [10:25:31] 環境を記録
+== [10:25:31] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+be79c0d96485a0981224806c62e2333144af9429199a6966a0e558999d98ae9e
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy offload --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 135168 --max-prefill-length 8192 --kv-reserve-tokens 135168 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=63
+== [10:26:34] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=65536 out=256 warmup turn=0: TTFT=23.786s decode=57.14 tok/s cached=None p99gap=33.7ms 
+[freetoken/B] in=65536 out=256 run 0 turn=0: TTFT=23.047s decode=58.7 tok/s cached=None p99gap=35.1ms 
+[freetoken/B] in=65536 out=256 run 1 turn=0: TTFT=23.057s decode=60.19 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=65536 out=256 run 2 turn=0: TTFT=23.051s decode=57.13 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=131072 out=256 warmup turn=0: TTFT=44.71s decode=59.77 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=131072 out=256 run 0 turn=0: TTFT=44.805s decode=58.51 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=131072 out=256 run 1 turn=0: TTFT=44.783s decode=62.98 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=131072 out=256 run 2 turn=0: TTFT=44.822s decode=59.96 tok/s cached=None p99gap=27.9ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=65536 out=256 warmup turn=0: TTFT=27.743s decode=58.2 tok/s cached=None p99gap=36.8ms 
+[freetoken/B] in=65536 out=256 run 0 turn=0: TTFT=27.685s decode=63.24 tok/s cached=None p99gap=35.5ms 
+[freetoken/B] in=65536 out=256 run 1 turn=0: TTFT=27.745s decode=59.95 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=65536 out=256 run 2 turn=0: TTFT=27.711s decode=62.14 tok/s cached=None p99gap=32.7ms 
+[freetoken/B] in=131072 out=256 warmup turn=0: TTFT=53.095s decode=57.93 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=131072 out=256 run 0 turn=0: TTFT=53.162s decode=58.96 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=131072 out=256 run 1 turn=0: TTFT=53.173s decode=60.54 tok/s cached=None p99gap=28.8ms 
+[freetoken/B] in=131072 out=256 run 2 turn=0: TTFT=53.28s decode=60.68 tok/s cached=None p99gap=27.9ms 
+== [10:38:15] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/speed_freetoken_B
+合計 56
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  2 10:38 .
+drwxrwxr-x 8 yusuke-hosokawa yusuke-hosokawa  4096 11月  2 10:25 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  2350 11月  2 10:38 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  2 10:25 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  8046 11月  2 10:38 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   446 11月  2 10:38 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  7605 11月  2 10:28 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  2 10:25 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 10340 11月  2 10:38 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  2 10:26 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s1	NVFP4	code	131072	256	0	44.80[44.78-44.82]	59.96[58.51-62.98]	2926.70[2925.60-2928.10]	29.60[27.90-30.80]	-	50.66[50.65-50.68]	27.45[27.39-27.60]	3
+freetoken	B	s1	NVFP4	code	65536	256	0	23.05[23.05-23.06]	58.70[57.13-60.19]	2845.60[2845.00-2846.10]	30.90[29.40-35.10]	-	50.70[50.70-50.70]	26.66[26.65-26.87]	3
+freetoken	B	s1	NVFP4	ja	131072	256	0	53.17[53.16-53.28]	60.54[58.96-60.68]	2466.30[2461.40-2466.80]	28.80[27.90-30.60]	-	50.78[50.77-50.78]	23.20[23.01-23.31]	3
+freetoken	B	s1	NVFP4	ja	65536	256	0	27.71[27.68-27.75]	62.14[59.95-63.24]	2367.60[2364.50-2369.60]	32.70[30.70-35.50]	-	50.79[50.79-50.80]	22.55[22.55-23.09]	3
+######## [10:38:52] hard / strata / BX
+== [10:38:52] 環境を記録
+== [10:38:52] 起動: bash configs/strata/run.sh configs/strata/strata-iq3_xxs-shipped.json
+1b3705f65a832463bd06411d5fc11a70c945a0ac8cf38005fe8a25f1094f2579
+起動中: strata-bench（config=strata-iq3_xxs-shipped-ctx36864.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=20
+== [10:39:12] 計測（PCIe・GPU を1秒ごとに記録）
+[strata-BX] aime: 60 問中 60 問を実行
+  aime 20/60  直近 105.4s
+  aime 40/60  直近 141.9s
+  aime 60/60  直近 136.5s
+[strata-BX] math5: 134 問中 134 問を実行
+  math5 20/134  直近 6.8s
+  math5 40/134  直近 3.7s
+  math5 60/134  直近 3.3s
+  math5 80/134  直近 1.6s
+  math5 100/134  直近 101.7s
+  math5 120/134  直近 7.0s
+  math5 134/134  直近 13.8s
+== [12:35:33] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/hard_strata_BX
+合計 4912
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa    4096 11月  2 12:35 .
+drwxrwxr-x 9 yusuke-hosokawa yusuke-hosokawa    4096 11月  2 10:38 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     377 11月  2 12:35 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   57482 11月  2 12:35 container.log.gz
+-rw-r--r-- 1 yusuke-hosokawa yusuke-hosokawa   17092 11月  2 12:35 engine-strata-iq3_xxs.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    1867 11月  2 10:38 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  402172 11月  2 12:35 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 4507902 11月  2 12:35 quality.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa      41 11月  2 10:38 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa      17 11月  2 10:39 startup.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa      15 11月  2 12:35 strata_env.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+######## [12:36:04] hard / strata / B
+== [12:36:04] 環境を記録
+== [12:36:04] 起動: env MODEL=IQ3_S bash configs/strata/run.sh configs/strata/strata-iq3_s-shipped.json
+251e3bae7024edb3824bbf3a66033d0762a153dedf16ebd2e0d6c5756c2aa3d3
+起動中: strata-bench（config=strata-iq3_s-shipped-ctx36864.json, STRATA_ROUTE_TAIL_SKIP=既定）
+準備完了を待つ: until curl -sf http://127.0.0.1:8082/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=26
+== [12:36:30] 計測（PCIe・GPU を1秒ごとに記録）
+[strata-B] aime: 60 問中 60 問を実行
+  aime 20/60  直近 102.4s
+  aime 40/60  直近 156.7s
+  aime 60/60  直近 141.4s
+[strata-B] math5: 134 問中 134 問を実行
+  math5 20/134  直近 6.9s
+  math5 40/134  直近 3.6s
+  math5 60/134  直近 4.4s
+  math5 80/134  直近 1.9s
+  math5 100/134  直近 11.3s
+  math5 120/134  直近 11.1s
+  math5 134/134  直近 9.3s
+== [14:22:32] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/hard_strata_B
+合計 4036
+drwxrwxr-x  2 yusuke-hosokawa yusuke-hosokawa    4096 11月  2 14:22 .
+drwxrwxr-x 10 yusuke-hosokawa yusuke-hosokawa    4096 11月  2 12:36 ..
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa     374 11月  2 14:22 bench_stdout.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa   52628 11月  2 14:22 container.log.gz
+-rw-r--r--  1 yusuke-hosokawa yusuke-hosokawa   17220 11月  2 14:22 engine-strata-iq3_s.log.gz
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa    1867 11月  2 12:36 env_check.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa  366049 11月  2 14:22 gpu.csv
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa 3655583 11月  2 14:22 quality.jsonl
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa      41 11月  2 12:36 repo_commit.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa      17 11月  2 12:36 startup.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa      15 11月  2 14:22 strata_env.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+######## [14:23:03] hard / freetoken / B
+== [14:23:03] 環境を記録
+== [14:23:03] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+d78503040da6f47480855fe1d3c150dd0d27b484f0054ac9c1dbf805cd6fffce
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy offload --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 36864 --max-prefill-length 8192 --kv-reserve-tokens 36864 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=68
+== [14:24:11] 計測（PCIe・GPU を1秒ごとに記録）
+[freetoken-B] aime: 60 問中 60 問を実行
+  aime 20/60  直近 249.2s
+  aime 40/60  直近 621.6s
+  aime 60/60  直近 576.2s
+== [18:42:22] 停止してログを保存
+保存して停止しました: results/2026-11-02_hard/hard_freetoken_B
+合計 3480
+drwxrwxr-x  2 yusuke-hosokawa yusuke-hosokawa    4096 11月  2 18:42 .
+drwxrwxr-x 11 yusuke-hosokawa yusuke-hosokawa    4096 11月  2 14:23 ..
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa     130 11月  2 18:42 bench_stdout.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa    1867 11月  2 14:23 env_check.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa  232994 11月  2 18:42 freetoken.log.gz
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa     444 11月  2 18:42 freetoken_args.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa  896120 11月  2 18:42 gpu.csv
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa 2395131 11月  2 18:42 quality.jsonl
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa      41 11月  2 14:23 repo_commit.txt
+-rw-rw-r--  1 yusuke-hosokawa yusuke-hosokawa      17 11月  2 14:24 startup.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+######## 採点と集計
+採点: results/2026-11-02_hard/lc_freetoken_B/quality.jsonl -> results/2026-11-02_hard/lc_freetoken_B/scored.jsonl（120 件）
+採点: results/2026-11-02_hard/lc_strata_B/quality.jsonl -> results/2026-11-02_hard/lc_strata_B/scored.jsonl（120 件）
+採点: results/2026-11-02_hard/lc_strata_BX/quality.jsonl -> results/2026-11-02_hard/lc_strata_BX/scored.jsonl（120 件）
+採点: results/2026-11-02_hard/hard_freetoken_B/quality.jsonl -> results/2026-11-02_hard/hard_freetoken_B/scored.jsonl（60 件）
+採点: results/2026-11-02_hard/hard_strata_B/quality.jsonl -> results/2026-11-02_hard/hard_strata_B/scored.jsonl（194 件）
+採点: results/2026-11-02_hard/hard_strata_BX/quality.jsonl -> results/2026-11-02_hard/hard_strata_BX/scored.jsonl（194 件）
+| 構成 | 課題 | 問題数 | 正答 | 正答率 | 95%信頼区間 | エラー | 打ち切り | ループ | 1問あたり | 正答1件あたり | 出力トークン（中央値） |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| freetoken-B | aime | 60 | 53 | 88.3% | 77.8〜94.2% | 0 | 7 | 0 | 258.2 s | 292.3 s | 8750.0 |
+| freetoken-B | lc_multihop@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 49.5 s | 49.5 s | 155.0 |
+| freetoken-B | lc_multihop@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 9.3 s | 9.3 s | 169.0 |
+| freetoken-B | lc_multihop@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 14.9 s | 14.9 s | 175.5 |
+| freetoken-B | lc_multihop@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 26.6 s | 26.6 s | 169.0 |
+| freetoken-B | lc_multikey@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 48.7 s | 48.7 s | 160.5 |
+| freetoken-B | lc_multikey@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 8.3 s | 8.3 s | 87.5 |
+| freetoken-B | lc_multikey@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 14.1 s | 14.1 s | 84.0 |
+| freetoken-B | lc_multikey@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 24.9 s | 24.9 s | 87.0 |
+| freetoken-B | lc_needle@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 48.1 s | 48.1 s | 92.0 |
+| freetoken-B | lc_needle@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 7.7 s | 7.7 s | 88.5 |
+| freetoken-B | lc_needle@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 13.6 s | 13.6 s | 93.0 |
+| freetoken-B | lc_needle@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 25.1 s | 25.1 s | 95.0 |
+| strata-B | aime | 60 | 53 | 88.3% | 77.8〜94.2% | 0 | 6 | 0 | 67.6 s | 76.5 s | 11587.5 |
+| strata-B | lc_multihop@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 21.6 s | 21.6 s | 150.0 |
+| strata-B | lc_multihop@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 3.4 s | 3.4 s | 173.0 |
+| strata-B | lc_multihop@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 5.9 s | 5.9 s | 173.5 |
+| strata-B | lc_multihop@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 11.1 s | 11.1 s | 172.5 |
+| strata-B | lc_multikey@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 21.8 s | 21.8 s | 242.0 |
+| strata-B | lc_multikey@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 3.2 s | 3.2 s | 84.5 |
+| strata-B | lc_multikey@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 5.9 s | 5.9 s | 86.0 |
+| strata-B | lc_multikey@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 10.8 s | 10.8 s | 84.5 |
+| strata-B | lc_needle@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 21.5 s | 21.5 s | 121.5 |
+| strata-B | lc_needle@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 3.3 s | 3.3 s | 96.0 |
+| strata-B | lc_needle@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 5.8 s | 5.8 s | 100.5 |
+| strata-B | lc_needle@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 10.8 s | 10.8 s | 100.0 |
+| strata-B | math5 | 134 | 130 | 97.0% | 92.6〜98.8% | 0 | 2 | 0 | 17.2 s | 17.8 s | 1406.0 |
+| strata-BX | aime | 60 | 46 | 76.7% | 64.6〜85.6% | 0 | 14 | 3 | 70.4 s | 91.8 s | 14192.5 |
+| strata-BX | lc_multihop@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 20.8 s | 20.8 s | 176.0 |
+| strata-BX | lc_multihop@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 3.2 s | 3.2 s | 168.5 |
+| strata-BX | lc_multihop@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 5.7 s | 5.7 s | 182.0 |
+| strata-BX | lc_multihop@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 10.7 s | 10.7 s | 188.5 |
+| strata-BX | lc_multikey@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 21.3 s | 21.3 s | 254.0 |
+| strata-BX | lc_multikey@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 3.2 s | 3.2 s | 154.5 |
+| strata-BX | lc_multikey@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 5.8 s | 5.8 s | 247.5 |
+| strata-BX | lc_multikey@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 10.5 s | 10.5 s | 150.5 |
+| strata-BX | lc_needle@128K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 20.6 s | 20.6 s | 97.0 |
+| strata-BX | lc_needle@16K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 3.2 s | 3.2 s | 96.0 |
+| strata-BX | lc_needle@32K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 5.7 s | 5.7 s | 92.0 |
+| strata-BX | lc_needle@64K | 10 | 10 | 100.0% | 72.2〜100.0% | 0 | 0 | 0 | 10.4 s | 10.4 s | 107.0 |
+| strata-BX | math5 | 134 | 127 | 94.8% | 89.6〜97.4% | 0 | 5 | 4 | 20.6 s | 21.7 s | 1813.5 |
+
+## 難しい推論：IQ3_XXS と IQ3_S（Strata、出荷状態）
+A = results/2026-11-02_hard/hard_strata_BX/scored.jsonl
+B = results/2026-11-02_hard/hard_strata_B/scored.jsonl
+| 課題 | 問題数 | 答えが一致 | 正誤が一致 | 両方正解 | A だけ正解 | B だけ正解 |
+| --- | --- | --- | --- | --- | --- | --- |
+| aime | 60 | 83.3% | 85.0% | 45 | 1 | 8 |
+| math5 | 134 | 92.5% | 96.3% | 126 | 1 | 4 |
+
+## 長い文脈の速度
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s1	NVFP4	code	131072	256	0	44.80[44.78-44.82]	59.96[58.51-62.98]	2926.70[2925.60-2928.10]	29.60[27.90-30.80]	-	50.66[50.65-50.68]	27.45[27.39-27.60]	3
+freetoken	B	s1	NVFP4	code	65536	256	0	23.05[23.05-23.06]	58.70[57.13-60.19]	2845.60[2845.00-2846.10]	30.90[29.40-35.10]	-	50.70[50.70-50.70]	26.66[26.65-26.87]	3
+freetoken	B	s1	NVFP4	ja	131072	256	0	53.17[53.16-53.28]	60.54[58.96-60.68]	2466.30[2461.40-2466.80]	28.80[27.90-30.60]	-	50.78[50.77-50.78]	23.20[23.01-23.31]	3
+freetoken	B	s1	NVFP4	ja	65536	256	0	27.71[27.68-27.75]	62.14[59.95-63.24]	2367.60[2364.50-2369.60]	32.70[30.70-35.50]	-	50.79[50.79-50.80]	22.55[22.55-23.09]	3
+strata	B	s1	GSQ-RCO-IQ3_S	code	131072	256	0	21.02[21.01-21.02]	200.67[191.09-201.78]	6239.60[6239.40-6243.80]	13.60[13.50-13.70]	0.74[0.71-0.76]	68.28[68.28-68.29]	25.55[24.76-25.64]	3
+strata	B	s1	GSQ-RCO-IQ3_S	code	65536	256	0	10.52[10.50-10.57]	200.59[197.55-211.18]	6239.30[6209.80-6249.70]	14.30[13.10-18.30]	0.75[0.70-0.76]	68.44[68.39-68.44]	23.34[23.17-23.49]	3
+strata	B	s1	GSQ-RCO-IQ3_S	ja	131072	256	0	21.23[21.21-21.25]	166.04[164.94-170.63]	6177.70[6171.30-6184.10]	14.40[13.20-15.70]	0.61[0.59-0.62]	68.28[68.27-68.38]	24.32[23.60-24.67]	3
+strata	B	s1	GSQ-RCO-IQ3_S	ja	65536	256	0	10.41[10.37-10.44]	162.85[161.12-165.81]	6303.60[6286.00-6327.60]	15.40[14.50-16.10]	0.61[0.52-0.63]	68.51[68.51-68.52]	23.48[23.17-23.79]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	code	131072	256	0	20.22[20.21-20.23]	213.58[201.92-214.56]	6486.70[6482.80-6490.60]	12.90[12.60-12.90]	0.71[0.66-0.71]	75.20[75.20-75.20]	19.77[19.41-20.39]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	code	65536	256	0	10.02[10.02-10.03]	213.08[200.82-213.13]	6549.30[6545.00-6554.70]	13.00[12.90-15.00]	0.71[0.67-0.76]	75.43[75.42-75.44]	19.56[19.48-20.05]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	ja	131072	256	0	20.47[20.40-20.48]	168.09[167.31-168.77]	6405.60[6403.50-6427.60]	12.70[12.50-12.90]	0.50[0.49-0.52]	75.29[75.27-75.30]	19.08[18.58-19.27]	3
+strata	BX	s1	GSQ-RCO-IQ3_XXS	ja	65536	256	0	9.95[9.94-9.98]	179.23[164.52-181.43]	6593.90[6573.90-6599.80]	13.10[12.70-14.60]	0.61[0.52-0.63]	75.53[75.51-75.54]	18.89[18.39-18.99]	3

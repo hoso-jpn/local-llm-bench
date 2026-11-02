@@ -1,0 +1,5 @@
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+strata	B	s1	GSQ-RCO-IQ3_S	code	131072	256	0	21.02[21.01-21.02]	200.67[191.09-201.78]	6239.60[6239.40-6243.80]	13.60[13.50-13.70]	0.74[0.71-0.76]	68.28[68.28-68.29]	25.55[24.76-25.64]	3
+strata	B	s1	GSQ-RCO-IQ3_S	code	65536	256	0	10.52[10.50-10.57]	200.59[197.55-211.18]	6239.30[6209.80-6249.70]	14.30[13.10-18.30]	0.75[0.70-0.76]	68.44[68.39-68.44]	23.34[23.17-23.49]	3
+strata	B	s1	GSQ-RCO-IQ3_S	ja	131072	256	0	21.23[21.21-21.25]	166.04[164.94-170.63]	6177.70[6171.30-6184.10]	14.40[13.20-15.70]	0.61[0.59-0.62]	68.28[68.27-68.38]	24.32[23.60-24.67]	3
+strata	B	s1	GSQ-RCO-IQ3_S	ja	65536	256	0	10.41[10.37-10.44]	162.85[161.12-165.81]	6303.60[6286.00-6327.60]	15.40[14.50-16.10]	0.61[0.52-0.63]	68.51[68.51-68.52]	23.48[23.17-23.79]	3

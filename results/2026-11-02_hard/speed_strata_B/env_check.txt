@@ -1,0 +1,52 @@
+# recorded: 2026-11-02T10:19:21+09:00
+== GPU / PCIe ==
+name, driver_version, pcie.link.gen.max, pcie.link.width.current, pcie.link.width.max, memory.total [MiB]
+NVIDIA GeForce RTX 5090, 595.99.02, 5, 8, 16, 32607 MiB
+== CUDA ==
+Build cuda_12.8.r12.8/compiler.35583870_0
+== CPU ==
+CPU(s):                                  32
+Model name:                              AMD Ryzen 9 9950X3D2 16-Core Processor
+CPU(s) scaling MHz:                      35%
+AVX-512 あり
+== RAM ==
+               total        used        free      shared  buff/cache   available
+Mem:             123           3          45           0          75         119
+Swap:             15           3          12
+== Disk ==
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3  3.5T   73G  3.2T   3% /home
+NAME    MODEL                    SIZE
+loop0                              4K
+loop1                           13.1M
+loop2                           13.2M
+loop3                             74M
+loop4                             74M
+loop5                           66.8M
+loop6                           66.8M
+loop7                           12.7M
+loop8                           12.7M
+loop9                          531.4M
+loop10                         531.5M
+loop11                         615.3M
+loop12                           616M
+loop13                          91.7M
+loop14                           402M
+loop16                            12M
+loop17                          50.3M
+loop18                          44.7M
+loop19                           828K
+loop20                           828K
+loop21                          11.6M
+nvme0n1 WD_BLACK SN8100 4000GB   3.6T
+nvme1n1 WD_BLACK SN7100 4TB      3.6T
+== OS ==
+6.8.0-142-generic
+Ubuntu 24.04.5 LTS
+== Python ==
+Python 3.12.3
+/home/yusuke-hosokawa/.local/bin/uv
+== FreeToken ==
+== Strata ==
+未導入
+== 既存モデル ==

@@ -1,0 +1,20 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=65536 out=256 warmup turn=0: TTFT=23.786s decode=57.14 tok/s cached=None p99gap=33.7ms 
+[freetoken/B] in=65536 out=256 run 0 turn=0: TTFT=23.047s decode=58.7 tok/s cached=None p99gap=35.1ms 
+[freetoken/B] in=65536 out=256 run 1 turn=0: TTFT=23.057s decode=60.19 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=65536 out=256 run 2 turn=0: TTFT=23.051s decode=57.13 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=131072 out=256 warmup turn=0: TTFT=44.71s decode=59.77 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=131072 out=256 run 0 turn=0: TTFT=44.805s decode=58.51 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=131072 out=256 run 1 turn=0: TTFT=44.783s decode=62.98 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=131072 out=256 run 2 turn=0: TTFT=44.822s decode=59.96 tok/s cached=None p99gap=27.9ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=65536 out=256 warmup turn=0: TTFT=27.743s decode=58.2 tok/s cached=None p99gap=36.8ms 
+[freetoken/B] in=65536 out=256 run 0 turn=0: TTFT=27.685s decode=63.24 tok/s cached=None p99gap=35.5ms 
+[freetoken/B] in=65536 out=256 run 1 turn=0: TTFT=27.745s decode=59.95 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=65536 out=256 run 2 turn=0: TTFT=27.711s decode=62.14 tok/s cached=None p99gap=32.7ms 
+[freetoken/B] in=131072 out=256 warmup turn=0: TTFT=53.095s decode=57.93 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=131072 out=256 run 0 turn=0: TTFT=53.162s decode=58.96 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=131072 out=256 run 1 turn=0: TTFT=53.173s decode=60.54 tok/s cached=None p99gap=28.8ms 
+[freetoken/B] in=131072 out=256 run 2 turn=0: TTFT=53.28s decode=60.68 tok/s cached=None p99gap=27.9ms 
