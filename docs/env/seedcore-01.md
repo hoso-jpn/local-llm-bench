@@ -56,7 +56,7 @@ Seedcore-01 からは、このリポジトリ専用の書き込み可デプロ�
 
 ## 予定している変更
 
-1. FreeTokenのoffloadとhybridを比べる
+なし。FreeTokenのoffloadとhybridの比較は 2026-11-03 に実施した（`results/2026-11-03_ft_hybrid/`、Issue #9）。hybrid は decode が 12〜20% 速く、TTFT・品質・RAM は変わらなかった。`ft bench bw` の CPU 帯域の行はスレッド数ごとに分かれるので、hybrid を使うときは serve の `--moe-cpu-threads` と同じスレッド数でも測っておく。
 
 SSD の移設（M.2_2 → M.2_4、GPU を x16 に戻す）と、RAM の 64GB × 2 への交換は、PC ショップに確認したうえで見送った（2026-11-02）。当面は PCIe 5.0 x8・32GB × 4（3600 MT/s）のまま測る。
 
