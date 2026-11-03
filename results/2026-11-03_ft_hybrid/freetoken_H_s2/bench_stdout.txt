@@ -1,0 +1,100 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/H] in=1024 out=256 warmup turn=0: TTFT=2.748s decode=64.89 tok/s cached=None p99gap=29.0ms 
+[freetoken/H] in=1024 out=256 run 0 turn=0: TTFT=2.498s decode=71.16 tok/s cached=None p99gap=22.9ms 
+[freetoken/H] in=1024 out=256 run 1 turn=0: TTFT=2.504s decode=71.62 tok/s cached=None p99gap=22.7ms 
+[freetoken/H] in=1024 out=256 run 2 turn=0: TTFT=2.499s decode=74.01 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=1024 out=256 run 3 turn=0: TTFT=2.506s decode=72.92 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=1024 out=256 run 4 turn=0: TTFT=2.489s decode=71.23 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=1024 out=1024 warmup turn=0: TTFT=2.498s decode=68.91 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 0 turn=0: TTFT=2.501s decode=68.03 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=1024 out=1024 run 1 turn=0: TTFT=2.487s decode=69.24 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=1024 out=1024 run 2 turn=0: TTFT=2.491s decode=68.18 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=1024 out=1024 run 3 turn=0: TTFT=2.507s decode=68.67 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 4 turn=0: TTFT=2.508s decode=68.82 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=4096 out=256 warmup turn=0: TTFT=2.746s decode=69.83 tok/s cached=None p99gap=22.5ms 
+[freetoken/H] in=4096 out=256 run 0 turn=0: TTFT=2.745s decode=71.65 tok/s cached=None p99gap=21.9ms 
+[freetoken/H] in=4096 out=256 run 1 turn=0: TTFT=2.716s decode=71.7 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=4096 out=256 run 2 turn=0: TTFT=2.725s decode=73.48 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=256 run 3 turn=0: TTFT=2.742s decode=72.35 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=4096 out=256 run 4 turn=0: TTFT=2.722s decode=72.75 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=4096 out=1024 warmup turn=0: TTFT=2.722s decode=71.39 tok/s cached=None p99gap=20.9ms 
+[freetoken/H] in=4096 out=1024 run 0 turn=0: TTFT=2.721s decode=71.08 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=4096 out=1024 run 1 turn=0: TTFT=2.723s decode=71.55 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=1024 run 2 turn=0: TTFT=2.716s decode=71.06 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=1024 run 3 turn=0: TTFT=2.747s decode=70.94 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=4096 out=1024 run 4 turn=0: TTFT=2.728s decode=71.76 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=16384 out=256 warmup turn=0: TTFT=7.818s decode=69.61 tok/s cached=None p99gap=22.3ms 
+[freetoken/H] in=16384 out=256 run 0 turn=0: TTFT=7.82s decode=72.81 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=16384 out=256 run 1 turn=0: TTFT=7.778s decode=73.11 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=16384 out=256 run 2 turn=0: TTFT=7.826s decode=72.8 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=16384 out=256 run 3 turn=0: TTFT=7.804s decode=74.02 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=16384 out=256 run 4 turn=0: TTFT=7.805s decode=74.38 tok/s cached=None p99gap=20.7ms 
+[freetoken/H] in=16384 out=1024 warmup turn=0: TTFT=7.787s decode=71.2 tok/s cached=None p99gap=20.7ms 
+[freetoken/H] in=16384 out=1024 run 0 turn=0: TTFT=7.82s decode=72.28 tok/s cached=None p99gap=20.5ms 
+[freetoken/H] in=16384 out=1024 run 1 turn=0: TTFT=7.796s decode=71.67 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=16384 out=1024 run 2 turn=0: TTFT=7.793s decode=71.17 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=16384 out=1024 run 3 turn=0: TTFT=7.778s decode=71.4 tok/s cached=None p99gap=21.2ms 
+[freetoken/H] in=16384 out=1024 run 4 turn=0: TTFT=7.784s decode=71.81 tok/s cached=None p99gap=19.7ms 
+[freetoken/H] in=30720 out=256 warmup turn=0: TTFT=10.291s decode=71.23 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=30720 out=256 run 0 turn=0: TTFT=10.29s decode=74.15 tok/s cached=None p99gap=19.4ms 
+[freetoken/H] in=30720 out=256 run 1 turn=0: TTFT=10.28s decode=74.32 tok/s cached=None p99gap=18.0ms 
+[freetoken/H] in=30720 out=256 run 2 turn=0: TTFT=10.31s decode=74.7 tok/s cached=None p99gap=18.7ms 
+[freetoken/H] in=30720 out=256 run 3 turn=0: TTFT=10.312s decode=74.46 tok/s cached=None p99gap=19.4ms 
+[freetoken/H] in=30720 out=256 run 4 turn=0: TTFT=10.297s decode=74.74 tok/s cached=None p99gap=18.7ms 
+[freetoken/H] in=30720 out=1024 warmup turn=0: TTFT=10.341s decode=72.81 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 0 turn=0: TTFT=10.299s decode=72.71 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=30720 out=1024 run 1 turn=0: TTFT=10.31s decode=72.87 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=30720 out=1024 run 2 turn=0: TTFT=10.306s decode=72.92 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 3 turn=0: TTFT=10.309s decode=72.6 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=30720 out=1024 run 4 turn=0: TTFT=10.308s decode=72.11 tok/s cached=None p99gap=20.9ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/H] in=1024 out=256 warmup turn=0: TTFT=2.546s decode=71.97 tok/s cached=None p99gap=29.7ms 
+[freetoken/H] in=1024 out=256 run 0 turn=0: TTFT=2.561s decode=75.71 tok/s cached=None p99gap=23.7ms 
+[freetoken/H] in=1024 out=256 run 1 turn=0: TTFT=2.562s decode=77.09 tok/s cached=None p99gap=23.2ms 
+[freetoken/H] in=1024 out=256 run 2 turn=0: TTFT=2.553s decode=77.34 tok/s cached=None p99gap=26.7ms 
+[freetoken/H] in=1024 out=256 run 3 turn=0: TTFT=2.549s decode=75.89 tok/s cached=None p99gap=24.7ms 
+[freetoken/H] in=1024 out=256 run 4 turn=0: TTFT=2.55s decode=76.83 tok/s cached=None p99gap=23.5ms 
+[freetoken/H] in=1024 out=1024 warmup turn=0: TTFT=2.546s decode=77.15 tok/s cached=None p99gap=21.7ms 
+[freetoken/H] in=1024 out=1024 run 0 turn=0: TTFT=2.562s decode=77.09 tok/s cached=None p99gap=21.9ms 
+[freetoken/H] in=1024 out=1024 run 1 turn=0: TTFT=2.541s decode=76.95 tok/s cached=None p99gap=24.8ms 
+[freetoken/H] in=1024 out=1024 run 2 turn=0: TTFT=2.552s decode=77.65 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 3 turn=0: TTFT=2.561s decode=77.25 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=1024 out=1024 run 4 turn=0: TTFT=2.534s decode=78.53 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=256 warmup turn=0: TTFT=2.989s decode=74.3 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=4096 out=256 run 0 turn=0: TTFT=2.975s decode=75.78 tok/s cached=None p99gap=25.8ms 
+[freetoken/H] in=4096 out=256 run 1 turn=0: TTFT=2.965s decode=75.92 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=4096 out=256 run 2 turn=0: TTFT=2.986s decode=76.44 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=4096 out=256 run 3 turn=0: TTFT=2.961s decode=77.09 tok/s cached=None p99gap=21.8ms 
+[freetoken/H] in=4096 out=256 run 4 turn=0: TTFT=2.965s decode=75.68 tok/s cached=None p99gap=25.0ms 
+[freetoken/H] in=4096 out=1024 warmup turn=0: TTFT=2.981s decode=78.12 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=4096 out=1024 run 0 turn=0: TTFT=2.978s decode=78.0 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=4096 out=1024 run 1 turn=0: TTFT=2.975s decode=77.83 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=4096 out=1024 run 2 turn=0: TTFT=2.985s decode=78.08 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=4096 out=1024 run 3 turn=0: TTFT=2.984s decode=78.57 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=4096 out=1024 run 4 turn=0: TTFT=2.972s decode=77.87 tok/s cached=None p99gap=22.1ms 
+[freetoken/H] in=16384 out=256 warmup turn=0: TTFT=9.229s decode=75.99 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=16384 out=256 run 0 turn=0: TTFT=9.317s decode=76.13 tok/s cached=None p99gap=19.1ms 
+[freetoken/H] in=16384 out=256 run 1 turn=0: TTFT=9.21s decode=76.43 tok/s cached=None p99gap=19.1ms 
+[freetoken/H] in=16384 out=256 run 2 turn=0: TTFT=9.234s decode=76.54 tok/s cached=None p99gap=19.0ms 
+[freetoken/H] in=16384 out=256 run 3 turn=0: TTFT=9.267s decode=76.71 tok/s cached=None p99gap=19.7ms 
+[freetoken/H] in=16384 out=256 run 4 turn=0: TTFT=9.271s decode=77.62 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=16384 out=1024 warmup turn=0: TTFT=9.218s decode=78.79 tok/s cached=None p99gap=18.8ms 
+[freetoken/H] in=16384 out=1024 run 0 turn=0: TTFT=9.228s decode=78.07 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=16384 out=1024 run 1 turn=0: TTFT=9.248s decode=79.68 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=16384 out=1024 run 2 turn=0: TTFT=9.221s decode=79.12 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=16384 out=1024 run 3 turn=0: TTFT=9.245s decode=78.54 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=16384 out=1024 run 4 turn=0: TTFT=9.196s decode=79.13 tok/s cached=None p99gap=20.8ms 
+[freetoken/H] in=30720 out=256 warmup turn=0: TTFT=13.415s decode=75.95 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=30720 out=256 run 0 turn=0: TTFT=13.505s decode=77.35 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=30720 out=256 run 1 turn=0: TTFT=13.377s decode=76.74 tok/s cached=None p99gap=22.5ms 
+[freetoken/H] in=30720 out=256 run 2 turn=0: TTFT=13.367s decode=76.33 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=30720 out=256 run 3 turn=0: TTFT=13.423s decode=76.68 tok/s cached=None p99gap=25.3ms 
+[freetoken/H] in=30720 out=256 run 4 turn=0: TTFT=13.306s decode=76.95 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=30720 out=1024 warmup turn=0: TTFT=13.37s decode=78.99 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 0 turn=0: TTFT=13.331s decode=79.22 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=30720 out=1024 run 1 turn=0: TTFT=13.487s decode=77.23 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=30720 out=1024 run 2 turn=0: TTFT=13.478s decode=79.02 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=30720 out=1024 run 3 turn=0: TTFT=13.487s decode=79.84 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=30720 out=1024 run 4 turn=0: TTFT=13.392s decode=79.52 tok/s cached=None p99gap=20.2ms 

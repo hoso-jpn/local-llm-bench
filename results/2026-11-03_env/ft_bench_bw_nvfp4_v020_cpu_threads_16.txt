@@ -1,0 +1,137 @@
+# ft bench bw（FreeToken v0.2.0、NVFP4）  2026-11-03T06:57:05+09:00
+# image: seedcore-freetoken:127aa0a920ce-cu130-v1
+# PCIe（待機中は世代が下がって見えることがある。最大値も記録）:
+pcie.link.gen.current, pcie.link.width.current, pcie.link.gen.max, pcie.link.width.max
+1, 8, 5, 16
+
+== ft bench bw --model /models --cpu-threads 16 ==
+[1m[2026-11-02|21:57:07][0m [32mINFO    [0m benchbw: reading the MoE layer kinds of /models ...
+[1m[2026-11-02|21:57:08|core|rank=0][0m [32mINFO    [0m benchbw: measuring hardware ceilings on cuda:0 ...
+[1m[2026-11-02|21:57:09|core|rank=0][0m [32mINFO    [0m benchbw: nvfp4 2560x640 top10 real kernels ...
+
+  host 13b56665172e   gpu cuda:0 (NVIDIA GeForce RTX 5090)   cpu AMD Ryzen 9 9950X3D2 16-Core Processor (16c, 1 NUMA)
+  ceilings: CPU STREAM read 52.1  |  PCIe linear H2D 28.9  D2H 28.7  GB/s
+
+  nvfp4  H=2560 I=640 top_k=10 threads=16  (models; threshold 2.0x)
+    format      expert       CPU-MoE   PCIe-gather  CPU/PCIe  backend
+    nvfp4      2.65 MB     42.1 GB/s     27.0 GB/s     1.56x  offload
+       overlapped: CPU-MoE 24.9 + PCIe 24.2 GB/s -> hybrid fetches 49.3% of misses
+
+  saved: /root/.cache/freetoken/benchbw/GPU-15248469-c7a9-4de1-9546-150abf035df0.json (1 rows benched, 2 in the profile)
+
+
+== 保存されたプロファイル ==
+{
+  "version": 6,
+  "timestamp": "2026-11-02T21:57:09+00:00",
+  "epoch": 1793656634,
+  "host": "13b56665172e",
+  "gpu": {
+    "index": 0,
+    "name": "NVIDIA GeForce RTX 5090",
+    "uuid": "GPU-15248469-c7a9-4de1-9546-150abf035df0"
+  },
+  "cpu": {
+    "model": "AMD Ryzen 9 9950X3D2 16-Core Processor",
+    "physical_cores": 16,
+    "numa_nodes": 1
+  },
+  "ceilings": {
+    "cpu_stream_read_gbs": 52.06,
+    "cpu_stream_threads": 16,
+    "pcie_linear_h2d_gbs": 28.88,
+    "pcie_linear_d2h_gbs": 28.66
+  },
+  "layer_kinds": {
+    "nvfp4:2560x640:top10:t15": {
+      "format": "nvfp4",
+      "options": {},
+      "hidden": 2560,
+      "inter": 640,
+      "top_k": 10,
+      "cpu_threads": 15,
+      "activation": "silu",
+      "sources": [
+        "/models"
+      ],
+      "threshold": 2.0,
+      "measured_at": "2026-11-02T21:55:29+00:00",
+      "freetoken": {
+        "version": "0.2.0",
+        "commit": null
+      },
+      "cpu_moe_gbs": 42.07,
+      "cpu_moe_isa": "avx512bf16+avx512vnni(nvfp4-w4a8)",
+      "cpu_cores": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "isa_sweep": null,
+      "pcie_gather_gbs": 26.96,
+      "cpu_moe_overlap_gbs": 25.11,
+      "pcie_gather_overlap_gbs": 24.03,
+      "recommended": "offload",
+      "note": null
+    },
+    "nvfp4:2560x640:top10:t16": {
+      "format": "nvfp4",
+      "options": {},
+      "hidden": 2560,
+      "inter": 640,
+      "top_k": 10,
+      "cpu_threads": 16,
+      "activation": "silu",
+      "sources": [
+        "/models"
+      ],
+      "threshold": 2.0,
+      "measured_at": "2026-11-02T21:57:09+00:00",
+      "freetoken": {
+        "version": "0.2.0",
+        "commit": null
+      },
+      "cpu_moe_gbs": 42.07,
+      "cpu_moe_isa": "avx512bf16+avx512vnni(nvfp4-w4a8)",
+      "cpu_cores": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "isa_sweep": null,
+      "pcie_gather_gbs": 26.96,
+      "cpu_moe_overlap_gbs": 24.88,
+      "pcie_gather_overlap_gbs": 24.2,
+      "recommended": "offload",
+      "note": null
+    }
+  }
+}
+
+== 実行中にキャッシュへ書かれたファイル ==
+2026-11-03 06:57  2283  /data/freetoken-bench/cache/127aa0a920ce-cu130-v1/freetoken/benchbw/GPU-15248469-c7a9-4de1-9546-150abf035df0.json

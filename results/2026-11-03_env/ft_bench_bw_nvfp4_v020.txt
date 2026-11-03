@@ -1,0 +1,105 @@
+# ft bench bw（FreeToken v0.2.0、NVFP4）  2026-11-03T06:55:22+09:00
+# image: seedcore-freetoken:127aa0a920ce-cu130-v1
+# PCIe（待機中は世代が下がって見えることがある。最大値も記録）:
+pcie.link.gen.current, pcie.link.width.current, pcie.link.gen.max, pcie.link.width.max
+1, 8, 5, 16
+
+== ft bench bw --help ==
+usage: ft bench bw [-h] [--dtype DTYPE] [--model MODEL] [--formats FORMATS]
+                   [--isa ISAS] [-o OUT] [--threshold THRESHOLD] [--gpu GPU]
+                   [--cpu-threads CPU_THREADS] [--cpu-iters CPU_ITERS]
+                   [--pcie-mib PCIE_MIB] [--pcie-iters PCIE_ITERS]
+                   [--kernel-cpu-iters KERNEL_CPU_ITERS]
+                   [--kernel-pcie-iters KERNEL_PCIE_ITERS]
+
+``ft bench bw``: measure host RAM vs PCIe bandwidth and pick the offload-family
+MoE backend for a given model on this machine.
+
+Two layers of measurement:
+
+  * Ceilings (hardware-only, model-agnostic): a STREAM-style CPU DRAM read and a
+    linear pinned<->device copy. Quick upper bounds.
+  * Real kernels per selected workload + expert dtype: the actual CPU MoE GEMV
+    (``CpuMoeExecutor``, what hybrid computes on the CPU) and the actual PCIe gather
+    (``OffloadMoeCache.copy_missing`` / ``fast_index_copy``, what offload streams over
+    PCIe on a decode miss). These are what the hybrid-vs-offload choice rides on.
+    When both work, the same pair is also measured *overlapped* (running concurrently,
+    contending for host DRAM) -- those two achieved bandwidths set the hybrid backend's
+    per-step fetch split (``bench_profile.fetch_fraction``).
+
+The rule, per (workload, format): recommend ``hybrid`` when the CPU MoE kernel
+bandwidth exceeds ``threshold`` x the PCIe gather bandwidth (default 2x), otherwise
+``offload``. Formats with no CPU MoE weight path (e.g. block-fp8) can't be computed on
+the CPU, so they always resolve to ``offload``.
+
+Each bench writes one row per MoE layer kind: format, options, expert shape, top_k and CPU
+worker threads (``bench_profile.layer_kind_key``). ``--model <checkpoint>`` benches every kind
+a real checkpoint has, which is what the hybrid fetch split matches per layer; ``--dtype`` and
+the ``--model`` presets bench canonical geometries. The rows live in a JSON file per GPU
+(default ``$XDG_CACHE_HOME/freetoken/benchbw/<gpu-uuid>.json``); a run replaces the rows it
+benched and keeps the others.
+
+    ft bench bw                              # per-dtype tuning bench (default: all formats)
+    ft bench bw --dtype nvfp4,bf16           # only these formats
+    ft bench bw --model qwen3.6-moe          # per-model detail instead
+    ft bench bw --model /path/to/model.gguf  # every MoE layer kind of a checkpoint
+    ft bench bw --dtype all --model all      # both
+    ft bench bw --gpu GPU-2f3a...            # bench a specific GPU (UUID or nvidia-smi index)
+
+options:
+  -h, --help            show this help message and exit
+  --dtype DTYPE         tuning bench: 'all' (default when no --model), or
+                        comma-separated from ['bf16', 'ds_fp4', 'fp8_block',
+                        'mxfp4_triton', 'nvfp4'] -- one bench per expert
+                        format at a canonical geometry
+  --model MODEL         per-model detail instead of/in addition to --dtype:
+                        'all', or comma-separated presets from ['dsv4',
+                        'dsv4.1-flash', 'gemma4-26b', 'glm4.7-nvfp4',
+                        'glm5.3-flash-nvfp4', 'gpt-oss-120b', 'gpt-oss-20b',
+                        'minimax-m2.5', 'qwen3-30b', 'qwen3.6-moe'] and
+                        checkpoint paths (a checkpoint benches each of its MoE
+                        layer kinds, which the hybrid fetch split matches per
+                        layer)
+  --formats FORMATS     override a --model's native expert formats (comma-
+                        separated)
+  --isa ISAS            CPU MoE ISA: 'auto' (default, best), 'all', or a
+                        subset of ['scalar', 'avx2', 'avx512', 'avx512bf16']
+                        to sweep (kernel caps down to hw support)
+  -o OUT, --out OUT     JSON output path (default
+                        /root/.cache/freetoken/benchbw/<gpu-uuid>.json)
+  --threshold THRESHOLD
+                        recommend hybrid when CPU BW > threshold x PCIe BW
+                        (default 2.0)
+  --gpu GPU             GPU to bench: a GPU UUID (GPU-xxxx..., as nvidia-smi
+                        -L prints) or an nvidia-smi index (default: the first
+                        visible GPU)
+  --cpu-threads CPU_THREADS
+                        CPU worker threads (0 = one per physical core)
+  --cpu-iters CPU_ITERS
+                        STREAM read passes to time
+  --pcie-mib PCIE_MIB   linear PCIe copy size in MiB
+  --pcie-iters PCIE_ITERS
+                        linear PCIe copies to time
+  --kernel-cpu-iters KERNEL_CPU_ITERS
+                        CPU MoE decode steps to time
+  --kernel-pcie-iters KERNEL_PCIE_ITERS
+                        fast_index_copy gather passes to time
+
+== ft bench bw --model /models ==
+[1m[2026-11-02|21:55:27][0m [32mINFO    [0m benchbw: reading the MoE layer kinds of /models ...
+[1m[2026-11-02|21:55:28|core|rank=0][0m [32mINFO    [0m benchbw: measuring hardware ceilings on cuda:0 ...
+[1m[2026-11-02|21:55:29|core|rank=0][0m [32mINFO    [0m benchbw: nvfp4 2560x640 top10 real kernels ...
+
+  host b3353f4b03b9   gpu cuda:0 (NVIDIA GeForce RTX 5090)   cpu AMD Ryzen 9 9950X3D2 16-Core Processor (16c, 1 NUMA)
+  ceilings: CPU STREAM read 51.2  |  PCIe linear H2D 28.9  D2H 28.7  GB/s
+
+  nvfp4  H=2560 I=640 top_k=10 threads=15  (models; threshold 2.0x)
+    format      expert       CPU-MoE   PCIe-gather  CPU/PCIe  backend
+    nvfp4      2.65 MB     42.1 GB/s     27.0 GB/s     1.56x  offload
+       overlapped: CPU-MoE 25.1 + PCIe 24.0 GB/s -> hybrid fetches 48.9% of misses
+
+  saved: /root/.cache/freetoken/benchbw/GPU-15248469-c7a9-4de1-9546-150abf035df0.json (1 rows benched, 1 in the profile)
+
+
+== 実行中にキャッシュへ書かれたファイル ==
+2026-11-03 06:55  1401  /data/freetoken-bench/cache/127aa0a920ce-cu130-v1/freetoken/benchbw/GPU-15248469-c7a9-4de1-9546-150abf035df0.json

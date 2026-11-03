@@ -1,0 +1,717 @@
+######## [06:59:26] freetoken B / s1
+== [06:59:26] 環境を記録
+== [06:59:26] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+426b0ee5b344c8a7fdae3797f402c3943eabdad21f3261e57a1d5e7ecee1d320
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy offload --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 32768 --max-prefill-length 8192 --kv-reserve-tokens 32768 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=73
+== [07:00:39] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.72s decode=61.96 tok/s cached=None p99gap=34.2ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.485s decode=61.07 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.478s decode=61.07 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.487s decode=64.4 tok/s cached=None p99gap=28.9ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.498s decode=63.24 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.491s decode=62.89 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.491s decode=58.9 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.484s decode=58.64 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.48s decode=59.2 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.487s decode=60.57 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.5s decode=58.59 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.482s decode=59.49 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=2.711s decode=60.79 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=2.681s decode=60.37 tok/s cached=None p99gap=26.8ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.688s decode=61.56 tok/s cached=None p99gap=27.5ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=2.676s decode=60.54 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=2.702s decode=61.9 tok/s cached=None p99gap=27.6ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.702s decode=59.31 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.706s decode=60.59 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.691s decode=59.55 tok/s cached=None p99gap=28.2ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=2.707s decode=59.84 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.705s decode=59.85 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.682s decode=59.45 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=2.685s decode=59.59 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=7.773s decode=60.9 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=7.748s decode=63.49 tok/s cached=None p99gap=28.0ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=7.745s decode=61.21 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=7.734s decode=61.81 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=7.727s decode=62.43 tok/s cached=None p99gap=26.3ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=7.738s decode=61.62 tok/s cached=None p99gap=28.3ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=7.73s decode=61.88 tok/s cached=None p99gap=29.5ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=7.758s decode=60.32 tok/s cached=None p99gap=28.3ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=7.741s decode=60.91 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=7.74s decode=60.98 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=7.75s decode=61.26 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=7.738s decode=60.83 tok/s cached=None p99gap=29.6ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=10.237s decode=60.96 tok/s cached=None p99gap=27.7ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=10.227s decode=62.39 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=10.234s decode=61.48 tok/s cached=None p99gap=26.3ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=10.23s decode=61.2 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=10.186s decode=61.83 tok/s cached=None p99gap=27.6ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=10.22s decode=62.61 tok/s cached=None p99gap=27.4ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=10.191s decode=61.49 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=10.22s decode=61.65 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=10.196s decode=61.19 tok/s cached=None p99gap=32.1ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=10.196s decode=61.27 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=10.204s decode=61.1 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=10.185s decode=61.67 tok/s cached=None p99gap=29.6ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.537s decode=65.56 tok/s cached=None p99gap=37.8ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.543s decode=66.58 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.534s decode=67.01 tok/s cached=None p99gap=35.2ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.542s decode=67.78 tok/s cached=None p99gap=34.9ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.528s decode=65.04 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.532s decode=67.16 tok/s cached=None p99gap=31.6ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.544s decode=66.22 tok/s cached=None p99gap=33.8ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.537s decode=66.94 tok/s cached=None p99gap=33.7ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.529s decode=68.73 tok/s cached=None p99gap=31.0ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.535s decode=67.71 tok/s cached=None p99gap=32.6ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.537s decode=67.02 tok/s cached=None p99gap=31.9ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.535s decode=67.13 tok/s cached=None p99gap=33.9ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=2.91s decode=67.56 tok/s cached=None p99gap=29.5ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=2.926s decode=66.25 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.918s decode=67.14 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=2.898s decode=65.03 tok/s cached=None p99gap=34.0ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=2.911s decode=67.05 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.906s decode=66.82 tok/s cached=None p99gap=27.1ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.939s decode=67.94 tok/s cached=None p99gap=32.1ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.919s decode=68.42 tok/s cached=None p99gap=29.2ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=2.919s decode=66.99 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.904s decode=68.78 tok/s cached=None p99gap=26.6ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.912s decode=67.89 tok/s cached=None p99gap=31.9ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=2.915s decode=68.44 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=9.04s decode=67.77 tok/s cached=None p99gap=28.7ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=8.961s decode=67.35 tok/s cached=None p99gap=26.6ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=9.008s decode=66.8 tok/s cached=None p99gap=26.0ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=9.007s decode=65.73 tok/s cached=None p99gap=28.6ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=8.993s decode=66.98 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=8.991s decode=68.01 tok/s cached=None p99gap=28.9ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=8.978s decode=67.4 tok/s cached=None p99gap=28.6ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=9.002s decode=67.69 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=8.977s decode=67.9 tok/s cached=None p99gap=31.1ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=8.991s decode=67.69 tok/s cached=None p99gap=31.1ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=8.961s decode=65.46 tok/s cached=None p99gap=33.0ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=8.956s decode=69.44 tok/s cached=None p99gap=32.2ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=12.92s decode=66.19 tok/s cached=None p99gap=24.8ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=12.935s decode=67.25 tok/s cached=None p99gap=27.7ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=12.933s decode=68.21 tok/s cached=None p99gap=24.4ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=12.936s decode=68.6 tok/s cached=None p99gap=24.3ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=12.928s decode=65.44 tok/s cached=None p99gap=29.3ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=12.917s decode=68.72 tok/s cached=None p99gap=24.1ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=12.888s decode=69.38 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=12.951s decode=67.45 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=12.963s decode=68.74 tok/s cached=None p99gap=29.3ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=12.932s decode=68.34 tok/s cached=None p99gap=28.2ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=12.971s decode=69.74 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=12.949s decode=70.98 tok/s cached=None p99gap=26.5ms 
+== [07:30:11] 停止してログを保存
+保存して停止しました: results/2026-11-03_ft_hybrid/freetoken_B_s1
+合計 232
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  3 07:30 .
+drwxrwxr-x 3 yusuke-hosokawa yusuke-hosokawa   4096 11月  3 06:59 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  10582 11月  3 07:30 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  3 06:59 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  21468 11月  3 07:30 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    444 11月  3 07:30 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 102029 11月  3 07:30 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  3 06:59 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  61970 11月  3 07:30 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  3 07:00 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s1	NVFP4	code	1024	1024	0	2.48[2.48-2.50]	59.20[58.59-60.57]	436.10[434.50-436.80]	30.80[30.50-31.70]	-	50.94[50.93-50.95]	14.77[14.25-15.12]	5
+freetoken	B	s1	NVFP4	code	1024	256	0	2.49[2.48-2.50]	62.89[61.07-64.40]	435.10[433.50-437.90]	30.30[28.40-31.40]	-	50.93[50.91-50.95]	18.59[17.69-19.02]	5
+freetoken	B	s1	NVFP4	code	16384	1024	0	7.74[7.74-7.76]	60.91[60.32-61.26]	2124.20[2119.60-2124.80]	30.30[28.30-30.90]	-	50.75[50.74-50.76]	17.89[17.77-18.17]	5
+freetoken	B	s1	NVFP4	code	16384	256	0	7.74[7.73-7.75]	61.81[61.21-63.49]	2125.00[2122.30-2128.60]	28.30[26.30-30.00]	-	50.76[50.73-50.77]	23.61[22.89-23.92]	5
+freetoken	B	s1	NVFP4	code	30720	1024	0	10.20[10.19-10.22]	61.27[61.10-61.67]	3018.30[3011.80-3022.10]	29.70[29.00-32.10]	-	50.74[50.74-50.75]	18.84[18.65-19.28]	5
+freetoken	B	s1	NVFP4	code	30720	256	0	10.23[10.19-10.23]	61.83[61.20-62.61]	3009.40[3007.70-3021.80]	27.60[26.30-30.70]	-	50.75[50.73-50.76]	24.05[23.60-24.91]	5
+freetoken	B	s1	NVFP4	code	4096	1024	0	2.69[2.68-2.71]	59.59[59.45-59.85]	1544.20[1535.10-1550.80]	29.90[28.20-30.70]	-	50.88[50.86-50.92]	14.47[14.30-14.51]	5
+freetoken	B	s1	NVFP4	code	4096	256	0	2.69[2.68-2.70]	60.54[59.31-61.90]	1546.30[1537.40-1552.70]	27.60[26.80-30.90]	-	50.92[50.91-50.92]	17.52[17.04-18.12]	5
+freetoken	B	s1	NVFP4	ja	1024	1024	0	2.54[2.53-2.54]	67.13[66.94-68.73]	431.70[430.10-433.10]	32.60[31.00-33.90]	-	50.87[50.87-50.88]	12.98[12.05-13.34]	5
+freetoken	B	s1	NVFP4	ja	1024	256	0	2.53[2.53-2.54]	67.01[65.04-67.78]	432.00[428.80-433.10]	31.60[30.10-35.20]	-	50.87[50.86-50.87]	17.88[17.47-19.05]	5
+freetoken	B	s1	NVFP4	ja	16384	1024	0	8.98[8.96-9.00]	67.69[65.46-69.44]	1833.30[1827.90-1837.50]	31.10[30.20-33.00]	-	50.86[50.84-50.87]	15.86[15.13-16.43]	5
+freetoken	B	s1	NVFP4	ja	16384	256	0	8.99[8.96-9.01]	66.98[65.73-68.01]	1829.60[1826.70-1836.50]	28.60[26.00-29.40]	-	50.87[50.85-50.88]	20.68[20.00-21.12]	5
+freetoken	B	s1	NVFP4	ja	30720	1024	0	12.95[12.93-12.97]	68.74[67.45-70.98]	2377.30[2373.70-2380.80]	28.20[26.50-29.90]	-	50.84[50.83-50.85]	16.17[16.06-16.43]	5
+freetoken	B	s1	NVFP4	ja	30720	256	0	12.93[12.92-12.94]	68.21[65.44-68.72]	2380.90[2380.30-2383.70]	24.40[24.10-29.30]	-	50.84[50.80-50.85]	20.43[20.00-20.57]	5
+freetoken	B	s1	NVFP4	ja	4096	1024	0	2.92[2.90-2.92]	68.42[66.99-68.78]	1430.00[1427.80-1434.90]	30.60[26.60-31.90]	-	50.87[50.86-50.87]	12.48[12.15-12.51]	5
+freetoken	B	s1	NVFP4	ja	4096	256	0	2.91[2.90-2.93]	66.82[65.03-67.14]	1431.40[1423.90-1438.30]	30.60[27.10-34.00]	-	50.87[50.86-50.88]	17.51[16.98-17.66]	5
+######## [07:30:48] freetoken H / s1
+== [07:30:48] 環境を記録
+== [07:30:48] 起動: env FT_STATS=0 FT_STRATEGY=hybrid FT_HYBRID_FETCH=-1 bash configs/freetoken/run.sh nvfp4
+b6cb99db36e345e90e13b3516d647b62974b56db409156a4b594e4b002ae0638
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy hybrid --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 32768 --max-prefill-length 8192 --kv-reserve-tokens 32768 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only --moe-hybrid-max-fetch -1
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=68
+== [07:31:56] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/H] in=1024 out=256 warmup turn=0: TTFT=2.729s decode=65.39 tok/s cached=None p99gap=28.8ms 
+[freetoken/H] in=1024 out=256 run 0 turn=0: TTFT=2.501s decode=70.89 tok/s cached=None p99gap=22.9ms 
+[freetoken/H] in=1024 out=256 run 1 turn=0: TTFT=2.508s decode=73.14 tok/s cached=None p99gap=22.3ms 
+[freetoken/H] in=1024 out=256 run 2 turn=0: TTFT=2.508s decode=71.37 tok/s cached=None p99gap=22.9ms 
+[freetoken/H] in=1024 out=256 run 3 turn=0: TTFT=2.499s decode=71.92 tok/s cached=None p99gap=23.2ms 
+[freetoken/H] in=1024 out=256 run 4 turn=0: TTFT=2.501s decode=71.47 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=1024 out=1024 warmup turn=0: TTFT=2.507s decode=68.96 tok/s cached=None p99gap=21.7ms 
+[freetoken/H] in=1024 out=1024 run 0 turn=0: TTFT=2.497s decode=67.96 tok/s cached=None p99gap=21.6ms 
+[freetoken/H] in=1024 out=1024 run 1 turn=0: TTFT=2.503s decode=68.04 tok/s cached=None p99gap=21.7ms 
+[freetoken/H] in=1024 out=1024 run 2 turn=0: TTFT=2.488s decode=67.89 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 3 turn=0: TTFT=2.494s decode=68.47 tok/s cached=None p99gap=21.8ms 
+[freetoken/H] in=1024 out=1024 run 4 turn=0: TTFT=2.497s decode=67.49 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=4096 out=256 warmup turn=0: TTFT=2.752s decode=67.76 tok/s cached=None p99gap=22.6ms 
+[freetoken/H] in=4096 out=256 run 0 turn=0: TTFT=2.706s decode=71.07 tok/s cached=None p99gap=22.4ms 
+[freetoken/H] in=4096 out=256 run 1 turn=0: TTFT=2.73s decode=71.67 tok/s cached=None p99gap=22.5ms 
+[freetoken/H] in=4096 out=256 run 2 turn=0: TTFT=2.708s decode=71.37 tok/s cached=None p99gap=22.6ms 
+[freetoken/H] in=4096 out=256 run 3 turn=0: TTFT=2.722s decode=71.88 tok/s cached=None p99gap=21.7ms 
+[freetoken/H] in=4096 out=256 run 4 turn=0: TTFT=2.708s decode=70.49 tok/s cached=None p99gap=23.0ms 
+[freetoken/H] in=4096 out=1024 warmup turn=0: TTFT=2.738s decode=70.8 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=4096 out=1024 run 0 turn=0: TTFT=2.743s decode=70.56 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=4096 out=1024 run 1 turn=0: TTFT=2.746s decode=71.41 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=4096 out=1024 run 2 turn=0: TTFT=2.719s decode=71.68 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=4096 out=1024 run 3 turn=0: TTFT=2.744s decode=70.25 tok/s cached=None p99gap=20.9ms 
+[freetoken/H] in=4096 out=1024 run 4 turn=0: TTFT=2.748s decode=71.5 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=16384 out=256 warmup turn=0: TTFT=7.847s decode=72.97 tok/s cached=None p99gap=19.6ms 
+[freetoken/H] in=16384 out=256 run 0 turn=0: TTFT=7.812s decode=75.06 tok/s cached=None p99gap=17.9ms 
+[freetoken/H] in=16384 out=256 run 1 turn=0: TTFT=7.808s decode=74.93 tok/s cached=None p99gap=18.2ms 
+[freetoken/H] in=16384 out=256 run 2 turn=0: TTFT=7.81s decode=75.34 tok/s cached=None p99gap=17.8ms 
+[freetoken/H] in=16384 out=256 run 3 turn=0: TTFT=7.821s decode=73.2 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=16384 out=256 run 4 turn=0: TTFT=7.818s decode=72.66 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=16384 out=1024 warmup turn=0: TTFT=7.788s decode=72.11 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=16384 out=1024 run 0 turn=0: TTFT=7.817s decode=71.31 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=16384 out=1024 run 1 turn=0: TTFT=7.786s decode=71.47 tok/s cached=None p99gap=20.5ms 
+[freetoken/H] in=16384 out=1024 run 2 turn=0: TTFT=7.813s decode=72.86 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=16384 out=1024 run 3 turn=0: TTFT=7.813s decode=72.5 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=16384 out=1024 run 4 turn=0: TTFT=7.799s decode=71.52 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=30720 out=256 warmup turn=0: TTFT=10.333s decode=71.41 tok/s cached=None p99gap=21.9ms 
+[freetoken/H] in=30720 out=256 run 0 turn=0: TTFT=10.286s decode=74.04 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=30720 out=256 run 1 turn=0: TTFT=10.317s decode=74.07 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=256 run 2 turn=0: TTFT=10.331s decode=74.11 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=256 run 3 turn=0: TTFT=10.272s decode=74.15 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=256 run 4 turn=0: TTFT=10.336s decode=73.78 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=30720 out=1024 warmup turn=0: TTFT=10.275s decode=72.97 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=30720 out=1024 run 0 turn=0: TTFT=10.298s decode=72.65 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=30720 out=1024 run 1 turn=0: TTFT=10.35s decode=72.87 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=30720 out=1024 run 2 turn=0: TTFT=10.307s decode=72.96 tok/s cached=None p99gap=20.8ms 
+[freetoken/H] in=30720 out=1024 run 3 turn=0: TTFT=10.301s decode=71.83 tok/s cached=None p99gap=20.5ms 
+[freetoken/H] in=30720 out=1024 run 4 turn=0: TTFT=10.294s decode=72.77 tok/s cached=None p99gap=20.6ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/H] in=1024 out=256 warmup turn=0: TTFT=2.548s decode=71.34 tok/s cached=None p99gap=27.6ms 
+[freetoken/H] in=1024 out=256 run 0 turn=0: TTFT=2.56s decode=75.27 tok/s cached=None p99gap=24.2ms 
+[freetoken/H] in=1024 out=256 run 1 turn=0: TTFT=2.551s decode=76.51 tok/s cached=None p99gap=28.4ms 
+[freetoken/H] in=1024 out=256 run 2 turn=0: TTFT=2.558s decode=76.45 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=1024 out=256 run 3 turn=0: TTFT=2.559s decode=76.61 tok/s cached=None p99gap=28.9ms 
+[freetoken/H] in=1024 out=256 run 4 turn=0: TTFT=2.55s decode=76.45 tok/s cached=None p99gap=27.1ms 
+[freetoken/H] in=1024 out=1024 warmup turn=0: TTFT=2.558s decode=76.8 tok/s cached=None p99gap=22.1ms 
+[freetoken/H] in=1024 out=1024 run 0 turn=0: TTFT=2.558s decode=77.77 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=1024 out=1024 run 1 turn=0: TTFT=2.547s decode=76.75 tok/s cached=None p99gap=22.1ms 
+[freetoken/H] in=1024 out=1024 run 2 turn=0: TTFT=2.54s decode=77.41 tok/s cached=None p99gap=20.8ms 
+[freetoken/H] in=1024 out=1024 run 3 turn=0: TTFT=2.563s decode=77.03 tok/s cached=None p99gap=21.6ms 
+[freetoken/H] in=1024 out=1024 run 4 turn=0: TTFT=2.56s decode=76.72 tok/s cached=None p99gap=20.8ms 
+[freetoken/H] in=4096 out=256 warmup turn=0: TTFT=2.973s decode=76.11 tok/s cached=None p99gap=19.2ms 
+[freetoken/H] in=4096 out=256 run 0 turn=0: TTFT=3.004s decode=75.12 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=4096 out=256 run 1 turn=0: TTFT=2.977s decode=74.72 tok/s cached=None p99gap=20.9ms 
+[freetoken/H] in=4096 out=256 run 2 turn=0: TTFT=2.989s decode=75.28 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=4096 out=256 run 3 turn=0: TTFT=2.971s decode=75.56 tok/s cached=None p99gap=19.3ms 
+[freetoken/H] in=4096 out=256 run 4 turn=0: TTFT=2.98s decode=75.84 tok/s cached=None p99gap=19.5ms 
+[freetoken/H] in=4096 out=1024 warmup turn=0: TTFT=2.981s decode=77.33 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=4096 out=1024 run 0 turn=0: TTFT=2.994s decode=77.39 tok/s cached=None p99gap=23.1ms 
+[freetoken/H] in=4096 out=1024 run 1 turn=0: TTFT=2.985s decode=76.76 tok/s cached=None p99gap=21.8ms 
+[freetoken/H] in=4096 out=1024 run 2 turn=0: TTFT=2.982s decode=77.98 tok/s cached=None p99gap=22.8ms 
+[freetoken/H] in=4096 out=1024 run 3 turn=0: TTFT=3.002s decode=77.84 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=4096 out=1024 run 4 turn=0: TTFT=2.96s decode=78.77 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=16384 out=256 warmup turn=0: TTFT=9.367s decode=74.52 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=16384 out=256 run 0 turn=0: TTFT=9.376s decode=77.05 tok/s cached=None p99gap=21.7ms 
+[freetoken/H] in=16384 out=256 run 1 turn=0: TTFT=9.296s decode=77.52 tok/s cached=None p99gap=19.0ms 
+[freetoken/H] in=16384 out=256 run 2 turn=0: TTFT=9.235s decode=77.01 tok/s cached=None p99gap=19.1ms 
+[freetoken/H] in=16384 out=256 run 3 turn=0: TTFT=9.24s decode=76.47 tok/s cached=None p99gap=20.5ms 
+[freetoken/H] in=16384 out=256 run 4 turn=0: TTFT=9.356s decode=76.83 tok/s cached=None p99gap=19.1ms 
+[freetoken/H] in=16384 out=1024 warmup turn=0: TTFT=9.19s decode=78.32 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=16384 out=1024 run 0 turn=0: TTFT=9.215s decode=78.9 tok/s cached=None p99gap=19.6ms 
+[freetoken/H] in=16384 out=1024 run 1 turn=0: TTFT=9.262s decode=79.95 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=16384 out=1024 run 2 turn=0: TTFT=9.452s decode=77.82 tok/s cached=None p99gap=20.7ms 
+[freetoken/H] in=16384 out=1024 run 3 turn=0: TTFT=9.203s decode=77.74 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=16384 out=1024 run 4 turn=0: TTFT=9.277s decode=78.99 tok/s cached=None p99gap=20.9ms 
+[freetoken/H] in=30720 out=256 warmup turn=0: TTFT=13.41s decode=74.13 tok/s cached=None p99gap=24.7ms 
+[freetoken/H] in=30720 out=256 run 0 turn=0: TTFT=13.409s decode=74.59 tok/s cached=None p99gap=22.7ms 
+[freetoken/H] in=30720 out=256 run 1 turn=0: TTFT=13.443s decode=76.59 tok/s cached=None p99gap=19.5ms 
+[freetoken/H] in=30720 out=256 run 2 turn=0: TTFT=13.312s decode=74.85 tok/s cached=None p99gap=23.3ms 
+[freetoken/H] in=30720 out=256 run 3 turn=0: TTFT=13.391s decode=74.36 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=30720 out=256 run 4 turn=0: TTFT=13.383s decode=76.91 tok/s cached=None p99gap=22.4ms 
+[freetoken/H] in=30720 out=1024 warmup turn=0: TTFT=13.468s decode=78.8 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=30720 out=1024 run 0 turn=0: TTFT=13.556s decode=78.48 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=30720 out=1024 run 1 turn=0: TTFT=13.352s decode=78.97 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=30720 out=1024 run 2 turn=0: TTFT=13.407s decode=78.88 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 3 turn=0: TTFT=13.43s decode=77.54 tok/s cached=None p99gap=20.7ms 
+[freetoken/H] in=30720 out=1024 run 4 turn=0: TTFT=13.446s decode=77.26 tok/s cached=None p99gap=20.5ms 
+== [07:59:30] 停止してログを保存
+保存して停止しました: results/2026-11-03_ft_hybrid/freetoken_H_s1
+合計 228
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  3 07:59 .
+drwxrwxr-x 4 yusuke-hosokawa yusuke-hosokawa  4096 11月  3 07:30 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 10586 11月  3 07:59 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  3 07:30 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 21481 11月  3 07:59 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   473 11月  3 07:59 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 94395 11月  3 07:59 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  3 07:30 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 61951 11月  3 07:59 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  3 07:31 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	H	s1	NVFP4	code	1024	1024	0	2.50[2.49-2.50]	67.96[67.49-68.47]	434.60[432.20-435.80]	21.60[21.30-21.80]	-	51.77[51.77-51.78]	9.76[9.71-10.44]	5
+freetoken	H	s1	NVFP4	code	1024	256	0	2.50[2.50-2.51]	71.47[70.89-73.14]	432.60[431.00-433.70]	22.90[21.50-23.20]	-	51.77[51.68-51.79]	15.46[14.87-15.97]	5
+freetoken	H	s1	NVFP4	code	16384	1024	0	7.81[7.79-7.82]	71.52[71.31-72.86]	2104.60[2103.30-2111.90]	20.60[20.30-21.40]	-	51.72[51.71-51.72]	13.07[12.79-13.44]	5
+freetoken	H	s1	NVFP4	code	16384	256	0	7.81[7.81-7.82]	74.93[72.66-75.34]	2105.00[2102.70-2105.80]	18.20[17.80-20.40]	-	51.71[51.70-51.72]	20.42[20.07-20.93]	5
+freetoken	H	s1	NVFP4	code	30720	1024	0	10.30[10.29-10.35]	72.77[71.83-72.96]	2988.00[2974.10-2990.20]	20.60[20.00-21.40]	-	51.70[51.70-51.71]	14.86[14.42-15.56]	5
+freetoken	H	s1	NVFP4	code	30720	256	0	10.32[10.27-10.34]	74.07[73.78-74.15]	2983.20[2977.80-2996.40]	19.80[19.80-20.10]	-	51.72[51.70-51.72]	23.12[21.00-23.60]	5
+freetoken	H	s1	NVFP4	code	4096	1024	0	2.74[2.72-2.75]	71.41[70.25-71.68]	1514.10[1512.80-1527.60]	20.00[20.00-20.90]	-	51.76[51.76-51.77]	8.86[8.52-9.42]	5
+freetoken	H	s1	NVFP4	code	4096	256	0	2.71[2.71-2.73]	71.37[70.49-71.88]	1533.70[1522.20-1536.20]	22.50[21.70-23.00]	-	51.77[51.75-51.78]	14.03[13.65-14.16]	5
+freetoken	H	s1	NVFP4	ja	1024	1024	0	2.56[2.54-2.56]	77.03[76.72-77.77]	427.30[425.70-430.00]	20.80[20.60-22.10]	-	51.83[51.82-51.84]	8.21[8.12-8.52]	5
+freetoken	H	s1	NVFP4	ja	1024	256	0	2.56[2.55-2.56]	76.45[75.27-76.61]	428.70[427.30-429.80]	27.10[21.40-28.90]	-	51.84[51.83-51.84]	15.30[14.73-15.42]	5
+freetoken	H	s1	NVFP4	ja	16384	1024	0	9.26[9.20-9.45]	78.90[77.74-79.95]	1776.30[1740.60-1788.00]	20.70[19.60-21.00]	-	51.83[51.82-51.83]	12.11[11.94-12.30]	5
+freetoken	H	s1	NVFP4	ja	16384	256	0	9.30[9.23-9.38]	77.01[76.47-77.52]	1770.00[1754.90-1781.80]	19.10[19.00-21.70]	-	51.83[51.82-51.83]	19.24[18.65-19.49]	5
+freetoken	H	s1	NVFP4	ja	30720	1024	0	13.43[13.35-13.56]	78.48[77.26-78.97]	2292.40[2271.30-2305.90]	20.50[19.80-21.10]	-	51.80[51.80-51.81]	12.95[12.88-13.19]	5
+freetoken	H	s1	NVFP4	ja	30720	256	0	13.39[13.31-13.44]	74.85[74.36-76.91]	2298.90[2290.50-2313.10]	22.40[19.50-23.30]	-	51.80[51.73-51.81]	18.68[18.50-19.16]	5
+freetoken	H	s1	NVFP4	ja	4096	1024	0	2.98[2.96-3.00]	77.84[76.76-78.77]	1395.90[1386.10-1406.90]	21.80[20.30-23.10]	-	51.84[51.83-51.85]	7.44[7.23-7.56]	5
+freetoken	H	s1	NVFP4	ja	4096	256	0	2.98[2.97-3.00]	75.28[74.72-75.84]	1397.80[1387.10-1402.60]	20.20[19.30-21.50]	-	51.84[51.83-51.85]	13.51[13.42-13.54]	5
+######## [08:00:06] freetoken H / s2
+== [08:00:06] 環境を記録
+== [08:00:06] 起動: env FT_STATS=0 FT_STRATEGY=hybrid FT_HYBRID_FETCH=-1 bash configs/freetoken/run.sh nvfp4
+b8116145dca004121629dd0a0b8b120d0b4cdf1b8f7e35bd6c24c271f38d3231
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy hybrid --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 32768 --max-prefill-length 8192 --kv-reserve-tokens 32768 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only --moe-hybrid-max-fetch -1
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=68
+== [08:01:14] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/H] in=1024 out=256 warmup turn=0: TTFT=2.748s decode=64.89 tok/s cached=None p99gap=29.0ms 
+[freetoken/H] in=1024 out=256 run 0 turn=0: TTFT=2.498s decode=71.16 tok/s cached=None p99gap=22.9ms 
+[freetoken/H] in=1024 out=256 run 1 turn=0: TTFT=2.504s decode=71.62 tok/s cached=None p99gap=22.7ms 
+[freetoken/H] in=1024 out=256 run 2 turn=0: TTFT=2.499s decode=74.01 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=1024 out=256 run 3 turn=0: TTFT=2.506s decode=72.92 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=1024 out=256 run 4 turn=0: TTFT=2.489s decode=71.23 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=1024 out=1024 warmup turn=0: TTFT=2.498s decode=68.91 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 0 turn=0: TTFT=2.501s decode=68.03 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=1024 out=1024 run 1 turn=0: TTFT=2.487s decode=69.24 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=1024 out=1024 run 2 turn=0: TTFT=2.491s decode=68.18 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=1024 out=1024 run 3 turn=0: TTFT=2.507s decode=68.67 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 4 turn=0: TTFT=2.508s decode=68.82 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=4096 out=256 warmup turn=0: TTFT=2.746s decode=69.83 tok/s cached=None p99gap=22.5ms 
+[freetoken/H] in=4096 out=256 run 0 turn=0: TTFT=2.745s decode=71.65 tok/s cached=None p99gap=21.9ms 
+[freetoken/H] in=4096 out=256 run 1 turn=0: TTFT=2.716s decode=71.7 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=4096 out=256 run 2 turn=0: TTFT=2.725s decode=73.48 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=256 run 3 turn=0: TTFT=2.742s decode=72.35 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=4096 out=256 run 4 turn=0: TTFT=2.722s decode=72.75 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=4096 out=1024 warmup turn=0: TTFT=2.722s decode=71.39 tok/s cached=None p99gap=20.9ms 
+[freetoken/H] in=4096 out=1024 run 0 turn=0: TTFT=2.721s decode=71.08 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=4096 out=1024 run 1 turn=0: TTFT=2.723s decode=71.55 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=1024 run 2 turn=0: TTFT=2.716s decode=71.06 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=1024 run 3 turn=0: TTFT=2.747s decode=70.94 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=4096 out=1024 run 4 turn=0: TTFT=2.728s decode=71.76 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=16384 out=256 warmup turn=0: TTFT=7.818s decode=69.61 tok/s cached=None p99gap=22.3ms 
+[freetoken/H] in=16384 out=256 run 0 turn=0: TTFT=7.82s decode=72.81 tok/s cached=None p99gap=21.4ms 
+[freetoken/H] in=16384 out=256 run 1 turn=0: TTFT=7.778s decode=73.11 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=16384 out=256 run 2 turn=0: TTFT=7.826s decode=72.8 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=16384 out=256 run 3 turn=0: TTFT=7.804s decode=74.02 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=16384 out=256 run 4 turn=0: TTFT=7.805s decode=74.38 tok/s cached=None p99gap=20.7ms 
+[freetoken/H] in=16384 out=1024 warmup turn=0: TTFT=7.787s decode=71.2 tok/s cached=None p99gap=20.7ms 
+[freetoken/H] in=16384 out=1024 run 0 turn=0: TTFT=7.82s decode=72.28 tok/s cached=None p99gap=20.5ms 
+[freetoken/H] in=16384 out=1024 run 1 turn=0: TTFT=7.796s decode=71.67 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=16384 out=1024 run 2 turn=0: TTFT=7.793s decode=71.17 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=16384 out=1024 run 3 turn=0: TTFT=7.778s decode=71.4 tok/s cached=None p99gap=21.2ms 
+[freetoken/H] in=16384 out=1024 run 4 turn=0: TTFT=7.784s decode=71.81 tok/s cached=None p99gap=19.7ms 
+[freetoken/H] in=30720 out=256 warmup turn=0: TTFT=10.291s decode=71.23 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=30720 out=256 run 0 turn=0: TTFT=10.29s decode=74.15 tok/s cached=None p99gap=19.4ms 
+[freetoken/H] in=30720 out=256 run 1 turn=0: TTFT=10.28s decode=74.32 tok/s cached=None p99gap=18.0ms 
+[freetoken/H] in=30720 out=256 run 2 turn=0: TTFT=10.31s decode=74.7 tok/s cached=None p99gap=18.7ms 
+[freetoken/H] in=30720 out=256 run 3 turn=0: TTFT=10.312s decode=74.46 tok/s cached=None p99gap=19.4ms 
+[freetoken/H] in=30720 out=256 run 4 turn=0: TTFT=10.297s decode=74.74 tok/s cached=None p99gap=18.7ms 
+[freetoken/H] in=30720 out=1024 warmup turn=0: TTFT=10.341s decode=72.81 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 0 turn=0: TTFT=10.299s decode=72.71 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=30720 out=1024 run 1 turn=0: TTFT=10.31s decode=72.87 tok/s cached=None p99gap=21.0ms 
+[freetoken/H] in=30720 out=1024 run 2 turn=0: TTFT=10.306s decode=72.92 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 3 turn=0: TTFT=10.309s decode=72.6 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=30720 out=1024 run 4 turn=0: TTFT=10.308s decode=72.11 tok/s cached=None p99gap=20.9ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/H] in=1024 out=256 warmup turn=0: TTFT=2.546s decode=71.97 tok/s cached=None p99gap=29.7ms 
+[freetoken/H] in=1024 out=256 run 0 turn=0: TTFT=2.561s decode=75.71 tok/s cached=None p99gap=23.7ms 
+[freetoken/H] in=1024 out=256 run 1 turn=0: TTFT=2.562s decode=77.09 tok/s cached=None p99gap=23.2ms 
+[freetoken/H] in=1024 out=256 run 2 turn=0: TTFT=2.553s decode=77.34 tok/s cached=None p99gap=26.7ms 
+[freetoken/H] in=1024 out=256 run 3 turn=0: TTFT=2.549s decode=75.89 tok/s cached=None p99gap=24.7ms 
+[freetoken/H] in=1024 out=256 run 4 turn=0: TTFT=2.55s decode=76.83 tok/s cached=None p99gap=23.5ms 
+[freetoken/H] in=1024 out=1024 warmup turn=0: TTFT=2.546s decode=77.15 tok/s cached=None p99gap=21.7ms 
+[freetoken/H] in=1024 out=1024 run 0 turn=0: TTFT=2.562s decode=77.09 tok/s cached=None p99gap=21.9ms 
+[freetoken/H] in=1024 out=1024 run 1 turn=0: TTFT=2.541s decode=76.95 tok/s cached=None p99gap=24.8ms 
+[freetoken/H] in=1024 out=1024 run 2 turn=0: TTFT=2.552s decode=77.65 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=1024 out=1024 run 3 turn=0: TTFT=2.561s decode=77.25 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=1024 out=1024 run 4 turn=0: TTFT=2.534s decode=78.53 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=4096 out=256 warmup turn=0: TTFT=2.989s decode=74.3 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=4096 out=256 run 0 turn=0: TTFT=2.975s decode=75.78 tok/s cached=None p99gap=25.8ms 
+[freetoken/H] in=4096 out=256 run 1 turn=0: TTFT=2.965s decode=75.92 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=4096 out=256 run 2 turn=0: TTFT=2.986s decode=76.44 tok/s cached=None p99gap=22.2ms 
+[freetoken/H] in=4096 out=256 run 3 turn=0: TTFT=2.961s decode=77.09 tok/s cached=None p99gap=21.8ms 
+[freetoken/H] in=4096 out=256 run 4 turn=0: TTFT=2.965s decode=75.68 tok/s cached=None p99gap=25.0ms 
+[freetoken/H] in=4096 out=1024 warmup turn=0: TTFT=2.981s decode=78.12 tok/s cached=None p99gap=20.6ms 
+[freetoken/H] in=4096 out=1024 run 0 turn=0: TTFT=2.978s decode=78.0 tok/s cached=None p99gap=21.5ms 
+[freetoken/H] in=4096 out=1024 run 1 turn=0: TTFT=2.975s decode=77.83 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=4096 out=1024 run 2 turn=0: TTFT=2.985s decode=78.08 tok/s cached=None p99gap=20.4ms 
+[freetoken/H] in=4096 out=1024 run 3 turn=0: TTFT=2.984s decode=78.57 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=4096 out=1024 run 4 turn=0: TTFT=2.972s decode=77.87 tok/s cached=None p99gap=22.1ms 
+[freetoken/H] in=16384 out=256 warmup turn=0: TTFT=9.229s decode=75.99 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=16384 out=256 run 0 turn=0: TTFT=9.317s decode=76.13 tok/s cached=None p99gap=19.1ms 
+[freetoken/H] in=16384 out=256 run 1 turn=0: TTFT=9.21s decode=76.43 tok/s cached=None p99gap=19.1ms 
+[freetoken/H] in=16384 out=256 run 2 turn=0: TTFT=9.234s decode=76.54 tok/s cached=None p99gap=19.0ms 
+[freetoken/H] in=16384 out=256 run 3 turn=0: TTFT=9.267s decode=76.71 tok/s cached=None p99gap=19.7ms 
+[freetoken/H] in=16384 out=256 run 4 turn=0: TTFT=9.271s decode=77.62 tok/s cached=None p99gap=20.2ms 
+[freetoken/H] in=16384 out=1024 warmup turn=0: TTFT=9.218s decode=78.79 tok/s cached=None p99gap=18.8ms 
+[freetoken/H] in=16384 out=1024 run 0 turn=0: TTFT=9.228s decode=78.07 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=16384 out=1024 run 1 turn=0: TTFT=9.248s decode=79.68 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=16384 out=1024 run 2 turn=0: TTFT=9.221s decode=79.12 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=16384 out=1024 run 3 turn=0: TTFT=9.245s decode=78.54 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=16384 out=1024 run 4 turn=0: TTFT=9.196s decode=79.13 tok/s cached=None p99gap=20.8ms 
+[freetoken/H] in=30720 out=256 warmup turn=0: TTFT=13.415s decode=75.95 tok/s cached=None p99gap=21.1ms 
+[freetoken/H] in=30720 out=256 run 0 turn=0: TTFT=13.505s decode=77.35 tok/s cached=None p99gap=19.9ms 
+[freetoken/H] in=30720 out=256 run 1 turn=0: TTFT=13.377s decode=76.74 tok/s cached=None p99gap=22.5ms 
+[freetoken/H] in=30720 out=256 run 2 turn=0: TTFT=13.367s decode=76.33 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=30720 out=256 run 3 turn=0: TTFT=13.423s decode=76.68 tok/s cached=None p99gap=25.3ms 
+[freetoken/H] in=30720 out=256 run 4 turn=0: TTFT=13.306s decode=76.95 tok/s cached=None p99gap=20.3ms 
+[freetoken/H] in=30720 out=1024 warmup turn=0: TTFT=13.37s decode=78.99 tok/s cached=None p99gap=19.8ms 
+[freetoken/H] in=30720 out=1024 run 0 turn=0: TTFT=13.331s decode=79.22 tok/s cached=None p99gap=20.0ms 
+[freetoken/H] in=30720 out=1024 run 1 turn=0: TTFT=13.487s decode=77.23 tok/s cached=None p99gap=21.3ms 
+[freetoken/H] in=30720 out=1024 run 2 turn=0: TTFT=13.478s decode=79.02 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=30720 out=1024 run 3 turn=0: TTFT=13.487s decode=79.84 tok/s cached=None p99gap=20.1ms 
+[freetoken/H] in=30720 out=1024 run 4 turn=0: TTFT=13.392s decode=79.52 tok/s cached=None p99gap=20.2ms 
+== [08:28:44] 停止してログを保存
+保存して停止しました: results/2026-11-03_ft_hybrid/freetoken_H_s2
+合計 224
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa  4096 11月  3 08:28 .
+drwxrwxr-x 5 yusuke-hosokawa yusuke-hosokawa  4096 11月  3 08:00 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 10589 11月  3 08:28 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  1867 11月  3 08:00 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 21603 11月  3 08:28 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   473 11月  3 08:28 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 94170 11月  3 08:28 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    41 11月  3 08:00 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 61950 11月  3 08:28 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    17 11月  3 08:01 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	H	s2	NVFP4	code	1024	1024	0	2.50[2.49-2.51]	68.67[68.03-69.24]	433.10[432.20-435.80]	21.30[21.10-21.50]	-	51.80[51.79-51.81]	10.06[9.64-10.31]	5
+freetoken	H	s2	NVFP4	code	1024	256	0	2.50[2.49-2.51]	71.62[71.16-74.01]	433.60[431.70-436.00]	22.20[21.50-22.90]	-	51.78[51.64-51.82]	15.04[14.92-15.29]	5
+freetoken	H	s2	NVFP4	code	16384	1024	0	7.79[7.78-7.82]	71.67[71.17-72.28]	2110.10[2102.60-2114.00]	20.50[19.70-21.20]	-	51.75[51.74-51.75]	13.34[12.98-13.56]	5
+freetoken	H	s2	NVFP4	code	16384	256	0	7.80[7.78-7.83]	73.11[72.80-74.38]	2106.60[2101.10-2114.00]	20.70[20.00-21.40]	-	51.75[51.74-51.76]	20.42[20.11-21.27]	5
+freetoken	H	s2	NVFP4	code	30720	1024	0	10.31[10.30-10.31]	72.71[72.11-72.92]	2985.70[2985.50-2988.30]	20.00[19.80-21.00]	-	51.73[51.73-51.75]	14.86[14.51-15.17]	5
+freetoken	H	s2	NVFP4	code	30720	256	0	10.30[10.28-10.31]	74.46[74.15-74.74]	2989.00[2985.00-2993.70]	18.70[18.00-19.40]	-	51.75[51.74-51.75]	21.55[21.45-22.89]	5
+freetoken	H	s2	NVFP4	code	4096	1024	0	2.72[2.72-2.75]	71.08[70.94-71.76]	1525.40[1513.80-1527.70]	20.30[20.10-20.40]	-	51.80[51.79-51.80]	8.62[8.41-9.69]	5
+freetoken	H	s2	NVFP4	code	4096	256	0	2.73[2.72-2.75]	72.35[71.65-73.48]	1524.50[1514.20-1529.50]	20.10[19.90-21.90]	-	51.80[51.78-51.81]	13.88[13.62-14.65]	5
+freetoken	H	s2	NVFP4	ja	1024	1024	0	2.55[2.53-2.56]	77.25[76.95-78.53]	429.70[425.00-432.60]	21.90[20.10-24.80]	-	51.87[51.86-51.88]	8.06[7.60-8.15]	5
+freetoken	H	s2	NVFP4	ja	1024	256	0	2.55[2.55-2.56]	76.83[75.71-77.34]	428.70[425.90-429.40]	23.70[23.20-26.70]	-	51.86[51.85-51.88]	15.30[14.78-15.60]	5
+freetoken	H	s2	NVFP4	ja	16384	1024	0	9.23[9.20-9.25]	79.12[78.07-79.68]	1782.80[1779.60-1789.50]	20.10[19.80-21.10]	-	51.86[51.85-51.88]	12.02[11.88-12.38]	5
+freetoken	H	s2	NVFP4	ja	16384	256	0	9.27[9.21-9.32]	76.54[76.13-77.62]	1775.40[1766.20-1786.80]	19.10[19.00-20.20]	-	51.87[51.86-51.88]	18.75[18.14-19.22]	5
+freetoken	H	s2	NVFP4	ja	30720	1024	0	13.48[13.33-13.49]	79.22[77.23-79.84]	2284.50[2282.90-2309.80]	20.10[20.00-21.30]	-	51.86[51.84-51.87]	13.18[12.83-13.29]	5
+freetoken	H	s2	NVFP4	ja	30720	256	0	13.38[13.31-13.51]	76.74[76.33-77.35]	2301.80[2279.90-2314.00]	20.30[19.90-25.30]	-	51.86[51.85-51.87]	18.84[17.99-19.20]	5
+freetoken	H	s2	NVFP4	ja	4096	1024	0	2.98[2.97-2.98]	78.00[77.83-78.57]	1399.10[1395.50-1400.70]	20.40[20.30-22.10]	-	51.87[51.86-51.89]	7.41[6.87-7.46]	5
+freetoken	H	s2	NVFP4	ja	4096	256	0	2.96[2.96-2.99]	75.92[75.68-77.09]	1404.40[1395.40-1407.00]	22.20[21.30-25.80]	-	51.88[51.87-51.88]	13.27[12.88-13.49]	5
+######## [08:29:21] freetoken B / s2
+== [08:29:21] 環境を記録
+== [08:29:21] 起動: env FT_STATS=0 bash configs/freetoken/run.sh nvfp4
+f0635f6d750b9ea4e41bdd39e2d1eb771fc6f9a74d7372ac667d6d32b96873d3
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy offload --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 32768 --max-prefill-length 8192 --kv-reserve-tokens 32768 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=68
+== [08:30:29] 計測（PCIe・GPU を1秒ごとに記録）
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (656231 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.732s decode=58.95 tok/s cached=None p99gap=35.8ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.498s decode=63.78 tok/s cached=None p99gap=28.7ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.493s decode=62.22 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.49s decode=64.47 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.502s decode=61.28 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.492s decode=62.3 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.512s decode=59.41 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.499s decode=57.12 tok/s cached=None p99gap=31.9ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.513s decode=59.36 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.488s decode=58.81 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.513s decode=59.68 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.504s decode=59.26 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=2.753s decode=60.56 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=2.722s decode=62.19 tok/s cached=None p99gap=28.4ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.749s decode=61.64 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=2.736s decode=60.39 tok/s cached=None p99gap=28.1ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=2.745s decode=61.86 tok/s cached=None p99gap=28.5ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.723s decode=60.98 tok/s cached=None p99gap=29.1ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.736s decode=59.59 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.733s decode=60.26 tok/s cached=None p99gap=31.2ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=2.737s decode=60.0 tok/s cached=None p99gap=30.1ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.722s decode=59.61 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.728s decode=60.28 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=2.754s decode=60.34 tok/s cached=None p99gap=29.2ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=7.878s decode=61.01 tok/s cached=None p99gap=31.2ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=7.813s decode=60.8 tok/s cached=None p99gap=28.9ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=7.819s decode=63.34 tok/s cached=None p99gap=27.4ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=7.812s decode=62.13 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=7.83s decode=62.62 tok/s cached=None p99gap=26.5ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=7.84s decode=63.41 tok/s cached=None p99gap=26.8ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=7.8s decode=60.34 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=7.809s decode=61.48 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=7.809s decode=60.86 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=7.816s decode=60.76 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=7.869s decode=60.94 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=7.834s decode=60.3 tok/s cached=None p99gap=29.2ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=10.36s decode=59.42 tok/s cached=None p99gap=30.5ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=10.35s decode=63.19 tok/s cached=None p99gap=29.9ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=10.333s decode=61.85 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=10.332s decode=63.32 tok/s cached=None p99gap=29.4ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=10.292s decode=61.36 tok/s cached=None p99gap=28.8ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=10.323s decode=61.31 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=10.339s decode=61.38 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=10.371s decode=60.96 tok/s cached=None p99gap=28.1ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=10.321s decode=61.23 tok/s cached=None p99gap=32.0ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=10.319s decode=60.56 tok/s cached=None p99gap=30.7ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=10.311s decode=61.07 tok/s cached=None p99gap=30.8ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=10.348s decode=60.58 tok/s cached=None p99gap=30.3ms 
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (296190 > 262144). Running this sequence through the model will result in indexing errors
+[freetoken/B] in=1024 out=256 warmup turn=0: TTFT=2.543s decode=62.42 tok/s cached=None p99gap=32.8ms 
+[freetoken/B] in=1024 out=256 run 0 turn=0: TTFT=2.555s decode=67.59 tok/s cached=None p99gap=32.4ms 
+[freetoken/B] in=1024 out=256 run 1 turn=0: TTFT=2.561s decode=67.14 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=1024 out=256 run 2 turn=0: TTFT=2.556s decode=67.48 tok/s cached=None p99gap=32.4ms 
+[freetoken/B] in=1024 out=256 run 3 turn=0: TTFT=2.564s decode=66.43 tok/s cached=None p99gap=29.5ms 
+[freetoken/B] in=1024 out=256 run 4 turn=0: TTFT=2.575s decode=67.06 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=1024 out=1024 warmup turn=0: TTFT=2.558s decode=66.83 tok/s cached=None p99gap=31.9ms 
+[freetoken/B] in=1024 out=1024 run 0 turn=0: TTFT=2.56s decode=67.75 tok/s cached=None p99gap=32.0ms 
+[freetoken/B] in=1024 out=1024 run 1 turn=0: TTFT=2.543s decode=67.25 tok/s cached=None p99gap=32.3ms 
+[freetoken/B] in=1024 out=1024 run 2 turn=0: TTFT=2.547s decode=67.32 tok/s cached=None p99gap=31.4ms 
+[freetoken/B] in=1024 out=1024 run 3 turn=0: TTFT=2.57s decode=67.2 tok/s cached=None p99gap=30.4ms 
+[freetoken/B] in=1024 out=1024 run 4 turn=0: TTFT=2.56s decode=68.26 tok/s cached=None p99gap=32.0ms 
+[freetoken/B] in=4096 out=256 warmup turn=0: TTFT=2.981s decode=67.45 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=4096 out=256 run 0 turn=0: TTFT=2.994s decode=66.91 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=4096 out=256 run 1 turn=0: TTFT=2.977s decode=67.4 tok/s cached=None p99gap=29.7ms 
+[freetoken/B] in=4096 out=256 run 2 turn=0: TTFT=2.956s decode=66.88 tok/s cached=None p99gap=30.2ms 
+[freetoken/B] in=4096 out=256 run 3 turn=0: TTFT=2.97s decode=66.96 tok/s cached=None p99gap=26.0ms 
+[freetoken/B] in=4096 out=256 run 4 turn=0: TTFT=2.977s decode=64.02 tok/s cached=None p99gap=31.5ms 
+[freetoken/B] in=4096 out=1024 warmup turn=0: TTFT=2.966s decode=68.28 tok/s cached=None p99gap=32.2ms 
+[freetoken/B] in=4096 out=1024 run 0 turn=0: TTFT=2.98s decode=67.54 tok/s cached=None p99gap=30.6ms 
+[freetoken/B] in=4096 out=1024 run 1 turn=0: TTFT=3.003s decode=68.26 tok/s cached=None p99gap=33.0ms 
+[freetoken/B] in=4096 out=1024 run 2 turn=0: TTFT=2.997s decode=68.22 tok/s cached=None p99gap=30.3ms 
+[freetoken/B] in=4096 out=1024 run 3 turn=0: TTFT=2.974s decode=68.89 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=4096 out=1024 run 4 turn=0: TTFT=3.023s decode=68.85 tok/s cached=None p99gap=31.6ms 
+[freetoken/B] in=16384 out=256 warmup turn=0: TTFT=9.296s decode=67.01 tok/s cached=None p99gap=30.0ms 
+[freetoken/B] in=16384 out=256 run 0 turn=0: TTFT=9.422s decode=65.98 tok/s cached=None p99gap=27.4ms 
+[freetoken/B] in=16384 out=256 run 1 turn=0: TTFT=9.236s decode=66.47 tok/s cached=None p99gap=29.3ms 
+[freetoken/B] in=16384 out=256 run 2 turn=0: TTFT=9.233s decode=65.63 tok/s cached=None p99gap=29.8ms 
+[freetoken/B] in=16384 out=256 run 3 turn=0: TTFT=9.272s decode=66.82 tok/s cached=None p99gap=26.8ms 
+[freetoken/B] in=16384 out=256 run 4 turn=0: TTFT=9.252s decode=65.81 tok/s cached=None p99gap=29.0ms 
+[freetoken/B] in=16384 out=1024 warmup turn=0: TTFT=9.248s decode=65.92 tok/s cached=None p99gap=31.7ms 
+[freetoken/B] in=16384 out=1024 run 0 turn=0: TTFT=9.285s decode=69.01 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=16384 out=1024 run 1 turn=0: TTFT=9.305s decode=67.13 tok/s cached=None p99gap=32.5ms 
+[freetoken/B] in=16384 out=1024 run 2 turn=0: TTFT=9.248s decode=66.61 tok/s cached=None p99gap=33.9ms 
+[freetoken/B] in=16384 out=1024 run 3 turn=0: TTFT=9.283s decode=70.59 tok/s cached=None p99gap=27.8ms 
+[freetoken/B] in=16384 out=1024 run 4 turn=0: TTFT=9.317s decode=70.0 tok/s cached=None p99gap=28.8ms 
+[freetoken/B] in=30720 out=256 warmup turn=0: TTFT=13.439s decode=66.68 tok/s cached=None p99gap=30.9ms 
+[freetoken/B] in=30720 out=256 run 0 turn=0: TTFT=13.419s decode=65.26 tok/s cached=None p99gap=27.7ms 
+[freetoken/B] in=30720 out=256 run 1 turn=0: TTFT=13.478s decode=68.0 tok/s cached=None p99gap=26.7ms 
+[freetoken/B] in=30720 out=256 run 2 turn=0: TTFT=13.452s decode=65.86 tok/s cached=None p99gap=28.2ms 
+[freetoken/B] in=30720 out=256 run 3 turn=0: TTFT=13.408s decode=70.13 tok/s cached=None p99gap=23.8ms 
+[freetoken/B] in=30720 out=256 run 4 turn=0: TTFT=13.557s decode=67.52 tok/s cached=None p99gap=25.0ms 
+[freetoken/B] in=30720 out=1024 warmup turn=0: TTFT=13.442s decode=69.71 tok/s cached=None p99gap=28.3ms 
+[freetoken/B] in=30720 out=1024 run 0 turn=0: TTFT=13.405s decode=66.22 tok/s cached=None p99gap=29.1ms 
+[freetoken/B] in=30720 out=1024 run 1 turn=0: TTFT=13.553s decode=67.89 tok/s cached=None p99gap=32.4ms 
+[freetoken/B] in=30720 out=1024 run 2 turn=0: TTFT=13.411s decode=69.38 tok/s cached=None p99gap=27.0ms 
+[freetoken/B] in=30720 out=1024 run 3 turn=0: TTFT=13.442s decode=68.64 tok/s cached=None p99gap=27.1ms 
+[freetoken/B] in=30720 out=1024 run 4 turn=0: TTFT=13.646s decode=69.99 tok/s cached=None p99gap=27.0ms 
+== [09:00:15] 停止してログを保存
+保存して停止しました: results/2026-11-03_ft_hybrid/freetoken_B_s2
+合計 236
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  3 09:00 .
+drwxrwxr-x 6 yusuke-hosokawa yusuke-hosokawa   4096 11月  3 08:29 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  10586 11月  3 09:00 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  3 08:29 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  21745 11月  3 09:00 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    444 11月  3 09:00 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 102701 11月  3 09:00 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  3 08:29 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  61986 11月  3 09:00 results.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  3 08:30 startup.txt
+== 集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s2	NVFP4	code	1024	1024	0	2.50[2.49-2.51]	59.26[57.12-59.68]	432.10[430.60-434.80]	30.90[30.20-31.90]	-	51.30[51.29-51.31]	14.65[14.31-14.92]	5
+freetoken	B	s2	NVFP4	code	1024	256	0	2.49[2.49-2.50]	62.30[61.28-64.47]	433.20[432.90-435.00]	30.10[28.70-30.60]	-	51.15[50.94-51.31]	18.36[17.89-18.75]	5
+freetoken	B	s2	NVFP4	code	16384	1024	0	7.82[7.81-7.87]	60.86[60.30-61.48]	2103.40[2089.70-2105.90]	29.70[29.20-30.80]	-	51.25[51.25-51.25]	17.09[16.97-17.57]	5
+freetoken	B	s2	NVFP4	code	16384	256	0	7.82[7.81-7.84]	62.62[60.80-63.41]	2103.10[2097.60-2104.80]	27.40[26.50-29.40]	-	51.26[51.25-51.28]	22.71[21.90-22.87]	5
+freetoken	B	s2	NVFP4	code	30720	1024	0	10.32[10.31-10.37]	60.96[60.56-61.23]	2982.20[2967.90-2984.70]	30.70[28.10-32.00]	-	51.25[51.24-51.25]	18.31[17.72-18.70]	5
+freetoken	B	s2	NVFP4	code	30720	256	0	10.33[10.29-10.35]	61.85[61.31-63.32]	2979.40[2973.80-2991.00]	29.90[28.80-30.70]	-	51.25[51.25-51.27]	24.21[23.27-24.30]	5
+freetoken	B	s2	NVFP4	code	4096	1024	0	2.73[2.72-2.75]	60.26[59.61-60.34]	1520.00[1508.60-1526.10]	30.10[29.20-31.20]	-	51.30[51.28-51.31]	14.15[13.74-14.85]	5
+freetoken	B	s2	NVFP4	code	4096	256	0	2.74[2.72-2.75]	61.64[60.39-62.19]	1517.70[1512.10-1527.30]	28.50[28.10-29.10]	-	51.31[51.30-51.32]	17.46[16.86-17.88]	5
+freetoken	B	s2	NVFP4	ja	1024	1024	0	2.56[2.54-2.57]	67.32[67.20-68.26]	427.00[426.00-430.60]	32.00[30.40-32.30]	-	51.38[51.38-51.40]	12.86[12.79-13.40]	5
+freetoken	B	s2	NVFP4	ja	1024	256	0	2.56[2.56-2.58]	67.14[66.43-67.59]	428.00[424.50-428.40]	31.50[29.50-32.40]	-	51.38[51.36-51.39]	18.45[18.15-18.61]	5
+freetoken	B	s2	NVFP4	ja	16384	1024	0	9.29[9.25-9.32]	69.01[66.61-70.59]	1772.60[1765.60-1779.40]	28.80[27.80-33.90]	-	51.37[51.36-51.38]	15.34[14.87-15.38]	5
+freetoken	B	s2	NVFP4	ja	16384	256	0	9.25[9.23-9.42]	65.98[65.63-66.82]	1778.50[1746.50-1782.20]	29.00[26.80-29.80]	-	51.38[51.37-51.39]	19.69[19.02-20.59]	5
+freetoken	B	s2	NVFP4	ja	30720	1024	0	13.44[13.40-13.65]	68.64[66.22-69.99]	2290.60[2256.20-2297.10]	27.10[27.00-32.40]	-	51.36[51.36-51.37]	15.63[15.27-15.89]	5
+freetoken	B	s2	NVFP4	ja	30720	256	0	13.45[13.41-13.56]	67.52[65.26-70.13]	2288.90[2271.10-2296.10]	26.70[23.80-28.20]	-	51.35[51.32-51.37]	19.29[18.91-19.71]	5
+freetoken	B	s2	NVFP4	ja	4096	1024	0	3.00[2.97-3.02]	68.26[67.54-68.89]	1390.00[1379.40-1401.00]	30.60[30.00-33.00]	-	51.38[51.37-51.39]	11.97[11.61-12.68]	5
+freetoken	B	s2	NVFP4	ja	4096	256	0	2.98[2.96-2.99]	66.91[64.02-67.40]	1399.90[1392.40-1408.90]	30.20[26.00-31.50]	-	51.39[51.37-51.39]	15.97[14.64-16.57]	5
+######## 速度の集計
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	B	s1	NVFP4	code	1024	1024	0	2.48[2.48-2.50]	59.20[58.59-60.57]	436.10[434.50-436.80]	30.80[30.50-31.70]	-	50.94[50.93-50.95]	14.77[14.25-15.12]	5
+freetoken	B	s1	NVFP4	code	1024	256	0	2.49[2.48-2.50]	62.89[61.07-64.40]	435.10[433.50-437.90]	30.30[28.40-31.40]	-	50.93[50.91-50.95]	18.59[17.69-19.02]	5
+freetoken	B	s1	NVFP4	code	16384	1024	0	7.74[7.74-7.76]	60.91[60.32-61.26]	2124.20[2119.60-2124.80]	30.30[28.30-30.90]	-	50.75[50.74-50.76]	17.89[17.77-18.17]	5
+freetoken	B	s1	NVFP4	code	16384	256	0	7.74[7.73-7.75]	61.81[61.21-63.49]	2125.00[2122.30-2128.60]	28.30[26.30-30.00]	-	50.76[50.73-50.77]	23.61[22.89-23.92]	5
+freetoken	B	s1	NVFP4	code	30720	1024	0	10.20[10.19-10.22]	61.27[61.10-61.67]	3018.30[3011.80-3022.10]	29.70[29.00-32.10]	-	50.74[50.74-50.75]	18.84[18.65-19.28]	5
+freetoken	B	s1	NVFP4	code	30720	256	0	10.23[10.19-10.23]	61.83[61.20-62.61]	3009.40[3007.70-3021.80]	27.60[26.30-30.70]	-	50.75[50.73-50.76]	24.05[23.60-24.91]	5
+freetoken	B	s1	NVFP4	code	4096	1024	0	2.69[2.68-2.71]	59.59[59.45-59.85]	1544.20[1535.10-1550.80]	29.90[28.20-30.70]	-	50.88[50.86-50.92]	14.47[14.30-14.51]	5
+freetoken	B	s1	NVFP4	code	4096	256	0	2.69[2.68-2.70]	60.54[59.31-61.90]	1546.30[1537.40-1552.70]	27.60[26.80-30.90]	-	50.92[50.91-50.92]	17.52[17.04-18.12]	5
+freetoken	B	s1	NVFP4	ja	1024	1024	0	2.54[2.53-2.54]	67.13[66.94-68.73]	431.70[430.10-433.10]	32.60[31.00-33.90]	-	50.87[50.87-50.88]	12.98[12.05-13.34]	5
+freetoken	B	s1	NVFP4	ja	1024	256	0	2.53[2.53-2.54]	67.01[65.04-67.78]	432.00[428.80-433.10]	31.60[30.10-35.20]	-	50.87[50.86-50.87]	17.88[17.47-19.05]	5
+freetoken	B	s1	NVFP4	ja	16384	1024	0	8.98[8.96-9.00]	67.69[65.46-69.44]	1833.30[1827.90-1837.50]	31.10[30.20-33.00]	-	50.86[50.84-50.87]	15.86[15.13-16.43]	5
+freetoken	B	s1	NVFP4	ja	16384	256	0	8.99[8.96-9.01]	66.98[65.73-68.01]	1829.60[1826.70-1836.50]	28.60[26.00-29.40]	-	50.87[50.85-50.88]	20.68[20.00-21.12]	5
+freetoken	B	s1	NVFP4	ja	30720	1024	0	12.95[12.93-12.97]	68.74[67.45-70.98]	2377.30[2373.70-2380.80]	28.20[26.50-29.90]	-	50.84[50.83-50.85]	16.17[16.06-16.43]	5
+freetoken	B	s1	NVFP4	ja	30720	256	0	12.93[12.92-12.94]	68.21[65.44-68.72]	2380.90[2380.30-2383.70]	24.40[24.10-29.30]	-	50.84[50.80-50.85]	20.43[20.00-20.57]	5
+freetoken	B	s1	NVFP4	ja	4096	1024	0	2.92[2.90-2.92]	68.42[66.99-68.78]	1430.00[1427.80-1434.90]	30.60[26.60-31.90]	-	50.87[50.86-50.87]	12.48[12.15-12.51]	5
+freetoken	B	s1	NVFP4	ja	4096	256	0	2.91[2.90-2.93]	66.82[65.03-67.14]	1431.40[1423.90-1438.30]	30.60[27.10-34.00]	-	50.87[50.86-50.88]	17.51[16.98-17.66]	5
+freetoken	B	s2	NVFP4	code	1024	1024	0	2.50[2.49-2.51]	59.26[57.12-59.68]	432.10[430.60-434.80]	30.90[30.20-31.90]	-	51.30[51.29-51.31]	14.65[14.31-14.92]	5
+freetoken	B	s2	NVFP4	code	1024	256	0	2.49[2.49-2.50]	62.30[61.28-64.47]	433.20[432.90-435.00]	30.10[28.70-30.60]	-	51.15[50.94-51.31]	18.36[17.89-18.75]	5
+freetoken	B	s2	NVFP4	code	16384	1024	0	7.82[7.81-7.87]	60.86[60.30-61.48]	2103.40[2089.70-2105.90]	29.70[29.20-30.80]	-	51.25[51.25-51.25]	17.09[16.97-17.57]	5
+freetoken	B	s2	NVFP4	code	16384	256	0	7.82[7.81-7.84]	62.62[60.80-63.41]	2103.10[2097.60-2104.80]	27.40[26.50-29.40]	-	51.26[51.25-51.28]	22.71[21.90-22.87]	5
+freetoken	B	s2	NVFP4	code	30720	1024	0	10.32[10.31-10.37]	60.96[60.56-61.23]	2982.20[2967.90-2984.70]	30.70[28.10-32.00]	-	51.25[51.24-51.25]	18.31[17.72-18.70]	5
+freetoken	B	s2	NVFP4	code	30720	256	0	10.33[10.29-10.35]	61.85[61.31-63.32]	2979.40[2973.80-2991.00]	29.90[28.80-30.70]	-	51.25[51.25-51.27]	24.21[23.27-24.30]	5
+freetoken	B	s2	NVFP4	code	4096	1024	0	2.73[2.72-2.75]	60.26[59.61-60.34]	1520.00[1508.60-1526.10]	30.10[29.20-31.20]	-	51.30[51.28-51.31]	14.15[13.74-14.85]	5
+freetoken	B	s2	NVFP4	code	4096	256	0	2.74[2.72-2.75]	61.64[60.39-62.19]	1517.70[1512.10-1527.30]	28.50[28.10-29.10]	-	51.31[51.30-51.32]	17.46[16.86-17.88]	5
+freetoken	B	s2	NVFP4	ja	1024	1024	0	2.56[2.54-2.57]	67.32[67.20-68.26]	427.00[426.00-430.60]	32.00[30.40-32.30]	-	51.38[51.38-51.40]	12.86[12.79-13.40]	5
+freetoken	B	s2	NVFP4	ja	1024	256	0	2.56[2.56-2.58]	67.14[66.43-67.59]	428.00[424.50-428.40]	31.50[29.50-32.40]	-	51.38[51.36-51.39]	18.45[18.15-18.61]	5
+freetoken	B	s2	NVFP4	ja	16384	1024	0	9.29[9.25-9.32]	69.01[66.61-70.59]	1772.60[1765.60-1779.40]	28.80[27.80-33.90]	-	51.37[51.36-51.38]	15.34[14.87-15.38]	5
+freetoken	B	s2	NVFP4	ja	16384	256	0	9.25[9.23-9.42]	65.98[65.63-66.82]	1778.50[1746.50-1782.20]	29.00[26.80-29.80]	-	51.38[51.37-51.39]	19.69[19.02-20.59]	5
+freetoken	B	s2	NVFP4	ja	30720	1024	0	13.44[13.40-13.65]	68.64[66.22-69.99]	2290.60[2256.20-2297.10]	27.10[27.00-32.40]	-	51.36[51.36-51.37]	15.63[15.27-15.89]	5
+freetoken	B	s2	NVFP4	ja	30720	256	0	13.45[13.41-13.56]	67.52[65.26-70.13]	2288.90[2271.10-2296.10]	26.70[23.80-28.20]	-	51.35[51.32-51.37]	19.29[18.91-19.71]	5
+freetoken	B	s2	NVFP4	ja	4096	1024	0	3.00[2.97-3.02]	68.26[67.54-68.89]	1390.00[1379.40-1401.00]	30.60[30.00-33.00]	-	51.38[51.37-51.39]	11.97[11.61-12.68]	5
+freetoken	B	s2	NVFP4	ja	4096	256	0	2.98[2.96-2.99]	66.91[64.02-67.40]	1399.90[1392.40-1408.90]	30.20[26.00-31.50]	-	51.39[51.37-51.39]	15.97[14.64-16.57]	5
+freetoken	H	s1	NVFP4	code	1024	1024	0	2.50[2.49-2.50]	67.96[67.49-68.47]	434.60[432.20-435.80]	21.60[21.30-21.80]	-	51.77[51.77-51.78]	9.76[9.71-10.44]	5
+freetoken	H	s1	NVFP4	code	1024	256	0	2.50[2.50-2.51]	71.47[70.89-73.14]	432.60[431.00-433.70]	22.90[21.50-23.20]	-	51.77[51.68-51.79]	15.46[14.87-15.97]	5
+freetoken	H	s1	NVFP4	code	16384	1024	0	7.81[7.79-7.82]	71.52[71.31-72.86]	2104.60[2103.30-2111.90]	20.60[20.30-21.40]	-	51.72[51.71-51.72]	13.07[12.79-13.44]	5
+freetoken	H	s1	NVFP4	code	16384	256	0	7.81[7.81-7.82]	74.93[72.66-75.34]	2105.00[2102.70-2105.80]	18.20[17.80-20.40]	-	51.71[51.70-51.72]	20.42[20.07-20.93]	5
+freetoken	H	s1	NVFP4	code	30720	1024	0	10.30[10.29-10.35]	72.77[71.83-72.96]	2988.00[2974.10-2990.20]	20.60[20.00-21.40]	-	51.70[51.70-51.71]	14.86[14.42-15.56]	5
+freetoken	H	s1	NVFP4	code	30720	256	0	10.32[10.27-10.34]	74.07[73.78-74.15]	2983.20[2977.80-2996.40]	19.80[19.80-20.10]	-	51.72[51.70-51.72]	23.12[21.00-23.60]	5
+freetoken	H	s1	NVFP4	code	4096	1024	0	2.74[2.72-2.75]	71.41[70.25-71.68]	1514.10[1512.80-1527.60]	20.00[20.00-20.90]	-	51.76[51.76-51.77]	8.86[8.52-9.42]	5
+freetoken	H	s1	NVFP4	code	4096	256	0	2.71[2.71-2.73]	71.37[70.49-71.88]	1533.70[1522.20-1536.20]	22.50[21.70-23.00]	-	51.77[51.75-51.78]	14.03[13.65-14.16]	5
+freetoken	H	s1	NVFP4	ja	1024	1024	0	2.56[2.54-2.56]	77.03[76.72-77.77]	427.30[425.70-430.00]	20.80[20.60-22.10]	-	51.83[51.82-51.84]	8.21[8.12-8.52]	5
+freetoken	H	s1	NVFP4	ja	1024	256	0	2.56[2.55-2.56]	76.45[75.27-76.61]	428.70[427.30-429.80]	27.10[21.40-28.90]	-	51.84[51.83-51.84]	15.30[14.73-15.42]	5
+freetoken	H	s1	NVFP4	ja	16384	1024	0	9.26[9.20-9.45]	78.90[77.74-79.95]	1776.30[1740.60-1788.00]	20.70[19.60-21.00]	-	51.83[51.82-51.83]	12.11[11.94-12.30]	5
+freetoken	H	s1	NVFP4	ja	16384	256	0	9.30[9.23-9.38]	77.01[76.47-77.52]	1770.00[1754.90-1781.80]	19.10[19.00-21.70]	-	51.83[51.82-51.83]	19.24[18.65-19.49]	5
+freetoken	H	s1	NVFP4	ja	30720	1024	0	13.43[13.35-13.56]	78.48[77.26-78.97]	2292.40[2271.30-2305.90]	20.50[19.80-21.10]	-	51.80[51.80-51.81]	12.95[12.88-13.19]	5
+freetoken	H	s1	NVFP4	ja	30720	256	0	13.39[13.31-13.44]	74.85[74.36-76.91]	2298.90[2290.50-2313.10]	22.40[19.50-23.30]	-	51.80[51.73-51.81]	18.68[18.50-19.16]	5
+freetoken	H	s1	NVFP4	ja	4096	1024	0	2.98[2.96-3.00]	77.84[76.76-78.77]	1395.90[1386.10-1406.90]	21.80[20.30-23.10]	-	51.84[51.83-51.85]	7.44[7.23-7.56]	5
+freetoken	H	s1	NVFP4	ja	4096	256	0	2.98[2.97-3.00]	75.28[74.72-75.84]	1397.80[1387.10-1402.60]	20.20[19.30-21.50]	-	51.84[51.83-51.85]	13.51[13.42-13.54]	5
+freetoken	H	s2	NVFP4	code	1024	1024	0	2.50[2.49-2.51]	68.67[68.03-69.24]	433.10[432.20-435.80]	21.30[21.10-21.50]	-	51.80[51.79-51.81]	10.06[9.64-10.31]	5
+freetoken	H	s2	NVFP4	code	1024	256	0	2.50[2.49-2.51]	71.62[71.16-74.01]	433.60[431.70-436.00]	22.20[21.50-22.90]	-	51.78[51.64-51.82]	15.04[14.92-15.29]	5
+freetoken	H	s2	NVFP4	code	16384	1024	0	7.79[7.78-7.82]	71.67[71.17-72.28]	2110.10[2102.60-2114.00]	20.50[19.70-21.20]	-	51.75[51.74-51.75]	13.34[12.98-13.56]	5
+freetoken	H	s2	NVFP4	code	16384	256	0	7.80[7.78-7.83]	73.11[72.80-74.38]	2106.60[2101.10-2114.00]	20.70[20.00-21.40]	-	51.75[51.74-51.76]	20.42[20.11-21.27]	5
+freetoken	H	s2	NVFP4	code	30720	1024	0	10.31[10.30-10.31]	72.71[72.11-72.92]	2985.70[2985.50-2988.30]	20.00[19.80-21.00]	-	51.73[51.73-51.75]	14.86[14.51-15.17]	5
+freetoken	H	s2	NVFP4	code	30720	256	0	10.30[10.28-10.31]	74.46[74.15-74.74]	2989.00[2985.00-2993.70]	18.70[18.00-19.40]	-	51.75[51.74-51.75]	21.55[21.45-22.89]	5
+freetoken	H	s2	NVFP4	code	4096	1024	0	2.72[2.72-2.75]	71.08[70.94-71.76]	1525.40[1513.80-1527.70]	20.30[20.10-20.40]	-	51.80[51.79-51.80]	8.62[8.41-9.69]	5
+freetoken	H	s2	NVFP4	code	4096	256	0	2.73[2.72-2.75]	72.35[71.65-73.48]	1524.50[1514.20-1529.50]	20.10[19.90-21.90]	-	51.80[51.78-51.81]	13.88[13.62-14.65]	5
+freetoken	H	s2	NVFP4	ja	1024	1024	0	2.55[2.53-2.56]	77.25[76.95-78.53]	429.70[425.00-432.60]	21.90[20.10-24.80]	-	51.87[51.86-51.88]	8.06[7.60-8.15]	5
+freetoken	H	s2	NVFP4	ja	1024	256	0	2.55[2.55-2.56]	76.83[75.71-77.34]	428.70[425.90-429.40]	23.70[23.20-26.70]	-	51.86[51.85-51.88]	15.30[14.78-15.60]	5
+freetoken	H	s2	NVFP4	ja	16384	1024	0	9.23[9.20-9.25]	79.12[78.07-79.68]	1782.80[1779.60-1789.50]	20.10[19.80-21.10]	-	51.86[51.85-51.88]	12.02[11.88-12.38]	5
+freetoken	H	s2	NVFP4	ja	16384	256	0	9.27[9.21-9.32]	76.54[76.13-77.62]	1775.40[1766.20-1786.80]	19.10[19.00-20.20]	-	51.87[51.86-51.88]	18.75[18.14-19.22]	5
+freetoken	H	s2	NVFP4	ja	30720	1024	0	13.48[13.33-13.49]	79.22[77.23-79.84]	2284.50[2282.90-2309.80]	20.10[20.00-21.30]	-	51.86[51.84-51.87]	13.18[12.83-13.29]	5
+freetoken	H	s2	NVFP4	ja	30720	256	0	13.38[13.31-13.51]	76.74[76.33-77.35]	2301.80[2279.90-2314.00]	20.30[19.90-25.30]	-	51.86[51.85-51.87]	18.84[17.99-19.20]	5
+freetoken	H	s2	NVFP4	ja	4096	1024	0	2.98[2.97-2.98]	78.00[77.83-78.57]	1399.10[1395.50-1400.70]	20.40[20.30-22.10]	-	51.87[51.86-51.89]	7.41[6.87-7.46]	5
+freetoken	H	s2	NVFP4	ja	4096	256	0	2.96[2.96-2.99]	75.92[75.68-77.09]	1404.40[1395.40-1407.00]	22.20[21.30-25.80]	-	51.88[51.87-51.88]	13.27[12.88-13.49]	5
+######## [09:00:52] 品質評価：freetoken H（2026-11-01_quality と同じ課題・設定）
+== [09:00:52] 環境を記録
+== [09:00:52] 起動: env FT_STATS=0 FT_STRATEGY=hybrid FT_HYBRID_FETCH=-1 bash configs/freetoken/run.sh nvfp4
+0f556602285cb96e3752fc87e416427320ddea369e11af1a89c6caa3e4955a4a
+起動中: freetoken-bench（nvfp4、seedcore-freetoken:127aa0a920ce-cu130-v1）
+ft serve --model-path /models --served-model-name qwen3.8-flash-next-nvfp4 --host 0.0.0.0 --port 8080 --moe-strategy hybrid --moe-cache-auto --memory-ratio 0.88 --max-running-requests 1 --max-seq-len-override 32768 --max-prefill-length 8192 --kv-reserve-tokens 32768 --moe-cpu-threads 16 --cache-type radix --enable-cache-report --text-model-only --moe-hybrid-max-fetch -1
+準備完了を待つ: until curl -sf http://127.0.0.1:8081/health >/dev/null; do sleep 5; done; echo ready
+ready_after_s=63
+== [09:01:55] 計測（PCIe・GPU を1秒ごとに記録）
+[freetoken-H] gsm8k: 300 問中 300 問を実行
+  gsm8k 20/300  直近 7.6s
+  gsm8k 40/300  直近 9.0s
+  gsm8k 60/300  直近 5.0s
+  gsm8k 80/300  直近 4.2s
+  gsm8k 100/300  直近 6.3s
+  gsm8k 120/300  直近 35.5s
+  gsm8k 140/300  直近 6.4s
+  gsm8k 160/300  直近 5.8s
+  gsm8k 180/300  直近 4.7s
+  gsm8k 200/300  直近 7.3s
+  gsm8k 220/300  直近 5.9s
+  gsm8k 240/300  直近 6.5s
+  gsm8k 260/300  直近 8.5s
+  gsm8k 280/300  直近 7.2s
+  gsm8k 300/300  直近 7.9s
+[freetoken-H] humaneval: 164 問中 164 問を実行
+  humaneval 20/164  直近 7.5s
+  humaneval 40/164  直近 16.6s
+  humaneval 60/164  直近 25.4s
+  humaneval 80/164  直近 10.1s
+  humaneval 100/164  直近 19.3s
+  humaneval 120/164  直近 13.5s
+  humaneval 140/164  直近 11.5s
+  humaneval 160/164  直近 13.6s
+  humaneval 164/164  直近 14.8s
+[freetoken-H] jcqa: 300 問中 300 問を実行
+  jcqa 20/300  直近 4.0s
+  jcqa 40/300  直近 4.5s
+  jcqa 60/300  直近 4.8s
+  jcqa 80/300  直近 4.9s
+  jcqa 100/300  直近 4.4s
+  jcqa 120/300  直近 4.8s
+  jcqa 140/300  直近 3.4s
+  jcqa 160/300  直近 4.6s
+  jcqa 180/300  直近 4.5s
+  jcqa 200/300  直近 4.3s
+  jcqa 220/300  直近 4.8s
+  jcqa 240/300  直近 4.5s
+  jcqa 260/300  直近 4.2s
+  jcqa 280/300  直近 4.0s
+  jcqa 300/300  直近 5.0s
+[freetoken-H] json: 50 問中 50 問を実行
+  json 20/50  直近 6.0s
+  json 40/50  直近 6.4s
+  json 50/50  直近 6.1s
+== [10:36:30] 停止してログを保存
+保存して停止しました: results/2026-11-03_ft_hybrid/quality_H
+合計 1388
+drwxrwxr-x 2 yusuke-hosokawa yusuke-hosokawa   4096 11月  3 10:36 .
+drwxrwxr-x 7 yusuke-hosokawa yusuke-hosokawa   4096 11月  3 09:00 ..
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1423 11月  3 10:36 bench_stdout.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa   1867 11月  3 09:00 env_check.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa  72422 11月  3 10:36 freetoken.log.gz
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa    473 11月  3 10:36 freetoken_args.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 325396 11月  3 10:36 gpu.csv
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa 979482 11月  3 10:36 quality.jsonl
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     41 11月  3 09:00 repo_commit.txt
+-rw-rw-r-- 1 yusuke-hosokawa yusuke-hosokawa     17 11月  3 09:01 startup.txt
+== 集計
+（品質評価は bench/quality_eval.py score / report で集計する）
+採点: results/2026-11-03_ft_hybrid/quality_H/quality.jsonl -> results/2026-11-03_ft_hybrid/quality_H/scored.jsonl（814 件）
+| 構成 | 課題 | 問題数 | 正答 | 正答率 | 95%信頼区間 | エラー | 打ち切り | ループ | 1問あたり | 正答1件あたり | 出力トークン（中央値） |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| freetoken-B | gsm8k | 300 | 295 | 98.3% | 96.2〜99.3% | 0 | 0 | 0 | 7.1 s | 7.2 s | 221.5 |
+| freetoken-B | humaneval | 164 | 160 | 97.6% | 93.9〜99.0% | 0 | 0 | 0 | 14.9 s | 15.2 s | 564.5 |
+| freetoken-B | jcqa | 300 | 294 | 98.0% | 95.7〜99.1% | 0 | 0 | 0 | 5.2 s | 5.3 s | 143.5 |
+| freetoken-B | json | 50 | 50 | 100.0% | 92.9〜100.0% | 0 | 0 | 0 | 6.7 s | 6.7 s | 215.5 |
+| freetoken-H | gsm8k | 300 | 296 | 98.7% | 96.6〜99.5% | 0 | 0 | 0 | 6.3 s | 6.3 s | 222.0 |
+| freetoken-H | humaneval | 164 | 162 | 98.8% | 95.7〜99.7% | 0 | 0 | 0 | 12.7 s | 12.9 s | 583.5 |
+| freetoken-H | jcqa | 300 | 295 | 98.3% | 96.2〜99.3% | 0 | 0 | 0 | 4.7 s | 4.8 s | 142.0 |
+| freetoken-H | json | 50 | 50 | 100.0% | 92.9〜100.0% | 0 | 0 | 0 | 6.1 s | 6.1 s | 215.5 |
+
+## offload（2026-11-01_quality の freetoken_B）と hybrid（H）の答えの一致
+A = results/2026-11-01_quality/freetoken_B/scored.jsonl
+B = results/2026-11-03_ft_hybrid/quality_H/scored.jsonl
+| 課題 | 問題数 | 答えが一致 | 正誤が一致 | 両方正解 | A だけ正解 | B だけ正解 |
+| --- | --- | --- | --- | --- | --- | --- |
+| gsm8k | 300 | 99.0% | 99.0% | 294 | 1 | 2 |
+| humaneval | 164 | 98.8% | 98.8% | 160 | 0 | 2 |
+| jcqa | 300 | 99.7% | 99.7% | 294 | 0 | 1 |
+| json | 50 | 100.0% | 100.0% | 50 | 0 | 0 |

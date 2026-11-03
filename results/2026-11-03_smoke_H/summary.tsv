@@ -1,0 +1,2 @@
+engine	track	label	model_file	prompt_kind	input_len	output_len	turn	ttft_s(median[min-max])	decode_tps(median[min-max])	prefill_tps(median[min-max])	gap_p99_ms(median[min-max])	draft_accept_rate(median[min-max])	mem_available_min_gib(median[min-max])	pcie_rx_avg_gbps(median[min-max])	n
+freetoken	H		NVFP4	code	1024	256	0	2.72[2.72-2.72]	64.74[64.74-64.74]	396.80[396.80-396.80]	29.20[29.20-29.20]	-	50.32[50.32-50.32]	15.17[15.17-15.17]	1
